@@ -1,0 +1,264 @@
+/* IDA-PTW v60 Review Portal — minimal academic styling */
+
+* { box-sizing: border-box; }
+
+html { font-size: 16px; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: #1a202c;
+  background: #f7fafc;
+  margin: 0;
+  padding: 0;
+}
+
+.wrap { max-width: 980px; margin: 0 auto; padding: 0 1.25rem; }
+
+/* Hide elements based on lang */
+.lang-en [data-lang="id"] { display: none; }
+.lang-id [data-lang="en"] { display: none; }
+
+/* Top header */
+header.top {
+  background: linear-gradient(135deg, #2c5282 0%, #2a4365 100%);
+  color: #fff;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+header.top .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: #fff;
+}
+.brand-mark {
+  width: 48px;
+  height: 48px;
+  background: #d69e2e;
+  color: #1a202c;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.brand-text b {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+.brand-text span {
+  display: block;
+  font-size: 0.78rem;
+  color: #cbd5e0;
+}
+
+/* Language toggle */
+.lang-toggle {
+  display: flex;
+  gap: 0.25rem;
+  background: rgba(255,255,255,0.1);
+  border-radius: 6px;
+  padding: 3px;
+}
+.lang-toggle button {
+  background: transparent;
+  color: #cbd5e0;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.lang-toggle button.active {
+  background: #d69e2e;
+  color: #1a202c;
+}
+.lang-toggle button:hover:not(.active) {
+  color: #fff;
+  background: rgba(255,255,255,0.1);
+}
+
+/* Hero section */
+.hero {
+  background: #fff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 2.5rem 0;
+}
+.hero h1 {
+  font-size: 1.75rem;
+  margin: 0 0 0.5rem;
+  color: #1a202c;
+  font-weight: 700;
+}
+.hero .sub {
+  font-size: 1.05rem;
+  color: #4a5568;
+  margin: 0 0 1.5rem;
+  line-height: 1.6;
+}
+.meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+.meta > span {
+  background: #edf2f7;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border-left: 3px solid #d69e2e;
+}
+.meta strong {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #4a5568;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+.meta b {
+  font-size: 1.2rem;
+  color: #2c5282;
+  font-weight: 700;
+}
+
+/* Main content */
+main {
+  padding: 2rem 0 4rem;
+}
+main h2 {
+  font-size: 1.4rem;
+  margin: 2rem 0 1rem;
+  color: #2d3748;
+  font-weight: 700;
+  border-bottom: 2px solid #d69e2e;
+  padding-bottom: 0.4rem;
+}
+
+/* Cards grid */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+.card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+}
+.card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  color: #2c5282;
+  font-weight: 700;
+}
+.card p {
+  font-size: 0.9rem;
+  color: #4a5568;
+  line-height: 1.55;
+  margin: 0 0 0.85rem;
+}
+.card ol {
+  font-size: 0.9rem;
+  color: #4a5568;
+  line-height: 1.7;
+  padding-left: 1.25rem;
+  margin: 0;
+}
+.card ol li { margin-bottom: 0.4rem; }
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: #edf2f7;
+  color: #2d3748;
+  border: 1px solid #cbd5e0;
+  transition: all 0.15s;
+  cursor: pointer;
+}
+.btn:hover {
+  background: #e2e8f0;
+  border-color: #a0aec0;
+}
+.btn.primary {
+  background: #2c5282;
+  color: #fff;
+  border-color: #2c5282;
+}
+.btn.primary:hover {
+  background: #2a4365;
+  border-color: #2a4365;
+}
+
+/* Email link in card */
+.card a[href^="mailto:"] {
+  color: #2c5282;
+  font-weight: 600;
+  text-decoration: none;
+}
+.card a[href^="mailto:"]:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+footer.bot {
+  background: #2d3748;
+  color: #cbd5e0;
+  padding: 1.5rem 0;
+  text-align: center;
+  font-size: 0.85rem;
+}
+footer.bot .wrap span:not(:last-child) {
+  margin-right: 0.3rem;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  header.top .wrap { flex-direction: column; align-items: flex-start; }
+  .brand { width: 100%; }
+  .hero h1 { font-size: 1.4rem; }
+  .hero .sub { font-size: 0.95rem; }
+  .meta { grid-template-columns: 1fr; }
+  .cards { grid-template-columns: 1fr; }
+}
