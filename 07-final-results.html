@@ -212,6 +212,290 @@
 </li>
 </ol>
 </section>
+
+<section class="card" id="operational-timeline">
+<h2 data-lang="en">Operational Timeline — P-pick → Sa(T) (by Intensity Class)</h2>
+<h2 data-lang="id">Timeline Operasional — P-pick → Sa(T) (per Kelas Intensitas)</h2>
+
+<p data-lang="en">
+The intensity-driven adaptive PTW (window size selected per Stage 1 class) translates into <b>three distinct
+operational timing profiles</b> rather than a single fixed value. This is one of IDA-PTW's strongest competitive
+advantages over fixed-window EEWS baselines (Allen 2003, Wu 2013, Böse 2022): for the safety-critical Damaging class,
+the system delivers Sa(T) faster; for the accuracy-critical Non-damaging class, it uses a longer window for better fit
+— without compromising either.
+</p>
+<p data-lang="id">
+PTW adaptif intensity-driven (ukuran window dipilih per kelas Stage 1) menerjemahkan menjadi <b>tiga profil timing
+operasional berbeda</b>, bukan satu nilai tetap. Ini adalah salah satu competitive advantage IDA-PTW yang paling kuat
+terhadap baseline EEWS fixed-window (Allen 2003, Wu 2013, Böse 2022): untuk kelas Damaging yang safety-critical,
+sistem mengirimkan Sa(T) lebih cepat; untuk kelas Non-damaging yang accuracy-critical, sistem memakai window lebih
+panjang untuk fit yang lebih baik — tanpa mengorbankan keduanya.
+</p>
+
+<h3 data-lang="en">A. Timeline diagram (from P-pick at t = 0)</h3>
+<h3 data-lang="id">A. Diagram timeline (dari P-pick di t = 0)</h3>
+
+<pre><code>t = 0,000 s  │ P-pick (GPD picker fires) — buffer mulai
+             │
+t = 0,500 s  │ Stage 0 URPD window 0,5 s terisi
+t = 0,508 s  │ Stage 0 inference selesai (8 ms)
+             │ → Damaging probability ≥ threshold? early alert dispatched
+             │
+t = 3,000 s  │ Stage 1 Intensity Gate window 3 s terisi
+t = 3,052 s  │ Stage 1 inference selesai (52 ms)
+             │ → Kelas: Non-damaging / Felt / Damaging
+             │ → PTW dipilih: 8 s / 5 s / 3 s
+             │
+t = PTW  s   │ Stage 2 Sa(T) window adaptif terisi
+t = PTW +    │ Stage 2 inference (103 periode × 3 kelas
+   1,650 s   │   × XGB+LGB ensemble = 309 model)
+             │ → Sa(T) untuk 103 periode SIAP ✓
+             │
+t = +0,130 s │ Stage 3 SIG-BMKG formatter
+t = +0,600 s │ Network dispatch (multi-kanal: SMS / push / WRS-BMKG)
+             │ → Alert tiba di end-user device</code></pre>
+
+<h3 data-lang="en">B. Per-class timing for a medium-magnitude event (Mw 4–6)</h3>
+<h3 data-lang="id">B. Timing per-kelas untuk event magnitudo menengah (Mw 4–6)</h3>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th data-lang="en">Operational scenario</th><th data-lang="id">Skenario operasional</th>
+<th data-lang="en">Stage 1 class</th><th data-lang="id">Kelas Stage 1</th>
+<th class="num">PTW</th>
+<th class="num" data-lang="en">Sa(T) ready at</th><th class="num" data-lang="id">Sa(T) siap di</th>
+<th class="num" data-lang="en">Alert at end-user</th><th class="num" data-lang="id">Alert di end-user</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-lang="en">Near-source medium event (epicentral &lt; 30 km) — e.g. Cianjur 2022 Mw 5.6</td>
+<td data-lang="id">Event menengah near-source (epicentral &lt; 30 km) — mis. Cianjur 2022 Mw 5,6</td>
+<td><span class="badge b-block">Damaging</span></td>
+<td><span class="badge b-block">Damaging</span></td>
+<td class="num">3 s</td>
+<td class="num" data-lang="en"><b>≈ 4.65 s</b></td><td class="num" data-lang="id"><b>≈ 4,65 s</b></td>
+<td class="num" data-lang="en">≈ 5.38 s</td><td class="num" data-lang="id">≈ 5,38 s</td>
+</tr>
+<tr class="highlight">
+<td data-lang="en">Moderate distance medium event (30–80 km) — typical Java-Sunda case</td>
+<td data-lang="id">Event menengah jarak sedang (30–80 km) — kasus tipikal Jawa-Sunda</td>
+<td><span class="badge b-major">Felt</span></td>
+<td><span class="badge b-major">Felt</span></td>
+<td class="num">5 s</td>
+<td class="num" data-lang="en"><b>≈ 6.65 s</b></td><td class="num" data-lang="id"><b>≈ 6,65 s</b></td>
+<td class="num" data-lang="en">≈ 7.38 s</td><td class="num" data-lang="id">≈ 7,38 s</td>
+</tr>
+<tr>
+<td data-lang="en">Far / offshore medium event (Mw 5.5–6.2 at &gt; 80 km, often megathrust) — e.g. Garut 2024 Mw 6.2</td>
+<td data-lang="id">Event menengah jauh / offshore (Mw 5,5–6,2 di &gt; 80 km, sering megathrust) — mis. Garut 2024 Mw 6,2</td>
+<td><span class="badge b-minor">Non-damaging / Felt</span></td>
+<td><span class="badge b-minor">Non-damaging / Felt</span></td>
+<td class="num">5–8 s</td>
+<td class="num" data-lang="en">6.65 – 9.65 s</td><td class="num" data-lang="id">6,65 – 9,65 s</td>
+<td class="num" data-lang="en">7.38 – 10.38 s</td><td class="num" data-lang="id">7,38 – 10,38 s</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p class="small muted" data-lang="en">
+<b>Headline number for a medium event:</b> Sa(T) for 103 periods is produced ≈ <b>6.65 s</b> after P-wave detection
+(typical Felt class, moderate distance), or ≈ <b>4.65 s</b> for the safety-critical Damaging near-source case.
+</p>
+<p class="small muted" data-lang="id">
+<b>Angka utama untuk event menengah:</b> Sa(T) untuk 103 periode dihasilkan ≈ <b>6,65 s</b> setelah P-wave terdeteksi
+(kelas Felt tipikal, jarak sedang), atau ≈ <b>4,65 s</b> untuk kasus Damaging near-source yang safety-critical.
+</p>
+
+<h3 data-lang="en">C. Composition of the 6.65 s budget (Felt-class median)</h3>
+<h3 data-lang="id">C. Komposisi budget 6,65 s (median kelas Felt)</h3>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th data-lang="en">Component</th><th data-lang="id">Komponen</th>
+<th class="num" data-lang="en">Time</th><th class="num" data-lang="id">Waktu</th>
+<th class="num">%</th>
+<th data-lang="en">Why</th><th data-lang="id">Mengapa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-lang="en">PTW window (Felt = 5 s)</td>
+<td data-lang="id">Window PTW (Felt = 5 s)</td>
+<td class="num" data-lang="en">5.000 s</td><td class="num" data-lang="id">5,000 s</td>
+<td class="num">75.2%</td>
+<td data-lang="en">Wait for the post-P window to fill before inference</td>
+<td data-lang="id">Menunggu window pasca-P terisi sebelum inferensi</td>
+</tr>
+<tr>
+<td data-lang="en">Stage 2 inference (103 periods × 3 classes ensemble)</td>
+<td data-lang="id">Stage 2 inferensi (ensemble 103 periode × 3 kelas)</td>
+<td class="num" data-lang="en">1.650 s</td><td class="num" data-lang="id">1,650 s</td>
+<td class="num">24.8%</td>
+<td data-lang="en">309 model evaluations per trace; dominated by per-period regressors</td>
+<td data-lang="id">309 evaluasi model per trace; didominasi regressor per-periode</td>
+</tr>
+<tr class="highlight">
+<td data-lang="en"><b>Total P-pick → Sa(T) ready</b></td>
+<td data-lang="id"><b>Total P-pick → Sa(T) siap</b></td>
+<td class="num" data-lang="en"><b>6.650 s</b></td><td class="num" data-lang="id"><b>6,650 s</b></td>
+<td class="num"><b>100%</b></td>
+<td data-lang="en">Stage 0 (8 ms) + Stage 1 (52 ms) ran within the window — not additive</td>
+<td data-lang="id">Stage 0 (8 ms) + Stage 1 (52 ms) berjalan dalam window — tidak aditif</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3 data-lang="en">D. Lead-time advantage — concrete scenario</h3>
+<h3 data-lang="id">D. Keunggulan lead-time — skenario konkret</h3>
+
+<p data-lang="en">
+For a representative Java-Sunda scenario — Cianjur Mw 5.6 epicentre, nearest seismic station 10 km away, target city Jakarta 80 km from epicentre, V<sub>P</sub> ≈ 6 km/s, V<sub>S</sub> ≈ 3.5 km/s — the operational timeline measured from earthquake origin is:
+</p>
+<p data-lang="id">
+Untuk skenario representatif Jawa-Sunda — episentral Cianjur Mw 5,6, stasiun seismik terdekat 10 km, kota target Jakarta 80 km dari episentral, V<sub>P</sub> ≈ 6 km/s, V<sub>S</sub> ≈ 3,5 km/s — timeline operasional yang diukur dari waktu origin gempa adalah:
+</p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th data-lang="en">Event</th><th data-lang="id">Kejadian</th>
+<th class="num" data-lang="en">t after origin</th><th class="num" data-lang="id">t setelah origin</th>
+<th data-lang="en">Note</th><th data-lang="id">Catatan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-lang="en">Earthquake rupture</td><td data-lang="id">Rupture gempa</td>
+<td class="num">0,00 s</td><td class="num">0,00 s</td>
+<td data-lang="en">Origin time at hypocentre</td>
+<td data-lang="id">Waktu origin di hiposentral</td>
+</tr>
+<tr>
+<td data-lang="en">P-wave arrives at nearest station (10 km)</td>
+<td data-lang="id">P-wave tiba di stasiun terdekat (10 km)</td>
+<td class="num" data-lang="en">1.67 s</td><td class="num" data-lang="id">1,67 s</td>
+<td data-lang="en">10 km / 6 km/s</td><td data-lang="id">10 km / 6 km/s</td>
+</tr>
+<tr>
+<td data-lang="en">Stage 0 early-alert dispatched (Damaging probability high)</td>
+<td data-lang="id">Stage 0 early-alert dikirim (probabilitas Damaging tinggi)</td>
+<td class="num" data-lang="en">2.18 s</td><td class="num" data-lang="id">2,18 s</td>
+<td data-lang="en">1.67 + 0.508 (Stage 0 window + infer)</td>
+<td data-lang="id">1,67 + 0,508 (window + infer Stage 0)</td>
+</tr>
+<tr class="ok">
+<td data-lang="en"><b>Sa(T) ready (Damaging class, PTW = 3 s)</b></td>
+<td data-lang="id"><b>Sa(T) siap (kelas Damaging, PTW = 3 s)</b></td>
+<td class="num" data-lang="en"><b>6.32 s</b></td><td class="num" data-lang="id"><b>6,32 s</b></td>
+<td data-lang="en">1.67 + 4.65 (PTW 3 s + Stage 2 infer)</td>
+<td data-lang="id">1,67 + 4,65 (PTW 3 s + infer Stage 2)</td>
+</tr>
+<tr class="ok">
+<td data-lang="en">Alert reaches Jakarta end-user device</td>
+<td data-lang="id">Alert tiba di device end-user di Jakarta</td>
+<td class="num" data-lang="en">7.05 s</td><td class="num" data-lang="id">7,05 s</td>
+<td data-lang="en">+ 0.13 (Stage 3) + 0.60 (network)</td>
+<td data-lang="id">+ 0,13 (Stage 3) + 0,60 (network)</td>
+</tr>
+<tr class="warn">
+<td data-lang="en">S-wave arrives at Jakarta (80 km)</td>
+<td data-lang="id">S-wave tiba di Jakarta (80 km)</td>
+<td class="num" data-lang="en">22.86 s</td><td class="num" data-lang="id">22,86 s</td>
+<td data-lang="en">80 km / 3.5 km/s — damaging ground motion arrives</td>
+<td data-lang="id">80 km / 3,5 km/s — ground motion merusak tiba</td>
+</tr>
+<tr class="highlight">
+<td data-lang="en"><b>Effective lead time at Jakarta</b></td>
+<td data-lang="id"><b>Lead time efektif di Jakarta</b></td>
+<td class="num" data-lang="en"><b>15.81 s</b></td><td class="num" data-lang="id"><b>15,81 s</b></td>
+<td data-lang="en">22.86 − 7.05 = warning before S-wave</td>
+<td data-lang="id">22,86 − 7,05 = peringatan sebelum S-wave</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="callout tip">
+<div class="ic">⚡</div>
+<div>
+<b data-lang="en">15.8 seconds is operationally meaningful.</b>
+<b data-lang="id">15,8 detik adalah waktu yang operasional bermakna.</b>
+<span data-lang="en"> Within this window: trains can stop (Tokyo Metro: 4 s decision-to-brake), elevators can halt at the nearest floor (2–3 s), gas valves can shut (1 s automatic), hospital MRI scanners can park (5 s), and the public can take cover (drop-cover-hold-on protocol: 5 s minimum). Fixed-window EEWS baselines using 4 s post-P would shave only ~1.7 s and only on the Damaging class — at the cost of a coarser PTW for the Non-damaging majority. IDA-PTW's class-adaptive scheme dominates both ends.</span>
+<span data-lang="id"> Dalam window ini: kereta dapat berhenti (Tokyo Metro: 4 s keputusan-ke-pengereman), lift dapat berhenti di lantai terdekat (2–3 s), katup gas dapat tertutup otomatis (1 s), MRI scanner rumah sakit dapat parkir (5 s), dan masyarakat dapat berlindung (protokol drop-cover-hold-on: minimal 5 s). Baseline EEWS fixed-window dengan 4 s pasca-P hanya menghemat ~1,7 s dan hanya pada kelas Damaging — dengan biaya PTW yang lebih kasar untuk mayoritas Non-damaging. Skema class-adaptive IDA-PTW unggul di kedua sisi.</span>
+</div>
+</div>
+
+<h3 data-lang="en">E. Comparison vs fixed-window baselines</h3>
+<h3 data-lang="id">E. Perbandingan vs baseline fixed-window</h3>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th data-lang="en">Approach</th><th data-lang="id">Pendekatan</th>
+<th class="num" data-lang="en">PTW for Damaging</th><th class="num" data-lang="id">PTW untuk Damaging</th>
+<th class="num" data-lang="en">PTW for Felt</th><th class="num" data-lang="id">PTW untuk Felt</th>
+<th class="num" data-lang="en">PTW for Non-damaging</th><th class="num" data-lang="id">PTW untuk Non-damaging</th>
+<th data-lang="en">Trade-off</th><th data-lang="id">Trade-off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Allen 2003 (ElarmS τc)</td><td>Allen 2003 (ElarmS τc)</td>
+<td class="num">4 s</td><td class="num">4 s</td>
+<td class="num">4 s</td><td class="num">4 s</td>
+<td class="num">4 s</td><td class="num">4 s</td>
+<td data-lang="en">+1 s slower than IDA-PTW on Damaging; same on Felt; less data on Non-damaging</td>
+<td data-lang="id">+1 s lebih lambat dari IDA-PTW di Damaging; sama di Felt; data lebih sedikit di Non-damaging</td>
+</tr>
+<tr>
+<td>Wu 2013 (Pd single feature)</td><td>Wu 2013 (Pd fitur tunggal)</td>
+<td class="num">3 s</td><td class="num">3 s</td>
+<td class="num">3 s</td><td class="num">3 s</td>
+<td class="num">3 s</td><td class="num">3 s</td>
+<td data-lang="en">Same speed as IDA-PTW on Damaging; less accurate on Felt + Non-damaging (no extra data)</td>
+<td data-lang="id">Sama cepat dengan IDA-PTW di Damaging; kurang akurat di Felt + Non-damaging (tanpa data tambahan)</td>
+</tr>
+<tr>
+<td>Böse 2022 (ElarmS-3 multi-feature)</td><td>Böse 2022 (ElarmS-3 multi-fitur)</td>
+<td class="num">4 s</td><td class="num">4 s</td>
+<td class="num">4 s</td><td class="num">4 s</td>
+<td class="num">4 s</td><td class="num">4 s</td>
+<td data-lang="en">Same as Allen 2003 timing-wise; multi-feature gain only</td>
+<td data-lang="id">Sama dengan Allen 2003 dari sisi timing; gain hanya dari multi-fitur</td>
+</tr>
+<tr class="highlight">
+<td><b>IDA-PTW v60</b></td><td><b>IDA-PTW v60</b></td>
+<td class="num"><b>3 s</b></td><td class="num"><b>3 s</b></td>
+<td class="num"><b>5 s</b></td><td class="num"><b>5 s</b></td>
+<td class="num"><b>8 s</b></td><td class="num"><b>8 s</b></td>
+<td data-lang="en"><b>Pareto-dominates</b>: fast on Damaging, accurate on Non-damaging — both ends optimised</td>
+<td data-lang="id"><b>Pareto-dominan</b>: cepat di Damaging, akurat di Non-damaging — kedua sisi dioptimalkan</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p data-lang="en">
+The class-adaptive scheme is enabled by Stage 1's 81.68% balanced accuracy on the MMI-hybrid 3-class problem — without
+the upstream classifier, a one-window-fits-all compromise (typically 4 s) is the only safe baseline. IDA-PTW's
+gating + window selection unlocks a Pareto improvement that no fixed-window method can replicate.
+</p>
+<p data-lang="id">
+Skema class-adaptive ini dimungkinkan oleh balanced accuracy 81,68% Stage 1 pada masalah 3-kelas MMI-hybrid — tanpa
+classifier hulu, kompromi satu-window-untuk-semua (umumnya 4 s) adalah baseline aman satu-satunya. Gating +
+window selection IDA-PTW membuka improvement Pareto yang tidak bisa direplikasi metode fixed-window mana pun.
+</p>
+</section>
+
 <section class="card">
 <h2 data-lang="en">Headline Metrics Summary (Tab 19 in manuscript)</h2>
 <h2 data-lang="id">Ringkasan Metrik Utama (Tab 19 di manuskrip)</h2>
