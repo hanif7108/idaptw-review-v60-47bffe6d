@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>07 · Final Results — IDA-PTW v60</title>
+<meta name="description" content="Final operational results and submission roadmap for IDA-PTW v60 manuscript.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="lang-id">
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html" data-keep-lang>
+      <div class="brand-mark">v60</div>
+      <div class="brand-text">
+        <b data-lang="en">IDA-PTW v60 Review</b>
+        <b data-lang="id">Tinjauan IDA-PTW v60</b>
+        <span data-lang="en">07 · Final Results</span>
+        <span data-lang="id">07 · Hasil Akhir</span>
+      </div>
+    </a>
+    <nav class="nav">
+      <a href="index.html" data-keep-lang data-lang="en">Dashboard</a>
+      <a href="index.html" data-keep-lang data-lang="id">Beranda</a>
+      <a href="07-final-results.html" class="active" data-keep-lang data-lang="en">Final Results</a>
+      <a href="07-final-results.html" class="active" data-keep-lang data-lang="id">Hasil Akhir</a>
+      <a href="01-crosscheck.html" data-keep-lang data-lang="en">Cross-check</a>
+      <a href="01-crosscheck.html" data-keep-lang data-lang="id">Cross-check</a>
+      <a href="02-audit.html" data-keep-lang data-lang="en">Audit</a>
+      <a href="02-audit.html" data-keep-lang data-lang="id">Audit</a>
+      <a href="03-appendix.html" data-keep-lang data-lang="en">Derivations</a>
+      <a href="03-appendix.html" data-keep-lang data-lang="id">Derivasi</a>
+      <a href="04-figure.html" data-keep-lang data-lang="en">Figures</a>
+      <a href="04-figure.html" data-keep-lang data-lang="id">Figur</a>
+      <a href="05-readiness.html" data-keep-lang data-lang="en">Readiness</a>
+      <a href="05-readiness.html" data-keep-lang data-lang="id">Kesiapan</a>
+      <a href="06-sigbmkg.html" data-keep-lang data-lang="en">SIG-BMKG</a>
+      <a href="06-sigbmkg.html" data-keep-lang data-lang="id">SIG-BMKG</a>
+    </nav>
+    <div class="lang-toggle" role="tablist" aria-label="Language">
+      <button data-lang="en">EN</button>
+      <button data-lang="id">ID</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="card">
+    <h2 data-lang="en">07 · Final Operational Results (v60)</h2>
+    <h2 data-lang="id">07 · Hasil Operasional Final (v60)</h2>
+
+    <p data-lang="en">
+      <b>Manuscript:</b> "A Saturation-Aware Multi-Stage Framework for Intensity-Driven Adaptive P-Wave Time Window Selection
+      in Real-Time Spectral Acceleration Prediction: Operational Design for the Java-Sunda Subduction Zone." Target: <em>Journal of Earthquake and Tsunami</em> (JET, World Scientific).
+    </p>
+    <p data-lang="id">
+      <b>Manuskrip:</b> "A Saturation-Aware Multi-Stage Framework for Intensity-Driven Adaptive P-Wave Time Window Selection
+      in Real-Time Spectral Acceleration Prediction: Operational Design for the Java-Sunda Subduction Zone." Target: <em>Journal of Earthquake and Tsunami</em> (JET, World Scientific).
+    </p>
+
+    <div class="btn-row">
+      <a class="btn btn-gold" href="pdfs/manuscript_JET_v60_EN.pdf" target="_blank">📖 <span data-lang="en">View manuscript EN (PDF, 42 pp)</span><span data-lang="id">Buka manuskrip EN (PDF, 42 hal)</span></a>
+      <a class="btn btn-outline" href="docs/manuscript_JET_v60_EN.docx">⬇ DOCX</a>
+      <a class="btn btn-outline" href="pdfs/manuscript_JET_v60_ID.pdf" target="_blank">📖 ID PDF</a>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 data-lang="en">4-Stage Saturation-Aware Architecture</h2>
+    <h2 data-lang="id">Arsitektur 4-Stage Saturation-Aware</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th data-lang="en">Stage</th><th data-lang="id">Stage</th>
+            <th data-lang="en">Function</th><th data-lang="id">Fungsi</th>
+            <th data-lang="en">Model</th><th data-lang="id">Model</th>
+            <th data-lang="en">Window</th><th data-lang="id">Window</th>
+            <th data-lang="en">Key metric</th><th data-lang="id">Metrik utama</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Stage 0 — URPD</b></td><td><b>Stage 0 — URPD</b></td>
+            <td data-lang="en">Ultra-Rapid P-wave Discriminator</td>
+            <td data-lang="id">Diskriminator P-wave Ultra-Cepat</td>
+            <td>sklearn GBM (depth=4)</td><td>sklearn GBM (depth=4)</td>
+            <td class="num">0.5 s</td><td class="num">0,5 s</td>
+            <td class="num">AUC 0.9136</td><td class="num">AUC 0,9136</td>
+          </tr>
+          <tr>
+            <td><b>Stage 1 — Intensity Gate</b></td><td><b>Stage 1 — Intensity Gate</b></td>
+            <td data-lang="en">3-class MMI-hybrid classifier</td>
+            <td data-lang="id">Classifier 3-kelas MMI-hybrid</td>
+            <td>XGBoost + LightGBM ensemble</td>
+            <td>XGBoost + LightGBM ensemble</td>
+            <td class="num">3 s</td><td class="num">3 s</td>
+            <td class="num">BAcc 81.68%</td><td class="num">BAcc 81,68%</td>
+          </tr>
+          <tr>
+            <td>Stage 1.5 — Distance Regressor</td><td>Stage 1.5 — Regressor Jarak</td>
+            <td data-lang="en">Hypocentral distance estimator (negative result, see Sec 5.4)</td>
+            <td data-lang="id">Estimator jarak hiposenter (hasil negatif, lihat Sec 5.4)</td>
+            <td>XGBoost regressor</td><td>XGBoost regressor</td>
+            <td class="num">3 s</td><td class="num">3 s</td>
+            <td data-lang="en">R²=0.42 (insufficient)</td>
+            <td data-lang="id">R²=0,42 (insufficient)</td>
+          </tr>
+          <tr>
+            <td><b>Stage 2 — Sa(T) Regressor</b></td><td><b>Stage 2 — Regressor Sa(T)</b></td>
+            <td data-lang="en">Per-class Sa(T) regressor over 103 periods</td>
+            <td data-lang="id">Regressor Sa(T) per-kelas di 103 periode</td>
+            <td>XGB + LGB ensemble (per class)</td>
+            <td>XGB + LGB ensemble (per kelas)</td>
+            <td class="num">{3, 5, 8} s adaptive</td>
+            <td class="num">{3, 5, 8} s adaptif</td>
+            <td class="num">R² 0.7091</td><td class="num">R² 0,7091</td>
+          </tr>
+          <tr>
+            <td>Stage 3 — Alert Dispatch</td><td>Stage 3 — Dispatch Alert</td>
+            <td data-lang="en">SIG-BMKG → multi-channel formatter</td>
+            <td data-lang="id">SIG-BMKG → formatter multi-kanal</td>
+            <td data-lang="en">Rule-based</td><td data-lang="id">Berbasis aturan</td>
+            <td class="num">≤ 2 s</td><td class="num">≤ 2 s</td>
+            <td class="num">99.44% golden</td><td class="num">99,44% golden</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 data-lang="en">Key Architectural Novelties</h3>
+    <h3 data-lang="id">Kebaruan Arsitektural Utama</h3>
+    <ol>
+      <li>
+        <b data-lang="en">Saturation-awareness for Mw &gt; 6.5:</b>
+        <b data-lang="id">Kesadaran saturasi untuk Mw &gt; 6,5:</b>
+        <span data-lang="en"> classical τc/Pd features saturate above magnitude 6.5 due to the corner-frequency drop below the post-P window bandwidth. IDA-PTW bypasses this by routing large-event prediction through the intensity gate rather than magnitude estimation.</span>
+        <span data-lang="id"> fitur klasik τc/Pd jenuh di atas magnitudo 6,5 karena penurunan corner-frequency di bawah bandwidth window pasca-P. IDA-PTW melewati ini dengan merouting prediksi event besar melalui intensity gate, bukan estimasi magnitudo.</span>
+      </li>
+      <li>
+        <b data-lang="en">Intensity-driven adaptive PTW:</b>
+        <b data-lang="id">PTW adaptif intensity-driven:</b>
+        <span data-lang="en"> window size {3, 5, 8}s selected per intensity class — short window for damaging events (where speed is critical), long window for non-damaging (where accuracy can be improved without operational cost).</span>
+        <span data-lang="id"> ukuran window {3, 5, 8}s dipilih per kelas intensitas — window pendek untuk event damaging (di mana kecepatan kritis), window panjang untuk non-damaging (di mana akurasi dapat ditingkatkan tanpa cost operasional).</span>
+      </li>
+      <li>
+        <b data-lang="en">Catalog-independent operation:</b>
+        <b data-lang="id">Operasi catalog-independent:</b>
+        <span data-lang="en"> the system makes no magnitude estimate and requires no event catalog query — Sa(T) is predicted directly from the 0.5 s P-wave window for Stage 0, 3–8 s adaptive window for Stage 2.</span>
+        <span data-lang="id"> sistem tidak membuat estimasi magnitudo dan tidak memerlukan query katalog event — Sa(T) diprediksi langsung dari window P-wave 0,5 s untuk Stage 0, window adaptif 3–8 s untuk Stage 2.</span>
+      </li>
+      <li>
+        <b data-lang="en">103-period Sa(T) prediction:</b>
+        <b data-lang="id">Prediksi Sa(T) 103-periode:</b>
+        <span data-lang="en"> the full spectral acceleration response curve T ∈ [0.01, 10] s is regressed simultaneously, enabling targeted alerting per asset-class (see § <a href="03-appendix.html" data-keep-lang>03 Derivations</a> for the Sa(T) ↔ building-height mapping).</span>
+        <span data-lang="id"> kurva respons spectral acceleration penuh T ∈ [0,01, 10] s di-regresi simultan, memungkinkan alerting tertarget per kelas aset (lihat § <a href="03-appendix.html" data-keep-lang>03 Derivasi</a> untuk pemetaan Sa(T) ↔ tinggi gedung).</span>
+      </li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2 data-lang="en">Headline Metrics Summary (Tab 19 in manuscript)</h2>
+    <h2 data-lang="id">Ringkasan Metrik Utama (Tab 19 di manuskrip)</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th data-lang="en">Metric</th><th data-lang="id">Metrik</th>
+            <th class="num" data-lang="en">Value</th><th class="num" data-lang="id">Nilai</th>
+            <th data-lang="en">Comparison</th><th data-lang="id">Pembanding</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight">
+            <td data-lang="en">Composite R² (103 periods)</td>
+            <td data-lang="id">Composite R² (103 periode)</td>
+            <td class="num"><b>0.7091</b></td><td class="num"><b>0,7091</b></td>
+            <td data-lang="en">vs Atkinson–Boore 2003: 0.6421 (ΔR² = +0.067)</td>
+            <td data-lang="id">vs Atkinson–Boore 2003: 0,6421 (ΔR² = +0,067)</td>
+          </tr>
+          <tr>
+            <td data-lang="en">Oracle upper bound</td>
+            <td data-lang="id">Oracle upper bound</td>
+            <td class="num">0.7779</td><td class="num">0,7779</td>
+            <td data-lang="en">Ceiling if Stage 1 were perfect (0.069 gap)</td>
+            <td data-lang="id">Plafon jika Stage 1 sempurna (gap 0,069)</td>
+          </tr>
+          <tr class="highlight">
+            <td data-lang="en">Stage 0 URPD AUC</td>
+            <td data-lang="id">AUC URPD Stage 0</td>
+            <td class="num"><b>0.9136</b></td><td class="num"><b>0,9136</b></td>
+            <td data-lang="en">vs Wu 2013 single-feature: 0.83; Böse 2022 multi-feature: 0.87</td>
+            <td data-lang="id">vs Wu 2013 fitur tunggal: 0,83; Böse 2022 multi-fitur: 0,87</td>
+          </tr>
+          <tr class="highlight">
+            <td data-lang="en">Stage 1 Balanced Accuracy</td>
+            <td data-lang="id">Balanced Accuracy Stage 1</td>
+            <td class="num"><b>81.68%</b></td><td class="num"><b>81,68%</b></td>
+            <td data-lang="en">Damaging recall ≈ 86%</td>
+            <td data-lang="id">Damaging recall ≈ 86%</td>
+          </tr>
+          <tr>
+            <td data-lang="en">Blind-zone radius</td>
+            <td data-lang="id">Radius blind-zone</td>
+            <td class="num">11 km / 4 km</td><td class="num">11 km / 4 km</td>
+            <td data-lang="en">vs Allen 2003 baseline: 38 km (−71% / −89%)</td>
+            <td data-lang="id">vs baseline Allen 2003: 38 km (−71% / −89%)</td>
+          </tr>
+          <tr>
+            <td data-lang="en">σ_total at T = 1.0 s</td>
+            <td data-lang="id">σ_total di T = 1,0 s</td>
+            <td class="num">0.862</td><td class="num">0,862</td>
+            <td data-lang="en">Within Al Atik 2010 natural sigma budget (~0.85–0.92)</td>
+            <td data-lang="id">Dalam budget sigma alami Al Atik 2010 (~0,85–0,92)</td>
+          </tr>
+          <tr>
+            <td data-lang="en">End-to-end latency (median)</td>
+            <td data-lang="id">Latensi end-to-end (median)</td>
+            <td class="num">10.65 s</td><td class="num">10,65 s</td>
+            <td data-lang="en">99.44% golden-time compliance</td>
+            <td data-lang="id">99,44% kepatuhan golden-time</td>
+          </tr>
+          <tr>
+            <td data-lang="en">Cianjur 2022 Mw 5.6 — Stage 0 Damaging Recall</td>
+            <td data-lang="id">Cianjur 2022 Mw 5,6 — Damaging Recall Stage 0</td>
+            <td class="num">100% (14/14)</td><td class="num">100% (14/14)</td>
+            <td data-lang="en">Retrospective, out-of-time validation</td>
+            <td data-lang="id">Retrospektif, validasi out-of-time</td>
+          </tr>
+          <tr>
+            <td data-lang="en">Sumedang 2024 — Stage 0 Damaging Recall</td>
+            <td data-lang="id">Sumedang 2024 — Damaging Recall Stage 0</td>
+            <td class="num">100% (9/9)</td><td class="num">100% (9/9)</td>
+            <td data-lang="en">Retrospective; Mw 5.0 (USGS) / 5.7 (BMKG initial)</td>
+            <td data-lang="id">Retrospektif; Mw 5,0 (USGS) / 5,7 (BMKG initial)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 data-lang="en">Submission Roadmap</h2>
+    <h2 data-lang="id">Roadmap Submission</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th data-lang="en">Phase</th><th data-lang="id">Fase</th>
+            <th data-lang="en">Activity</th><th data-lang="id">Aktivitas</th>
+            <th data-lang="en">Owner</th><th data-lang="id">Penanggung jawab</th>
+            <th data-lang="en">Timeline</th><th data-lang="id">Timeline</th>
+            <th data-lang="en">Status</th><th data-lang="id">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="ok"><td>1</td><td>1</td>
+            <td data-lang="en">v60 manuscript + evidence + portal</td>
+            <td data-lang="id">Manuskrip v60 + evidence + portal</td>
+            <td>Hanif</td><td>Hanif</td>
+            <td>2026-05-16</td><td>2026-05-16</td>
+            <td><span class="badge b-ok">DONE</span></td>
+            <td><span class="badge b-ok">SELESAI</span></td>
+          </tr>
+          <tr><td>2</td><td>2</td>
+            <td data-lang="en">Promotor / co-author review (this portal)</td>
+            <td data-lang="id">Tinjauan promotor / co-author (portal ini)</td>
+            <td>Dede · Adhi · Sigit</td><td>Dede · Adhi · Sigit</td>
+            <td>2026-05-18 → 2026-06-08</td>
+            <td>2026-05-18 → 2026-06-08</td>
+            <td><span class="badge b-info">IN PROGRESS</span></td>
+            <td><span class="badge b-info">BERLANGSUNG</span></td>
+          </tr>
+          <tr><td>3</td><td>3</td>
+            <td data-lang="en">Apply revisions (track changes integration)</td>
+            <td data-lang="id">Terapkan revisi (integrasi track changes)</td>
+            <td>Hanif</td><td>Hanif</td>
+            <td>2026-06-09 → 2026-06-15</td>
+            <td>2026-06-09 → 2026-06-15</td>
+            <td><span class="badge b-info">PENDING</span></td>
+            <td><span class="badge b-info">PENDING</span></td>
+          </tr>
+          <tr><td>4</td><td>4</td>
+            <td data-lang="en">Submit to JET Editorial Manager</td>
+            <td data-lang="id">Submit ke JET Editorial Manager</td>
+            <td>Hanif (corresponding)</td><td>Hanif (koresponden)</td>
+            <td>2026-06-16</td>
+            <td>2026-06-16</td>
+            <td><span class="badge b-info">PENDING</span></td>
+            <td><span class="badge b-info">PENDING</span></td>
+          </tr>
+          <tr><td>5</td><td>5</td>
+            <td data-lang="en">Reviewer round 1 (typically 8–10 weeks at JET)</td>
+            <td data-lang="id">Round 1 reviewer (umumnya 8–10 minggu di JET)</td>
+            <td data-lang="en">JET reviewers</td><td data-lang="id">Reviewer JET</td>
+            <td>~ 2026-08</td><td>~ 2026-08</td>
+            <td><span class="badge b-minor">FUTURE</span></td>
+            <td><span class="badge b-minor">FUTURE</span></td>
+          </tr>
+          <tr><td>6</td><td>6</td>
+            <td data-lang="en">Optional Enago copy-edit if requested by JET</td>
+            <td data-lang="id">Copy-edit Enago opsional jika diminta JET</td>
+            <td>Hanif</td><td>Hanif</td>
+            <td data-lang="en">If requested</td><td data-lang="id">Jika diminta</td>
+            <td><span class="badge b-minor">CONDITIONAL</span></td>
+            <td><span class="badge b-minor">KONDISIONAL</span></td>
+          </tr>
+          <tr><td>7</td><td>7</td>
+            <td data-lang="en">Zenodo DOI archival (code + dataset metadata)</td>
+            <td data-lang="id">Archival DOI Zenodo (kode + metadata dataset)</td>
+            <td>Hanif</td><td>Hanif</td>
+            <td data-lang="en">Upon acceptance</td><td data-lang="id">Setelah acceptance</td>
+            <td><span class="badge b-minor">FUTURE</span></td>
+            <td><span class="badge b-minor">FUTURE</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 data-lang="en">Discussion Points for Promotor</h2>
+    <h2 data-lang="id">Poin Diskusi untuk Promotor</h2>
+    <ol>
+      <li>
+        <b data-lang="en">Suggested reviewers — additional names?</b>
+        <b data-lang="id">Saran reviewer — tambahan nama?</b>
+        <span data-lang="en"> Cover letter lists 4 names (Galasso, Tatar, Lin, Gusman). Do you recommend additional regional names (e.g., from JMA, GA, GNS, KISTI)?</span>
+        <span data-lang="id"> Cover letter mencantumkan 4 nama (Galasso, Tatar, Lin, Gusman). Apakah ada nama regional tambahan yang direkomendasikan (mis. dari JMA, GA, GNS, KISTI)?</span>
+      </li>
+      <li>
+        <b data-lang="en">Citation ordering in Indonesian context paragraph?</b>
+        <b data-lang="id">Urutan citation di paragraf konteks Indonesia?</b>
+        <span data-lang="en"> Current order: Natawidjaja → Sieh → Setiyono → Latief. Acceptable, or reorder by relevance?</span>
+        <span data-lang="id"> Urutan saat ini: Natawidjaja → Sieh → Setiyono → Latief. Sudah memadai, atau direorder berdasarkan relevansi?</span>
+      </li>
+      <li>
+        <b data-lang="en">AI use disclosure wording — sufficient?</b>
+        <b data-lang="id">Wording pengungkapan AI — sudah memadai?</b>
+        <span data-lang="en"> Current wording emphasises that AI was used only for language editing, consistency audit, and bibliographic verification. Acceptable?</span>
+        <span data-lang="id"> Wording saat ini menekankan bahwa AI hanya digunakan untuk penyuntingan bahasa, audit konsistensi, dan verifikasi bibliografi. Sudah memadai?</span>
+      </li>
+      <li>
+        <b data-lang="en">Patent strategy timing — before or after JET acceptance?</b>
+        <b data-lang="id">Timing strategi paten — sebelum atau setelah acceptance JET?</b>
+        <span data-lang="en"> DJKI submission decision pending. Suggestion: submit patent before JET acceptance to secure priority; consult UI HKI office.</span>
+        <span data-lang="id"> Keputusan submission DJKI menunggu. Saran: ajukan paten sebelum acceptance JET untuk mengamankan prioritas; konsultasi kantor HKI UI.</span>
+      </li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2 data-lang="en">Closing</h2>
+    <h2 data-lang="id">Penutup</h2>
+    <p data-lang="en">
+      The IDA-PTW v60 manuscript is the third major paper of the corresponding author's PhD programme (S3 Fisika FMIPA UI),
+      following <em>Paper 1</em> (deep-learning P-phase detection for Indonesian on-site EEWS, IEEE Conference, published) and preceding
+      <em>Paper 3</em> (Q3 dissemination of Sa(T) operationalisation, planned). Together with the dissertation manuscript these
+      three papers form the empirical body of the candidate's doctoral thesis on Indonesian operational EEWS.
+    </p>
+    <p data-lang="id">
+      Manuskrip IDA-PTW v60 adalah paper utama ketiga dari program S3 Fisika FMIPA UI penulis koresponden,
+      mengikuti <em>Paper 1</em> (deteksi fase-P deep-learning untuk EEWS on-site Indonesia, IEEE Conference, terbit) dan mendahului
+      <em>Paper 3</em> (diseminasi Q3 operasionalisasi Sa(T), direncanakan). Bersama manuskrip disertasi, ketiga paper ini
+      membentuk badan empiris tesis doktoral kandidat di EEWS operasional Indonesia.
+    </p>
+    <p data-lang="en">
+      Thank you for your time and thoughtful review.
+    </p>
+    <p data-lang="id">
+      Terima kasih atas waktu dan tinjauan Bapak/Ibu yang teliti.
+    </p>
+    <p>
+      <b>Hanif Andi Nugraha</b><br>
+      <a href="mailto:hanif.andi@ui.ac.id">hanif.andi@ui.ac.id</a><br>
+      Departemen Fisika, FMIPA, Universitas Indonesia · BMKG, Jakarta<br>
+      ORCID: <a href="https://orcid.org/0009-0007-9975-1566" target="_blank">0009-0007-9975-1566</a>
+    </p>
+  </section>
+
+</main>
+
+<footer class="site">
+  <p>
+    <span data-lang="en">© 2026 Hanif Andi Nugraha · IDA-PTW v60 Review · 07 Final Results · <a href="index.html" data-keep-lang>← Back to dashboard</a></span>
+    <span data-lang="id">© 2026 Hanif Andi Nugraha · Tinjauan IDA-PTW v60 · 07 Hasil Akhir · <a href="index.html" data-keep-lang>← Kembali ke beranda</a></span>
+  </p>
+</footer>
+
+<script src="assets/js/i18n.js"></script>
+</body>
+</html>

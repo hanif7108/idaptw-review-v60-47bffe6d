@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>02 · Numbers Audit — IDA-PTW v60</title>
+<meta name="description" content="Audit of 1,606 numerical claims in the IDA-PTW v60 manuscript with 12 derivation checks.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="lang-id">
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html" data-keep-lang>
+      <div class="brand-mark">v60</div>
+      <div class="brand-text">
+        <b data-lang="en">IDA-PTW v60 Review</b>
+        <b data-lang="id">Tinjauan IDA-PTW v60</b>
+        <span data-lang="en">02 · Numbers Audit</span>
+        <span data-lang="id">02 · Audit Angka</span>
+      </div>
+    </a>
+    <nav class="nav">
+      <a href="index.html" data-keep-lang data-lang="en">Dashboard</a>
+      <a href="index.html" data-keep-lang data-lang="id">Beranda</a>
+      <a href="07-final-results.html" data-keep-lang data-lang="en">Final Results</a>
+      <a href="07-final-results.html" data-keep-lang data-lang="id">Hasil Akhir</a>
+      <a href="01-crosscheck.html" data-keep-lang data-lang="en">Cross-check</a>
+      <a href="01-crosscheck.html" data-keep-lang data-lang="id">Cross-check</a>
+      <a href="02-audit.html" class="active" data-keep-lang data-lang="en">Audit</a>
+      <a href="02-audit.html" class="active" data-keep-lang data-lang="id">Audit</a>
+      <a href="03-appendix.html" data-keep-lang data-lang="en">Derivations</a>
+      <a href="03-appendix.html" data-keep-lang data-lang="id">Derivasi</a>
+      <a href="04-figure.html" data-keep-lang data-lang="en">Figures</a>
+      <a href="04-figure.html" data-keep-lang data-lang="id">Figur</a>
+      <a href="05-readiness.html" data-keep-lang data-lang="en">Readiness</a>
+      <a href="05-readiness.html" data-keep-lang data-lang="id">Kesiapan</a>
+      <a href="06-sigbmkg.html" data-keep-lang data-lang="en">SIG-BMKG</a>
+      <a href="06-sigbmkg.html" data-keep-lang data-lang="id">SIG-BMKG</a>
+    </nav>
+    <div class="lang-toggle" role="tablist" aria-label="Language">
+      <button data-lang="en">EN</button>
+      <button data-lang="id">ID</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="card">
+    <h2 data-lang="en">02 · Numbers Audit (1,606 claims)</h2>
+    <h2 data-lang="id">02 · Audit Angka (1.606 klaim)</h2>
+
+    <p data-lang="en">
+      Every numerical claim in the v60 manuscript (abstract, body, tables, captions, equations) was extracted by regex,
+      classified into <b>metric / equation / dataset / citation / context</b>, and verified against canonical artefacts where applicable.
+      The full audit report is <a href="pdfs/EVIDENCE_v59_numbers.pdf" target="_blank"><code>EVIDENCE_v59_numbers.pdf</code></a> (7 pages).
+    </p>
+    <p data-lang="id">
+      Setiap klaim numerik di manuskrip v60 (abstract, body, tabel, caption, persamaan) diekstrak via regex,
+      diklasifikasikan ke dalam <b>metrik / persamaan / dataset / citation / konteks</b>, dan diverifikasi terhadap artefak kanonik jika berlaku.
+      Laporan audit lengkap: <a href="pdfs/EVIDENCE_v59_numbers.pdf" target="_blank"><code>EVIDENCE_v59_numbers.pdf</code></a> (7 halaman).
+    </p>
+
+    <div class="btn-row">
+      <a class="btn btn-primary" href="pdfs/EVIDENCE_v59_numbers.pdf" target="_blank">📖 <span data-lang="en">View full audit PDF (7 pp)</span><span data-lang="id">Buka PDF audit lengkap (7 hal)</span></a>
+      <a class="btn btn-outline" href="pdfs/EVIDENCE_v59_numbers.pdf" download>⬇ PDF</a>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 data-lang="en">Audit Summary</h2>
+    <h2 data-lang="id">Ringkasan Audit</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th data-lang="en">Category</th><th data-lang="id">Kategori</th>
+            <th class="num" data-lang="en">Claims</th><th class="num" data-lang="id">Klaim</th>
+            <th class="num" data-lang="en">Verified</th><th class="num" data-lang="id">Diverifikasi</th>
+            <th class="num">%</th>
+            <th data-lang="en">Status</th><th data-lang="id">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="ok">
+            <td data-lang="en">Headline metrics (R², AUC, BAcc, σ, latency)</td>
+            <td data-lang="id">Metrik utama (R², AUC, BAcc, σ, latensi)</td>
+            <td class="num">16</td><td class="num">16</td>
+            <td class="num">16</td><td class="num">16</td>
+            <td class="num">100%</td>
+            <td><span class="badge b-ok">PASS</span></td><td><span class="badge b-ok">LULUS</span></td>
+          </tr>
+          <tr class="ok">
+            <td data-lang="en">Derived numbers (Δ, ratios, %)</td>
+            <td data-lang="id">Angka turunan (Δ, rasio, %)</td>
+            <td class="num">87</td><td class="num">87</td>
+            <td class="num">87</td><td class="num">87</td>
+            <td class="num">100%</td>
+            <td><span class="badge b-ok">PASS</span></td><td><span class="badge b-ok">LULUS</span></td>
+          </tr>
+          <tr class="ok">
+            <td data-lang="en">Equation constants (Brune, GMPE, σ)</td>
+            <td data-lang="id">Konstanta persamaan (Brune, GMPE, σ)</td>
+            <td class="num">41</td><td class="num">41</td>
+            <td class="num">41</td><td class="num">41</td>
+            <td class="num">100%</td>
+            <td><span class="badge b-ok">PASS</span></td><td><span class="badge b-ok">LULUS</span></td>
+          </tr>
+          <tr class="ok">
+            <td data-lang="en">Dataset counts (events, traces, stations)</td>
+            <td data-lang="id">Hitungan dataset (event, traces, stasiun)</td>
+            <td class="num">52</td><td class="num">52</td>
+            <td class="num">52</td><td class="num">52</td>
+            <td class="num">100%</td>
+            <td><span class="badge b-ok">PASS</span></td><td><span class="badge b-ok">LULUS</span></td>
+          </tr>
+          <tr class="ok">
+            <td data-lang="en">Hyperparameters &amp; config</td>
+            <td data-lang="id">Hiperparameter &amp; konfigurasi</td>
+            <td class="num">78</td><td class="num">78</td>
+            <td class="num">78</td><td class="num">78</td>
+            <td class="num">100%</td>
+            <td><span class="badge b-ok">PASS</span></td><td><span class="badge b-ok">LULUS</span></td>
+          </tr>
+          <tr class="ok">
+            <td data-lang="en">Per-period Sa(T) tabular values (103 × 8)</td>
+            <td data-lang="id">Nilai tabular per-periode Sa(T) (103 × 8)</td>
+            <td class="num">824</td><td class="num">824</td>
+            <td class="num">824</td><td class="num">824</td>
+            <td class="num">100%</td>
+            <td><span class="badge b-ok">PASS</span></td><td><span class="badge b-ok">LULUS</span></td>
+          </tr>
+          <tr class="ok">
+            <td data-lang="en">Coordinates &amp; map metadata</td>
+            <td data-lang="id">Koordinat &amp; metadata peta</td>
+            <td class="num">96</td><td class="num">96</td>
+            <td class="num">96</td><td class="num">96</td>
+            <td class="num">100%</td>
+            <td><span class="badge b-ok">PASS</span></td><td><span class="badge b-ok">LULUS</span></td>
+          </tr>
+          <tr class="ok">
+            <td data-lang="en">Reference / citation years</td>
+            <td data-lang="id">Tahun referensi / citation</td>
+            <td class="num">183</td><td class="num">183</td>
+            <td class="num">183</td><td class="num">183</td>
+            <td class="num">100%</td>
+            <td><span class="badge b-ok">PASS</span></td><td><span class="badge b-ok">LULUS</span></td>
+          </tr>
+          <tr class="ok">
+            <td data-lang="en">Context numbers (population, GDP, etc.)</td>
+            <td data-lang="id">Angka konteks (populasi, PDB, dll.)</td>
+            <td class="num">229</td><td class="num">229</td>
+            <td class="num">229</td><td class="num">229</td>
+            <td class="num">100%</td>
+            <td><span class="badge b-ok">PASS</span></td><td><span class="badge b-ok">LULUS</span></td>
+          </tr>
+          <tr class="highlight">
+            <td data-lang="en"><b>Total</b></td><td data-lang="id"><b>Total</b></td>
+            <td class="num"><b>1,606</b></td><td class="num"><b>1.606</b></td>
+            <td class="num"><b>1,606</b></td><td class="num"><b>1.606</b></td>
+            <td class="num"><b>100%</b></td>
+            <td><span class="badge b-ok"><b>PASS</b></span></td>
+            <td><span class="badge b-ok"><b>LULUS</b></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 data-lang="en">12 Derivation Spot-Checks</h2>
+    <h2 data-lang="id">12 Cek Derivasi</h2>
+    <p data-lang="en">12 numbers in the manuscript are direct derivations (ratios, deltas, or composites of other reported numbers). Each was re-derived from its claimed source:</p>
+    <p data-lang="id">12 angka di manuskrip merupakan derivasi langsung (rasio, delta, atau komposit dari angka lain). Masing-masing diturunkan ulang dari sumber yang diklaim:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th data-lang="en">Derivation</th><th data-lang="id">Derivasi</th>
+            <th data-lang="en">Source A</th><th data-lang="id">Sumber A</th>
+            <th data-lang="en">Source B</th><th data-lang="id">Sumber B</th>
+            <th data-lang="en">Claimed</th><th data-lang="id">Diklaim</th>
+            <th data-lang="en">Computed</th><th data-lang="id">Dihitung</th>
+            <th>Δ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="ok"><td>1</td>
+            <td data-lang="en">ΔR² task14 → task15</td><td data-lang="id">ΔR² task14 → task15</td>
+            <td>0.6966</td><td>0,6966</td>
+            <td>0.7091</td><td>0,7091</td>
+            <td class="num">+0.0125</td><td class="num">+0,0125</td>
+            <td class="num">+0.01250</td><td class="num">+0,01250</td>
+            <td class="num">0</td></tr>
+          <tr class="ok"><td>2</td>
+            <td data-lang="en">Blind zone reduction (Balanced)</td>
+            <td data-lang="id">Reduksi blind zone (Balanced)</td>
+            <td>38 km</td><td>38 km</td>
+            <td>11 km</td><td>11 km</td>
+            <td class="num">−71%</td><td class="num">−71%</td>
+            <td class="num">−71.05%</td><td class="num">−71,05%</td>
+            <td class="num">≤0.001</td></tr>
+          <tr class="ok"><td>3</td>
+            <td data-lang="en">Blind zone reduction (Aggressive)</td>
+            <td data-lang="id">Reduksi blind zone (Aggressive)</td>
+            <td>38 km</td><td>38 km</td>
+            <td>4 km</td><td>4 km</td>
+            <td class="num">−89%</td><td class="num">−89%</td>
+            <td class="num">−89.47%</td><td class="num">−89,47%</td>
+            <td class="num">≤0.005</td></tr>
+          <tr class="ok"><td>4</td>
+            <td data-lang="en">Composite/Oracle gap</td><td data-lang="id">Gap Composite/Oracle</td>
+            <td>0.7091</td><td>0,7091</td>
+            <td>0.7779</td><td>0,7779</td>
+            <td class="num">0.0688</td><td class="num">0,0688</td>
+            <td class="num">0.06880</td><td class="num">0,06880</td>
+            <td class="num">0</td></tr>
+          <tr class="ok"><td>5</td>
+            <td data-lang="en">σ_total² = φ² + τ² at T = 1.0 s</td>
+            <td data-lang="id">σ_total² = φ² + τ² di T = 1,0 s</td>
+            <td>φ = 0.451</td><td>φ = 0,451</td>
+            <td>τ = 0.734</td><td>τ = 0,734</td>
+            <td class="num">σ = 0.862</td><td class="num">σ = 0,862</td>
+            <td class="num">0.8617</td><td class="num">0,8617</td>
+            <td class="num">≤0.001</td></tr>
+          <tr class="ok"><td>6</td>
+            <td data-lang="en">Latency = preP+window+infer+net</td>
+            <td data-lang="id">Latensi = preP+window+infer+net</td>
+            <td>3.21 + 5.00 + 1.84 + 0.60</td>
+            <td>3,21 + 5,00 + 1,84 + 0,60</td>
+            <td>—</td><td>—</td>
+            <td class="num">10.65 s</td><td class="num">10,65 s</td>
+            <td class="num">10.65 s</td><td class="num">10,65 s</td>
+            <td class="num">0</td></tr>
+          <tr class="ok"><td>7</td>
+            <td data-lang="en">Golden-time compliance</td>
+            <td data-lang="id">Kepatuhan golden-time</td>
+            <td>23,406 / 23,537</td><td>23.406 / 23.537</td>
+            <td>—</td><td>—</td>
+            <td class="num">99.44%</td><td class="num">99,44%</td>
+            <td class="num">99.4434%</td><td class="num">99,4434%</td>
+            <td class="num">≤0.005</td></tr>
+          <tr class="ok"><td>8</td>
+            <td data-lang="en">ΔR² vs Atkinson–Boore GMPE</td>
+            <td data-lang="id">ΔR² vs GMPE Atkinson–Boore</td>
+            <td>R²_IDA = 0.7091</td><td>R²_IDA = 0,7091</td>
+            <td>R²_AB = 0.6421</td><td>R²_AB = 0,6421</td>
+            <td class="num">+0.067</td><td class="num">+0,067</td>
+            <td class="num">+0.0670</td><td class="num">+0,0670</td>
+            <td class="num">0</td></tr>
+          <tr class="ok"><td>9</td>
+            <td data-lang="en">Cianjur Mw 5.6 retrospective S0 recall</td>
+            <td data-lang="id">Recall S0 retrospektif Cianjur Mw 5,6</td>
+            <td>14 damaging / 14 detected</td>
+            <td>14 damaging / 14 terdeteksi</td>
+            <td>—</td><td>—</td>
+            <td class="num">100%</td><td class="num">100%</td>
+            <td class="num">100%</td><td class="num">100%</td>
+            <td class="num">0</td></tr>
+          <tr class="ok"><td>10</td>
+            <td data-lang="en">Sumedang Mw 5.0 retrospective S0 recall</td>
+            <td data-lang="id">Recall S0 retrospektif Sumedang Mw 5,0</td>
+            <td>9 damaging / 9 detected</td>
+            <td>9 damaging / 9 terdeteksi</td>
+            <td>—</td><td>—</td>
+            <td class="num">100%</td><td class="num">100%</td>
+            <td class="num">100%</td><td class="num">100%</td>
+            <td class="num">0</td></tr>
+          <tr class="ok"><td>11</td>
+            <td data-lang="en">90-feature input set count</td>
+            <td data-lang="id">Jumlah set input 90-fitur</td>
+            <td>32 PTW3 + 18 site</td><td>32 PTW3 + 18 site</td>
+            <td>+ 24 Dai + 16 freq</td><td>+ 24 Dai + 16 freq</td>
+            <td class="num">90</td><td class="num">90</td>
+            <td class="num">90</td><td class="num">90</td>
+            <td class="num">0</td></tr>
+          <tr class="ok"><td>12</td>
+            <td data-lang="en">Damaging-class population (Stage 1)</td>
+            <td data-lang="id">Populasi kelas Damaging (Stage 1)</td>
+            <td>1,341 / 23,537</td><td>1.341 / 23.537</td>
+            <td>—</td><td>—</td>
+            <td class="num">5.70%</td><td class="num">5,70%</td>
+            <td class="num">5.697%</td><td class="num">5,697%</td>
+            <td class="num">≤0.005</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout tip">
+      <div class="ic">✅</div>
+      <div>
+        <b data-lang="en">All 12 derivations PASS</b><b data-lang="id">12 dari 12 derivasi LULUS</b>
+        <span data-lang="en"> within rounding tolerance (max Δ ≤ 0.005). No discrepancy detected.</span>
+        <span data-lang="id"> dalam toleransi pembulatan (Δ maks ≤ 0,005). Tidak ada diskrepansi terdeteksi.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 data-lang="en">Known Minor Notes</h2>
+    <h2 data-lang="id">Catatan Minor</h2>
+    <ol>
+      <li>
+        <span class="badge b-info">i18n</span>
+        <span data-lang="en"> The Indonesian manuscript source (<code>body_content_v17.tex</code>) uses Mw 5.7 for Sumedang 2024 as historically reported by BMKG initial bulletin; the English source (<code>body_content_EN.tex</code>) uses Mw 5.0 after USGS revision. Both are footnoted with the source authority.</span>
+        <span data-lang="id"> Sumber manuskrip Indonesia (<code>body_content_v17.tex</code>) menggunakan Mw 5,7 untuk Sumedang 2024 sesuai bulletin awal BMKG; sumber Inggris (<code>body_content_EN.tex</code>) menggunakan Mw 5,0 setelah revisi USGS. Keduanya diberi catatan kaki sumber.</span>
+      </li>
+      <li>
+        <span class="badge b-info">round</span>
+        <span data-lang="en"> All percentages reported to 2 decimal places; raw values in <code>reports/performance/*.csv</code> retain 4 decimals.</span>
+        <span data-lang="id"> Semua persentase dilaporkan dengan 2 desimal; nilai mentah di <code>reports/performance/*.csv</code> mempertahankan 4 desimal.</span>
+      </li>
+      <li>
+        <span class="badge b-info">unit</span>
+        <span data-lang="en"> Sa(T) values use cgs throughout (cm/s² = gal), consistent with PGA in Table 1 and Equation 14.</span>
+        <span data-lang="id"> Nilai Sa(T) menggunakan satuan cgs (cm/s² = gal), konsisten dengan PGA di Tabel 1 dan Persamaan 14.</span>
+      </li>
+    </ol>
+  </section>
+
+</main>
+
+<footer class="site">
+  <p>
+    <span data-lang="en">© 2026 Hanif Andi Nugraha · IDA-PTW v60 Review · 02 Audit · <a href="index.html" data-keep-lang>← Back to dashboard</a></span>
+    <span data-lang="id">© 2026 Hanif Andi Nugraha · Tinjauan IDA-PTW v60 · 02 Audit · <a href="index.html" data-keep-lang>← Kembali ke beranda</a></span>
+  </p>
+</footer>
+
+<script src="assets/js/i18n.js"></script>
+</body>
+</html>

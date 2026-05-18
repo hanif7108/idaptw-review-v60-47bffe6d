@@ -3,63 +3,78 @@
 **Hash**: `47bffe6d`
 **Live URL**: https://hanif7108.github.io/idaptw-review-v60-47bffe6d/
 
-This is a private review portal for the IDA-PTW v60 manuscript submission to *Journal of Earthquake and Tsunami* (JET, World Scientific Publishing).
+A multi-page bilingual review portal for the IDA-PTW v60 manuscript submission to *Journal of Earthquake and Tsunami* (JET, World Scientific Publishing).
 
 ## Access
 
-The URL contains a random hash that serves as a soft access code — it is not indexed by search engines (`<meta name="robots" content="noindex,nofollow">`) and only those with the URL can access. Share the URL with co-authors/promotor via email.
+The URL contains a random hash that serves as a soft access code — the portal sets `<meta name="robots" content="noindex,nofollow">` so search engines should not index it, and only those given the URL can browse it. Share with co-authors / promotors via private email.
 
-**Important**: This is "security through obscurity" — not a hard authentication wall. Anyone with the URL can read. Suitable for academic review of work-in-progress; not suitable for confidential pre-publication of patent-eligible IP without further protection.
+**Important**: this is "security through obscurity" — not a hard authentication wall. Anyone with the URL can read. Suitable for academic pre-submission review of a draft manuscript that has not yet been published; not suitable for confidential pre-publication of patent-eligible IP without further protection.
 
-## Contents
+## Site map
 
-| File | Type | Description |
-|---|---|---|
-| `index.html` | Page | Landing dashboard with bilingual switcher (ID/EN) |
-| `pdfs/manuscript_JET_v60_EN.pdf` | PDF | Primary submission manuscript (42 pages) |
-| `pdfs/manuscript_JET_v60_ID.pdf` | PDF | Indonesian version (supplemental) |
-| `docs/manuscript_JET_v60_EN.docx` | DOCX | Word version for track changes |
-| `docs/manuscript_JET_v60_ID.docx` | DOCX | Word ID version |
-| `pdfs/Cover_Letter_JET_v60.pdf` | PDF | Cover letter to JET editor |
-| `pdfs/EVIDENCE_v59_numbers.pdf` | PDF | Numerical audit (7 pages, 1,606 claims) |
-| `pdfs/EVIDENCE_v59_derivations.pdf` | PDF | 20 equation derivations (27 pages) |
-| `pdfs/EVIDENCE_v59_visualizations.pdf` | PDF | 16 figures with narration (21 pages) |
-| `pdfs/Grammar_Audit_v60.pdf` | PDF | Grammar audit grade A− |
-| `docs/AI_Use_Disclosure_v60.md` | MD | AI use disclosure statement |
-| `docs/Promotor_Review_Guide.md` | MD | Review guide with 3-scenario reading paths |
+| Page | Purpose |
+|---|---|
+| `index.html` | Bilingual dashboard with headline metrics, site sections, file downloads, authors |
+| `01-crosscheck.html` | Headline metric cross-check: 16 metrics traced manuscript → table → canonical CSV |
+| `02-audit.html` | Numbers audit of 1,606 claims + 12 derivation spot-checks (all PASS) |
+| `03-appendix.html` | 20 equation derivations (Brune source, σ decomposition, GMPE, Sa(T)↔height, ML) |
+| `04-figure.html` | 16 publication-grade research visualisations with narration |
+| `05-readiness.html` | Submission readiness scorecard: cover letter, grammar A−, AI disclosure, template |
+| `06-sigbmkg.html` | SIG-BMKG intensity framework + Indonesian citation matrix + InaTEWS integration |
+| `07-final-results.html` | Final operational results, 4-stage architecture, submission roadmap |
 
 ## Headline metrics
 
-- Composite R² = **0.7091** across 103 spectral periods
-- Stage-0 URPD AUC = **0.9136**
-- Stage-1 Balanced Accuracy = **81.68%**
+- Composite R² = **0.7091** across 103 spectral periods (oracle UB 0.7779)
+- Stage-0 URPD AUC = **0.9136** (blind-zone 38 → 11 km, −71%)
+- Stage-1 Balanced Accuracy = **81.68%** (Damaging recall ≈ 86%)
 - ΔR² vs Atkinson–Boore GMPE = **+0.067**
-- Dataset: 25,058 traces / 338 events / 151 stations / Java-Sunda
+- σ_total at T = 1.0 s = 0.862 (within Al Atik 2010 budget)
+- End-to-end latency = 10.65 s, 99.44% golden-time compliance
+- Dataset: 25,058 traces / 338 events / 151 stations / Java-Sunda subduction
+
+## Downloadable files
+
+| File | Format | Pages | Description |
+|---|---|---:|---|
+| `pdfs/manuscript_JET_v60_EN.pdf` | PDF | 42 | Primary submission (English) |
+| `pdfs/manuscript_JET_v60_ID.pdf` | PDF | 42 | Indonesian (supplemental) |
+| `docs/manuscript_JET_v60_EN.docx` | DOCX | — | Editable for track changes |
+| `docs/manuscript_JET_v60_ID.docx` | DOCX | — | Editable Indonesian |
+| `pdfs/Cover_Letter_JET_v60.pdf` | PDF | 3 | Cover letter to JET editor |
+| `pdfs/EVIDENCE_v59_numbers.pdf` | PDF | 7 | 1,606 claims audit |
+| `pdfs/EVIDENCE_v59_derivations.pdf` | PDF | 27 | 20 equation derivations |
+| `pdfs/EVIDENCE_v59_visualizations.pdf` | PDF | 21 | 16 figures with narration |
+| `pdfs/Grammar_Audit_v60.pdf` | PDF | 5 | Grammar audit (grade A−) |
+| `docs/AI_Use_Disclosure_v60.md` | MD | — | AI use disclosure |
+| `docs/Promotor_Review_Guide.md` | MD | — | Reading guide (3 scenarios) |
 
 ## Submission target
 
 Journal of Earthquake and Tsunami (JET), World Scientific Publishing
-Status: Submission-ready, pending co-author review
+Template: `ws-jet-strict v19`
+Status: submission-ready, pending promotor / co-author review
 
 ## Feedback channels
 
-- **Email**: hanif.andi@ui.ac.id
-- **Word track changes**: download DOCX → edit → email back
-- **Annotated PDF**: download PDF → annotate → email back
-- **GitHub PR comment**: see [PR #2 at hanif7108/IDA-PTW](https://github.com/hanif7108/IDA-PTW/pull/2)
+- **Word track changes**: download DOCX → enable Track Changes → edit → email back
+- **Annotated PDF**: download PDF → annotate (Acrobat/Preview/pdf.js) → email back
+- **GitHub PR review**: [PR #2 at hanif7108/IDA-PTW](https://github.com/hanif7108/IDA-PTW/pull/2)
+- **Direct email**: hanif.andi@ui.ac.id (subject prefix "Review IDA-PTW v60")
 
 ## Site technical notes
 
-- Static HTML site hosted on GitHub Pages
-- No backend, no tracking
-- Bilingual switcher uses localStorage for preference persistence
-- Default language: Bahasa Indonesia (toggle to EN via top-right button)
-- Mobile-responsive layout
+- Static HTML site hosted on GitHub Pages, no backend / no tracking
+- Bilingual ID/EN switcher: URL-shareable via `?lang=en` query parameter + localStorage fallback
+- Default language: Bahasa Indonesia; toggle via top-right `EN` / `ID` buttons
+- Mobile-responsive layout (one-column at ≤ 760 px)
+- `<meta name="robots" content="noindex,nofollow">` on every page
 
 ## Lifecycle
 
-This site exists for the duration of the JET review/revision cycle. After acceptance and publication, the repository may be archived or deleted at the author's discretion.
+This site exists for the duration of the JET review / revision cycle. After acceptance and publication the repository may be archived or deleted at the author's discretion. The reproducibility package (code + canonical CSVs) lives separately at [hanif7108/IDA-PTW](https://github.com/hanif7108/IDA-PTW) and will be Zenodo-archived with a permanent DOI upon JET acceptance.
 
 ---
 
-*Generated 2026-05-16 · Hanif Andi Nugraha · hanif.andi@ui.ac.id*
+*Updated 2026-05-18 · Hanif Andi Nugraha · hanif.andi@ui.ac.id · S3 Fisika FMIPA UI / BMKG*
