@@ -92,9 +92,9 @@
 <td data-lang="id"><a href="docs/AI_Use_Disclosure_v60.md" target="_blank">AI_Use_Disclosure_v60.md</a></td>
 </tr>
 <tr class="ok"><td data-lang="en">Reproducibility (verify_repro.py)</td><td data-lang="id">Reproducibility (verify_repro.py)</td>
-<td data-lang="en"><span class="badge b-ok">51/51 PASS</span></td><td data-lang="id"><span class="badge b-ok">51/51 LULUS</span></td>
-<td data-lang="en">FULL re-run drift ≤ 0.0005 — <a href="#reproducibility">details below ↓</a></td>
-<td data-lang="id">Drift re-run FULL ≤ 0,0005 — <a href="#reproducibility">detail di bawah ↓</a></td>
+<td data-lang="en"><span class="badge b-ok">all checks PASS</span></td><td data-lang="id"><span class="badge b-ok">semua cek LULUS</span></td>
+<td data-lang="en">FULL re-run drift ≤ 0.0005 (manuscript) — <a href="#reproducibility">details below ↓</a></td>
+<td data-lang="id">Drift re-run FULL ≤ 0,0005 (manuskrip) — <a href="#reproducibility">detail di bawah ↓</a></td>
 </tr>
 <tr class="ok"><td data-lang="en">Data Availability statement</td><td data-lang="id">Pernyataan Data Availability</td>
 <td data-lang="en"><span class="badge b-ok">PASS</span></td><td data-lang="id"><span class="badge b-ok">LULUS</span></td>
@@ -237,105 +237,129 @@ sendiri dalam ≈ 12 menit pada fresh clone.
 <tbody>
 <tr>
 <td data-lang="en"><b>Smoke (Tier 1)</b></td><td data-lang="id"><b>Smoke (Tingkat 1)</b></td>
-<td data-lang="en"><code>python3 verify_repro.py</code></td>
-<td data-lang="id"><code>python3 verify_repro.py</code></td>
+<td data-lang="en"><code>python3 evidence/verify_repro.py</code></td>
+<td data-lang="id"><code>python3 evidence/verify_repro.py</code></td>
 <td class="num" data-lang="en">≈ 12 min</td><td class="num" data-lang="id">≈ 12 menit</td>
-<td data-lang="en">Loads canonical CSV/JSON, recomputes derived metrics from raw artefacts, MD5-checks inputs, version-checks the Python stack — 51 assertions in total.</td>
-<td data-lang="id">Memuat CSV/JSON kanonik, menghitung ulang metrik turunan dari artefak mentah, mengecek MD5 input, mengecek versi stack Python — total 51 assertion.</td>
+<td data-lang="en">Loads canonical CSV/JSON, recomputes derived metrics from raw artefacts, MD5-checks inputs, version-checks the Python stack — ≈ 50 assertions across 9 sections (exact count printed at completion).</td>
+<td data-lang="id">Memuat CSV/JSON kanonik, menghitung ulang metrik turunan dari artefak mentah, mengecek MD5 input, mengecek versi stack Python — ≈ 50 assertion dalam 9 section (jumlah tepat dicetak di akhir).</td>
 </tr>
 <tr>
 <td data-lang="en"><b>FULL (Tier 2)</b></td><td data-lang="id"><b>FULL (Tingkat 2)</b></td>
 <td data-lang="en"><code>python3 pipeline/run_all.py --full --seed 42</code></td>
 <td data-lang="id"><code>python3 pipeline/run_all.py --full --seed 42</code></td>
-<td class="num" data-lang="en">≈ 3 h 40 min</td><td class="num" data-lang="id">≈ 3 jam 40 menit</td>
-<td data-lang="en">End-to-end re-training of Stage 0 / 1 / 2 from raw traces (no canonical loading); compares every fresh metric against pinned canonical. Reports drift per metric.</td>
-<td data-lang="id">Re-training end-to-end Stage 0 / 1 / 2 dari trace mentah (tanpa memuat kanonik); membandingkan setiap metrik segar dengan kanonik yang dipin. Melaporkan drift per metrik.</td>
+<td class="num" data-lang="en">several hours</td><td class="num" data-lang="id">beberapa jam</td>
+<td data-lang="en">End-to-end re-training of Stage 0 / 1 / 2 from raw traces (no canonical loading); compares every fresh metric against pinned canonical. Reports per-metric drift. Actual runtime depends on hardware.</td>
+<td data-lang="id">Re-training end-to-end Stage 0 / 1 / 2 dari trace mentah (tanpa memuat kanonik); membandingkan setiap metrik segar dengan kanonik yang dipin. Melaporkan drift per-metrik. Runtime aktual bergantung hardware.</td>
 </tr>
 </tbody>
 </table>
 </div>
 
 <p class="small muted" data-lang="en">
-Smoke verifies <em>that what's in the repo is internally consistent</em> (~12 min, commodity hardware: M1/M2 MacBook Pro,
-8 GB RAM, no GPU required). FULL verifies <em>that re-running the pipeline yields the same numbers within stochastic noise</em>
-(3 h 40 min, requires 16 GB RAM, no GPU strictly required but tested on Apple M2 + CUDA T4).
+Smoke verifies <em>that what's in the repo is internally consistent</em> (~12 min on commodity hardware: laptop with
+Python ≥ 3.10, no GPU required). FULL verifies <em>that re-running the pipeline yields the same numbers within stochastic noise</em>
+(several hours; hardware-dependent).
 </p>
 <p class="small muted" data-lang="id">
-Smoke memverifikasi <em>bahwa isi repo konsisten secara internal</em> (~12 menit, hardware komoditas: M1/M2 MacBook Pro,
-RAM 8 GB, tanpa GPU). FULL memverifikasi <em>bahwa menjalankan ulang pipeline menghasilkan angka yang sama dalam noise stokastik</em>
-(3 jam 40 menit, perlu RAM 16 GB, GPU tidak wajib tapi diuji di Apple M2 + CUDA T4).
+Smoke memverifikasi <em>bahwa isi repo konsisten secara internal</em> (~12 menit di hardware komoditas: laptop dengan
+Python ≥ 3.10, tanpa GPU). FULL memverifikasi <em>bahwa menjalankan ulang pipeline menghasilkan angka yang sama dalam noise stokastik</em>
+(beberapa jam; bergantung hardware).
 </p>
 
-<h3 data-lang="en">B. Categorical breakdown of the 51 checks</h3>
-<h3 data-lang="id">B. Breakdown kategoris 51 cek</h3>
+<h3 data-lang="en">B. Actual 9-section structure of verify_repro.py</h3>
+<h3 data-lang="id">B. Struktur 9-section aktual verify_repro.py</h3>
+
+<div class="callout warn">
+<div class="ic">📌</div>
+<div>
+<b data-lang="en">Source:</b><b data-lang="id">Sumber:</b>
+<span data-lang="en"> the categorical structure below is read directly from the section comments in <code>evidence/verify_repro.py</code> (manuscript repo). The total check count is ≈ 50; the exact number depends on loop iteration over the packages, CSV files, and language variants listed in each section.</span>
+<span data-lang="id"> struktur kategoris di bawah dibaca langsung dari komentar section di <code>evidence/verify_repro.py</code> (repo manuskrip). Jumlah total cek ≈ 50; angka tepat bergantung iterasi loop atas package, file CSV, dan varian bahasa di setiap section.</span>
+</div>
+</div>
 
 <div class="table-wrap">
 <table>
 <thead><tr>
 <th>#</th>
-<th data-lang="en">Category</th><th data-lang="id">Kategori</th>
-<th class="num" data-lang="en">Checks</th><th class="num" data-lang="id">Cek</th>
+<th data-lang="en">Section (comment in script)</th><th data-lang="id">Section (komentar di script)</th>
 <th data-lang="en">What it validates</th><th data-lang="id">Yang divalidasi</th>
 </tr></thead>
 <tbody>
-<tr class="ok"><td>B1</td>
-<td data-lang="en">Python environment &amp; pinned versions</td>
-<td data-lang="id">Environment Python &amp; versi yang dipin</td>
-<td class="num">6</td><td class="num">6</td>
-<td data-lang="en">Python ≥ 3.10, numpy 2.1.x, scikit-learn 1.8.x, xgboost 2.1.x, lightgbm 4.6.x, imbalanced-learn 0.14.x</td>
-<td data-lang="id">Python ≥ 3.10, numpy 2.1.x, scikit-learn 1.8.x, xgboost 2.1.x, lightgbm 4.6.x, imbalanced-learn 0.14.x</td>
+<tr class="ok"><td>[1]</td>
+<td data-lang="en">requirements.txt pins</td>
+<td data-lang="id">pin requirements.txt</td>
+<td data-lang="en">Each pinned package (numpy, pandas, scikit-learn, matplotlib, xgboost, lightgbm, scipy) has <code>pkg==version</code> in requirements.txt</td>
+<td data-lang="id">Setiap pinned package (numpy, pandas, scikit-learn, matplotlib, xgboost, lightgbm, scipy) punya <code>pkg==version</code> di requirements.txt</td>
 </tr>
-<tr class="ok"><td>B2</td>
-<td data-lang="en">Input dataset MD5 integrity</td>
-<td data-lang="id">Integritas MD5 dataset input</td>
-<td class="num">8</td><td class="num">8</td>
-<td data-lang="en">25,058 trace HDF5 archives, 338-event catalog, 151-station metadata, P-arrival picks — all pinned in <code>artifacts/checksums.txt</code></td>
-<td data-lang="id">Arsip HDF5 25.058 trace, katalog 338 event, metadata 151 stasiun, P-arrival picks — semuanya dipin di <code>artifacts/checksums.txt</code></td>
+<tr class="ok"><td>[2]</td>
+<td data-lang="en">installed versions</td>
+<td data-lang="id">versi yang terinstall</td>
+<td data-lang="en">Each runtime package matches its pinned version</td>
+<td data-lang="id">Setiap package runtime cocok dengan versi yang dipin</td>
 </tr>
-<tr class="ok"><td>B3</td>
-<td data-lang="en">Canonical artefact MD5 integrity</td>
-<td data-lang="id">Integritas MD5 artefak kanonik</td>
-<td class="num">10</td><td class="num">10</td>
-<td data-lang="en">Every <code>artifacts/canonical/*.csv</code> + <code>*.json</code> (Stage-0/1/2 metrics, sigma decomposition, latency, oracle UB)</td>
-<td data-lang="id">Setiap <code>artifacts/canonical/*.csv</code> + <code>*.json</code> (metrik Stage-0/1/2, dekomposisi sigma, latensi, oracle UB)</td>
+<tr class="ok"><td>[3]</td>
+<td data-lang="en">input CSV checksums</td>
+<td data-lang="id">checksum CSV input</td>
+<td data-lang="en">MD5 of each input feature-matrix CSV matches pinned checksum</td>
+<td data-lang="id">MD5 setiap CSV feature-matrix input cocok dengan checksum yang dipin</td>
 </tr>
-<tr class="ok"><td>B4</td>
-<td data-lang="en">Headline metric match (manuscript ↔ canonical)</td>
-<td data-lang="id">Match metrik utama (manuskrip ↔ kanonik)</td>
-<td class="num">16</td><td class="num">16</td>
-<td data-lang="en">R² 0.7091, AUC 0.9136, BAcc 81.68%, σ_total 0.862, latency 10.65 s, etc. — see <a data-keep-lang="" href="01-crosscheck.html">01 Cross-check</a> for full list</td>
-<td data-lang="id">R² 0,7091, AUC 0,9136, BAcc 81,68%, σ_total 0,862, latensi 10,65 s, dll. — lihat <a data-keep-lang="" href="01-crosscheck.html">01 Cross-check</a> untuk daftar lengkap</td>
+<tr class="ok"><td>[4]</td>
+<td data-lang="en">canonical task15 metrics</td>
+<td data-lang="id">metrik kanonik task15</td>
+<td data-lang="en"><code>mode == "FULL"</code>, <code>N_total == 23537</code>, <code>M_features == 90</code>, <code>P_periods == 103</code>, <code>R²_marg ≈ 0.7091</code>, <code>BAcc ≈ 0.8168</code></td>
+<td data-lang="id"><code>mode == "FULL"</code>, <code>N_total == 23537</code>, <code>M_features == 90</code>, <code>P_periods == 103</code>, <code>R²_marg ≈ 0,7091</code>, <code>BAcc ≈ 0,8168</code></td>
 </tr>
-<tr class="ok"><td>B5</td>
-<td data-lang="en">Per-period Sa(T) array match (103 periods)</td>
-<td data-lang="id">Match array Sa(T) per-periode (103 periode)</td>
-<td class="num">5</td><td class="num">5</td>
-<td data-lang="en">R²(T) array, residual std array, coverage map, period grid integrity, monotonicity</td>
-<td data-lang="id">Array R²(T), array std residual, peta coverage, integritas grid periode, monotonisitas</td>
+<tr class="ok"><td>[5]</td>
+<td data-lang="en">Stage-0 URPD AUC</td>
+<td data-lang="id">AUC URPD Stage-0</td>
+<td data-lang="en"><code>AUC ≈ 0.9136 (±0.001)</code></td>
+<td data-lang="id"><code>AUC ≈ 0,9136 (±0,001)</code></td>
 </tr>
-<tr class="ok"><td>B6</td>
-<td data-lang="en">Figure provenance &amp; regeneration</td>
-<td data-lang="id">Provenans &amp; regenerasi figur</td>
-<td class="num">4</td><td class="num">4</td>
-<td data-lang="en">All 16 figures regenerable from seed 42; SHA-256 of generated PNG matches frozen golden</td>
-<td data-lang="id">Semua 16 figur dapat diregenerasi dari seed 42; SHA-256 PNG yang dihasilkan match dengan golden yang dibekukan</td>
+<tr class="ok"><td>[6]</td>
+<td data-lang="en">GMPE baseline ΔR²</td>
+<td data-lang="id">ΔR² baseline GMPE</td>
+<td data-lang="en"><code>GMPE R²_all ≈ 0.6423</code>, <code>ΔR² ≈ +0.067 (±0.001)</code></td>
+<td data-lang="id"><code>R²_all GMPE ≈ 0,6423</code>, <code>ΔR² ≈ +0,067 (±0,001)</code></td>
 </tr>
-<tr class="ok"><td>B7</td>
-<td data-lang="en">Manuscript LaTeX integrity</td>
-<td data-lang="id">Integritas LaTeX manuskrip</td>
-<td class="num">2</td><td class="num">2</td>
-<td data-lang="en">Builds with <code>ws-jet-strict v19</code>, exactly 42 pages, 65 references resolved, 20 equations numbered</td>
-<td data-lang="id">Build dengan <code>ws-jet-strict v19</code>, tepat 42 halaman, 65 referensi resolved, 20 persamaan ternomori</td>
+<tr class="ok"><td>[7]</td>
+<td data-lang="en">manuscript v59 PDFs (EN + ID)</td>
+<td data-lang="id">PDF manuskrip v59 (EN + ID)</td>
+<td data-lang="en">Per-language text-extract checks: URPD@0.5s reference, "90 features" Stage 1 phrasing, σ_tot = 0.862 anchor at T=1.0s, headline R²=0.7091 + AUC=0.9136 preserved</td>
+<td data-lang="id">Cek text-extract per bahasa: referensi URPD@0,5s, frasa "90 features" Stage 1, anchor σ_tot = 0,862 di T=1,0s, headline R²=0,7091 + AUC=0,9136 dipertahankan</td>
+</tr>
+<tr class="ok"><td>[8]</td>
+<td data-lang="en">LaTeX sources (main_EN + main_ID + body_EN + body_ID)</td>
+<td data-lang="id">Source LaTeX (main_EN + main_ID + body_EN + body_ID)</td>
+<td data-lang="en">Corrected wording: URPD@0.5s in abstract (both langs), "Seluruh 90 fitur" / "All 90 features" in body, no stale "42 fitur" / "42 features" residue</td>
+<td data-lang="id">Frasa terkoreksi: URPD@0,5s di abstract (kedua bahasa), "Seluruh 90 fitur" / "All 90 features" di body, tidak ada residu "42 fitur" / "42 features"</td>
+</tr>
+<tr class="ok"><td>[9]</td>
+<td data-lang="en">documentation files</td>
+<td data-lang="id">file dokumentasi</td>
+<td data-lang="en">Each documentation file (README, REPRODUCIBILITY, etc.) exists and contains required tokens</td>
+<td data-lang="id">Setiap file dokumentasi (README, REPRODUCIBILITY, dll.) ada dan memuat token yang diperlukan</td>
 </tr>
 <tr class="highlight"><td><b>—</b></td>
-<td data-lang="en"><b>Total</b></td><td data-lang="id"><b>Total</b></td>
-<td class="num"><b>51</b></td><td class="num"><b>51</b></td>
-<td data-lang="en"><b>51/51 PASS</b> on the canonical commit at <code>review/v60-promotor</code> tip</td>
-<td data-lang="id"><b>51/51 LULUS</b> pada commit kanonik di tip <code>review/v60-promotor</code></td>
+<td data-lang="en"><b>Approximate total</b></td>
+<td data-lang="id"><b>Total perkiraan</b></td>
+<td data-lang="en">≈ <b>50 checks</b>; exact count printed by the script at the end: <code>RESULT: N/total checks PASS</code></td>
+<td data-lang="id">≈ <b>50 cek</b>; jumlah tepat dicetak script di akhir: <code>RESULT: N/total checks PASS</code></td>
 </tr>
 </tbody>
 </table>
 </div>
+
+<p class="small muted" data-lang="en">
+<b>Verbatim source:</b> the 9-section structure is from <code>evidence/verify_repro.py</code> section comments
+<code># ---- [1] ... ---- # ---- [9] ----</code>. Counting the raw <code>check()</code> invocations in the script
+yields 34 source lines; loop expansion (packages, CSV files, language variants) brings the runtime total to ≈ 50.
+</p>
+<p class="small muted" data-lang="id">
+<b>Sumber verbatim:</b> struktur 9-section ini diambil dari komentar di <code>evidence/verify_repro.py</code>
+<code># ---- [1] ... ---- # ---- [9] ----</code>. Menghitung panggilan <code>check()</code> mentah di script
+menghasilkan 34 baris source; ekspansi loop (package, file CSV, varian bahasa) menjadikan total runtime ≈ 50.
+</p>
 
 <h3 data-lang="en">C. What "drift ≤ 0.0005" means</h3>
 <h3 data-lang="id">C. Apa arti "drift ≤ 0,0005"</h3>
@@ -365,28 +389,31 @@ Untuk 16 metrik utama, re-run FULL menghasilkan:
 <thead><tr>
 <th data-lang="en">Statistic</th><th data-lang="id">Statistik</th>
 <th class="num" data-lang="en">Value</th><th class="num" data-lang="id">Nilai</th>
-<th data-lang="en">Interpretation</th><th data-lang="id">Interpretasi</th>
+<th data-lang="en">Source</th><th data-lang="id">Sumber</th>
 </tr></thead>
 <tbody>
-<tr><td data-lang="en">max(Δm) across 16 metrics</td><td data-lang="id">max(Δm) untuk 16 metrik</td>
-<td class="num" data-lang="en"><b>0.00043</b></td><td class="num" data-lang="id"><b>0,00043</b></td>
-<td data-lang="en">Worst-case drift — Stage-1 Balanced Accuracy</td>
-<td data-lang="id">Drift worst-case — Balanced Accuracy Stage-1</td>
+<tr><td data-lang="en">Manuscript drift ceiling (Sec 8 reproducibility)</td>
+<td data-lang="id">Batas drift manuskrip (Sec 8 reproducibility)</td>
+<td class="num" data-lang="en"><b>≤ 0.0005</b></td><td class="num" data-lang="id"><b>≤ 0,0005</b></td>
+<td data-lang="en">manuscript text</td><td data-lang="id">teks manuskrip</td>
 </tr>
-<tr><td data-lang="en">median(Δm) across 16 metrics</td><td data-lang="id">median(Δm) untuk 16 metrik</td>
-<td class="num" data-lang="en">0.00018</td><td class="num" data-lang="id">0,00018</td>
-<td data-lang="en">Typical drift — well below rounding noise</td>
-<td data-lang="id">Drift tipikal — jauh di bawah noise pembulatan</td>
-</tr>
-<tr><td data-lang="en">Manuscript rounding precision</td><td data-lang="id">Presisi pembulatan manuskrip</td>
+<tr><td data-lang="en">Manuscript headline rounding precision</td>
+<td data-lang="id">Presisi pembulatan manuskrip</td>
 <td class="num" data-lang="en">0.005 (= 2 d.p.)</td><td class="num" data-lang="id">0,005 (= 2 desimal)</td>
 <td data-lang="en">All reported headline numbers</td>
 <td data-lang="id">Semua angka utama yang dilaporkan</td>
 </tr>
-<tr class="ok"><td data-lang="en">Drift &lt; rounding precision?</td><td data-lang="id">Drift &lt; presisi pembulatan?</td>
+<tr class="ok"><td data-lang="en">Drift ≤ ceiling → reproduces to reported precision?</td>
+<td data-lang="id">Drift ≤ batas → tereproduksi sampai presisi yang dilaporkan?</td>
 <td><span class="badge b-ok">YES</span></td><td><span class="badge b-ok">YA</span></td>
-<td data-lang="en">Re-run reproduces every reported number to 2 d.p. exactly</td>
-<td data-lang="id">Re-run mereproduksi setiap angka yang dilaporkan persis sampai 2 desimal</td>
+<td data-lang="en">Since drift ceiling (0.0005) is below rounding (0.005)</td>
+<td data-lang="id">Karena batas drift (0,0005) di bawah pembulatan (0,005)</td>
+</tr>
+<tr><td data-lang="en">Per-metric drift, runtime, exact check count</td>
+<td data-lang="id">Drift per-metrik, runtime, jumlah cek tepat</td>
+<td class="num" data-lang="en">printed by script</td><td class="num" data-lang="id">dicetak script</td>
+<td data-lang="en">at <code>verify_repro.py</code> runtime — promotor sees actual values</td>
+<td data-lang="id">saat runtime <code>verify_repro.py</code> — promotor lihat nilai aktual</td>
 </tr>
 </tbody>
 </table>
@@ -396,13 +423,13 @@ Untuk 16 metrik utama, re-run FULL menghasilkan:
 <div class="ic">📌</div>
 <div>
 <b data-lang="en">Bottom line:</b><b data-lang="id">Inti:</b>
-<span data-lang="en"> the max FULL re-run drift (0.00043) is <b>11× smaller</b> than the manuscript's 2-decimal-place rounding (0.005). Every reported headline metric reproduces exactly at the reported precision. The 0.0005 ceiling is a conservative bound chosen for the cover letter and grammar audit; the actual measured worst-case is 0.00043.</span>
-<span data-lang="id"> drift maks re-run FULL (0,00043) <b>11× lebih kecil</b> dari pembulatan 2-desimal manuskrip (0,005). Setiap metrik utama yang dilaporkan tereproduksi persis pada presisi yang dilaporkan. Batas 0,0005 adalah batas konservatif yang dipilih untuk cover letter dan audit grammar; worst-case terukur adalah 0,00043.</span>
+<span data-lang="en"> the manuscript-stated drift ceiling (0.0005) is <b>10× smaller</b> than the headline rounding precision (0.005). Every reported headline metric therefore reproduces exactly at the reported 2-decimal precision. The exact per-metric drift and total runtime are printed by <code>verify_repro.py</code> at execution — promotors see the actual numbers on their own hardware.</span>
+<span data-lang="id"> batas drift yang dinyatakan manuskrip (0,0005) <b>10× lebih kecil</b> dari presisi pembulatan headline (0,005). Karenanya setiap metrik utama yang dilaporkan tereproduksi persis pada presisi 2-desimal yang dilaporkan. Drift per-metrik dan total runtime aktual dicetak oleh <code>verify_repro.py</code> saat eksekusi — promotor melihat angka nyata di hardware mereka sendiri.</span>
 </div>
 </div>
 
-<h3 data-lang="en">D. How the promotor can verify (12 minutes, 4 commands)</h3>
-<h3 data-lang="id">D. Cara promotor memverifikasi (12 menit, 4 perintah)</h3>
+<h3 data-lang="en">D. How the promotor can verify (4 commands)</h3>
+<h3 data-lang="id">D. Cara promotor memverifikasi (4 perintah)</h3>
 
 <pre><code># Prereq: Python ≥ 3.10, git, ~2 GB free disk, no GPU required.
 
@@ -415,23 +442,23 @@ git checkout review/v60-promotor
 python3 -m venv .venv &amp;&amp; source .venv/bin/activate
 pip install -r requirements.txt
 
-# 3 · Run the smoke verification (≈ 12 min)
-python3 verify_repro.py
+# 3 · Run the smoke verification (≈ 12 min, manuscript Sec 8)
+python3 evidence/verify_repro.py
 
-# Expected output:
-#   [B1] Python environment .................. 6/6   PASS
-#   [B2] Input dataset MD5 .................... 8/8   PASS
-#   [B3] Canonical artefact MD5 .............. 10/10  PASS
-#   [B4] Headline metric match ............... 16/16  PASS
-#   [B5] Per-period Sa(T) array ............... 5/5   PASS
-#   [B6] Figure provenance .................... 4/4   PASS
-#   [B7] Manuscript LaTeX integrity ........... 2/2   PASS
-#   ───────────────────────────────────────────────────
-#   TOTAL                                     51/51  PASS
-#   max(Δm) headline                         0.00043
-#   runtime                              11 m 47 s
+# Expected output (excerpt — exact numbers print at runtime):
+#   [1] requirements.txt pins ............ PASS (7 pkgs)
+#   [2] installed versions ............... PASS (7 pkgs)
+#   [3] input CSV checksums .............. PASS (4 CSVs)
+#   [4] canonical task15 metrics ......... PASS (6 fields)
+#   [5] Stage-0 URPD AUC ≈ 0.9136 ........ PASS
+#   [6] GMPE baseline ΔR² ≈ +0.067 ...... PASS
+#   [7] manuscript v59 PDFs (EN + ID) .... PASS (text-extract)
+#   [8] LaTeX sources corrected .......... PASS (4 files × 3 checks)
+#   [9] documentation files .............. PASS (tokens)
+#   ───────────────────────────────────────────────────────
+#   RESULT: N/total checks PASS, 0 FAIL
 
-# 4 · (Optional) FULL re-run ≈ 3 h 40 min
+# 4 · (Optional) FULL re-run from raw traces (long; manuscript Sec 8 says ~hours)
 python3 pipeline/run_all.py --full --seed 42</code></pre>
 
 <h3 data-lang="en">E. Code &amp; data sharing summary</h3>
@@ -508,6 +535,14 @@ python3 pipeline/run_all.py --full --seed 42</code></pre>
 
 </section>
 </main>
+<div class="callout warn" style="max-width:1120px; margin:30px auto 0; padding:14px 22px;">
+<div class="ic">📌</div>
+<div>
+<b data-lang="en">Source-of-truth note:</b><b data-lang="id">Catatan source-of-truth:</b>
+<span data-lang="en"> the authoritative source for every claim in this portal is the v60 manuscript (<a href="pdfs/manuscript_JET_v60_EN.pdf" target="_blank">PDF</a> / <a href="docs/manuscript_JET_v60_EN.docx">DOCX</a>) and the canonical artefacts in the <a href="https://github.com/hanif7108/IDA-PTW" target="_blank">IDA-PTW</a> repository. Where this portal summarises, recombines, or visually re-presents that material, every number cites its manuscript location (Sec/Tab/Fig) or its canonical CSV. Where the portal contains synthesised illustrations (e.g. concrete lead-time calculations for specific city scenarios), the synthesis is explicitly labelled "illustrative" and not a manuscript claim. If a portal number disagrees with the manuscript, the manuscript wins.</span>
+<span data-lang="id"> sumber otoritatif untuk setiap klaim di portal ini adalah manuskrip v60 (<a href="pdfs/manuscript_JET_v60_EN.pdf" target="_blank">PDF</a> / <a href="docs/manuscript_JET_v60_EN.docx">DOCX</a>) dan artefak kanonik di repo <a href="https://github.com/hanif7108/IDA-PTW" target="_blank">IDA-PTW</a>. Di mana portal meringkas, mengkombinasi-ulang, atau menyajikan-ulang material itu, setiap angka mengutip lokasi manuskripnya (Sec/Tab/Fig) atau CSV kanoniknya. Di mana portal memuat ilustrasi yang disintesis (mis. kalkulasi lead-time konkret untuk skenario kota spesifik), sintesis itu ditandai eksplisit "ilustratif" dan bukan klaim manuskrip. Jika angka portal tidak cocok dengan manuskrip, manuskrip yang menang.</span>
+</div>
+</div>
 <footer class="site">
 <p>
 <span data-lang="en">© 2026 Hanif Andi Nugraha · IDA-PTW v60 Review · 05 Readiness · <a data-keep-lang="" href="index.html">← Back to dashboard</a></span>
