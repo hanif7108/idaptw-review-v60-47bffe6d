@@ -1,343 +1,330 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="id">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>01 · Headline Cross-check — IDA-PTW v60</title>
-<meta name="description" content="Cross-check of 16 headline metrics in IDA-PTW v60 manuscript against canonical pipeline artifacts.">
-<meta name="robots" content="noindex,nofollow">
-<link rel="stylesheet" href="assets/css/style.css">
+<meta content="Cross-check of 16 headline metrics in IDA-PTW v60 manuscript against canonical pipeline artifacts." name="description"/>
+<meta content="noindex,nofollow" name="robots"/>
+<link href="assets/css/style.css" rel="stylesheet"/>
 </head>
 <body class="lang-id">
-
 <header class="top">
-  <div class="wrap">
-    <a class="brand" href="index.html" data-keep-lang>
-      <div class="brand-mark">v60</div>
-      <div class="brand-text">
-        <b data-lang="en">IDA-PTW v60 Review</b>
-        <b data-lang="id">Tinjauan IDA-PTW v60</b>
-        <span data-lang="en">01 · Headline Cross-check</span>
-        <span data-lang="id">01 · Cross-check Metrik Utama</span>
-      </div>
-    </a>
-    <nav class="nav">
-      <a href="index.html" data-keep-lang data-lang="en">Dashboard</a>
-      <a href="index.html" data-keep-lang data-lang="id">Beranda</a>
-      <a href="07-final-results.html" data-keep-lang data-lang="en">Final Results</a>
-      <a href="07-final-results.html" data-keep-lang data-lang="id">Hasil Akhir</a>
-      <a href="01-crosscheck.html" class="active" data-keep-lang data-lang="en">Cross-check</a>
-      <a href="01-crosscheck.html" class="active" data-keep-lang data-lang="id">Cross-check</a>
-      <a href="02-audit.html" data-keep-lang data-lang="en">Audit</a>
-      <a href="02-audit.html" data-keep-lang data-lang="id">Audit</a>
-      <a href="03-appendix.html" data-keep-lang data-lang="en">Derivations</a>
-      <a href="03-appendix.html" data-keep-lang data-lang="id">Derivasi</a>
-      <a href="04-figure.html" data-keep-lang data-lang="en">Figures</a>
-      <a href="04-figure.html" data-keep-lang data-lang="id">Figur</a>
-      <a href="05-readiness.html" data-keep-lang data-lang="en">Readiness</a>
-      <a href="05-readiness.html" data-keep-lang data-lang="id">Kesiapan</a>
-      <a href="06-sigbmkg.html" data-keep-lang data-lang="en">SIG-BMKG</a>
-      <a href="06-sigbmkg.html" data-keep-lang data-lang="id">SIG-BMKG</a>
-    </nav>
-    <div class="lang-toggle" role="tablist" aria-label="Language">
-      <button data-lang="en">EN</button>
-      <button data-lang="id">ID</button>
-    </div>
-  </div>
+<div class="wrap">
+<a class="brand" data-keep-lang="" href="index.html">
+<div class="brand-mark">v60</div>
+<div class="brand-text">
+<b data-lang="en">IDA-PTW v60 Review</b>
+<b data-lang="id">Tinjauan IDA-PTW v60</b>
+<span data-lang="en">01 · Headline Cross-check</span>
+<span data-lang="id">01 · Cross-check Metrik Utama</span>
+</div>
+</a>
+<nav class="nav">
+<a data-keep-lang="" data-lang="en" href="index.html">Dashboard</a>
+<a data-keep-lang="" data-lang="id" href="index.html">Beranda</a>
+<a data-keep-lang="" data-lang="en" href="07-final-results.html">Final Results</a>
+<a data-keep-lang="" data-lang="id" href="07-final-results.html">Hasil Akhir</a>
+<a class="active" data-keep-lang="" data-lang="en" href="01-crosscheck.html">Cross-check</a>
+<a class="active" data-keep-lang="" data-lang="id" href="01-crosscheck.html">Cross-check</a>
+<a data-keep-lang="" data-lang="en" href="02-audit.html">Audit</a>
+<a data-keep-lang="" data-lang="id" href="02-audit.html">Audit</a>
+<a data-keep-lang="" data-lang="en" href="03-appendix.html">Derivations</a>
+<a data-keep-lang="" data-lang="id" href="03-appendix.html">Derivasi</a>
+<a data-keep-lang="" data-lang="en" href="04-figure.html">Figures</a>
+<a data-keep-lang="" data-lang="id" href="04-figure.html">Figur</a>
+<a data-keep-lang="" data-lang="en" href="05-readiness.html">Readiness</a>
+<a data-keep-lang="" data-lang="id" href="05-readiness.html">Kesiapan</a>
+<a data-keep-lang="" data-lang="en" href="06-sigbmkg.html">SIG-BMKG</a>
+<a data-keep-lang="" data-lang="id" href="06-sigbmkg.html">SIG-BMKG</a>
+</nav>
+<div aria-label="Language" class="lang-toggle" role="tablist">
+<button data-lang="en">EN</button>
+<button data-lang="id">ID</button>
+</div>
+</div>
 </header>
-
 <main>
-
-  <section class="card">
-    <h2 data-lang="en">01 · Headline Metric Cross-check</h2>
-    <h2 data-lang="id">01 · Cross-check Metrik Utama</h2>
-
-    <p data-lang="en">
+<section class="card">
+<h2 data-lang="en">01 · Headline Metric Cross-check</h2>
+<h2 data-lang="id">01 · Cross-check Metrik Utama</h2>
+<p data-lang="en">
       Every headline number in the v60 manuscript abstract and Table 19 has been traced from
       <b>(a)</b> the in-text claim → <b>(b)</b> the Table/Figure it cites → <b>(c)</b> the canonical CSV/JSON artifact under
       <code>reports/performance/</code> and <code>artifacts/canonical/</code>. The 16 entries below all match within a
       drift of <b>≤ 0.0005</b> on a fresh-clone <code>verify_repro.py</code> + 3h 40min FULL re-run.
     </p>
-    <p data-lang="id">
+<p data-lang="id">
       Setiap angka utama di abstract dan Tabel 19 manuskrip v60 telah dilacak dari
       <b>(a)</b> klaim in-text → <b>(b)</b> Tabel/Figur yang dikutip → <b>(c)</b> artefak CSV/JSON kanonik di
       <code>reports/performance/</code> dan <code>artifacts/canonical/</code>. 16 entry di bawah ini semua match dengan drift
       <b>≤ 0,0005</b> pada fresh-clone <code>verify_repro.py</code> + re-run FULL 3 jam 40 menit.
     </p>
-
-    <div class="callout tip">
-      <div class="ic">✅</div>
-      <div>
-        <b data-lang="en">Status:</b><b data-lang="id">Status:</b>
-        <span data-lang="en"> 16 / 16 PASS · 51 / 51 audit checks PASS · FULL re-run drift max = 0.00043 (Stage-1 BAcc).</span>
-        <span data-lang="id"> 16 / 16 LULUS · 51 / 51 cek audit LULUS · drift maks re-run FULL = 0,00043 (BAcc Stage-1).</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="card">
-    <h2 data-lang="en">Headline Metrics — Source Trace Table</h2>
-    <h2 data-lang="id">Metrik Utama — Tabel Pelacakan Sumber</h2>
-
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th data-lang="en">Metric</th><th data-lang="id">Metrik</th>
-            <th class="num" data-lang="en">Value</th><th class="num" data-lang="id">Nilai</th>
-            <th data-lang="en">Manuscript</th><th data-lang="id">Manuskrip</th>
-            <th data-lang="en">Canonical Source</th><th data-lang="id">Sumber Kanonik</th>
-            <th data-lang="en">Drift</th><th data-lang="id">Drift</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="highlight">
-            <td>1</td>
-            <td data-lang="en">Composite R² (103 periods)</td>
-            <td data-lang="id">Composite R² (103 periode)</td>
-            <td class="num"><b>0.7091</b></td><td class="num"><b>0,7091</b></td>
-            <td>Abstract · Tab 19</td>
-            <td>Abstract · Tab 19</td>
-            <td><code>ida_ptw_task15.json</code></td>
-            <td><code>ida_ptw_task15.json</code></td>
-            <td class="num">+0.00010</td><td class="num">+0,00010</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td data-lang="en">Oracle upper bound</td>
-            <td data-lang="id">Oracle upper bound</td>
-            <td class="num">0.7779</td><td class="num">0,7779</td>
-            <td>Tab 19 · Sec 5.4</td><td>Tab 19 · Sec 5.4</td>
-            <td><code>oracle_ub_per_class.csv</code></td>
-            <td><code>oracle_ub_per_class.csv</code></td>
-            <td class="num">+0.00006</td><td class="num">+0,00006</td>
-          </tr>
-          <tr class="highlight">
-            <td>3</td>
-            <td data-lang="en">Stage-1 balanced accuracy (OOF)</td>
-            <td data-lang="id">Balanced accuracy Stage-1 (OOF)</td>
-            <td class="num"><b>81.68%</b></td><td class="num"><b>81,68%</b></td>
-            <td>Abstract · Tab 14</td><td>Abstract · Tab 14</td>
-            <td><code>stage1_oof_metrics.csv</code></td>
-            <td><code>stage1_oof_metrics.csv</code></td>
-            <td class="num">+0.00043</td><td class="num">+0,00043</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td data-lang="en">Stage-1 overall accuracy</td>
-            <td data-lang="id">Akurasi keseluruhan Stage-1</td>
-            <td class="num">79.64%</td><td class="num">79,64%</td>
-            <td>Sec 5.2 · Tab 14</td><td>Sec 5.2 · Tab 14</td>
-            <td><code>stage1_oof_metrics.csv</code></td>
-            <td><code>stage1_oof_metrics.csv</code></td>
-            <td class="num">+0.00018</td><td class="num">+0,00018</td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td data-lang="en">Damaging-class recall (Stage 1)</td>
-            <td data-lang="id">Recall kelas Damaging (Stage 1)</td>
-            <td class="num">≈ 86%</td><td class="num">≈ 86%</td>
-            <td>Sec 5.2 · Fig 11</td><td>Sec 5.2 · Fig 11</td>
-            <td><code>stage1_confusion_oof.csv</code></td>
-            <td><code>stage1_confusion_oof.csv</code></td>
-            <td class="num">+0.00021</td><td class="num">+0,00021</td>
-          </tr>
-          <tr class="highlight">
-            <td>6</td>
-            <td data-lang="en">Stage-0 URPD AUC (0.5 s window)</td>
-            <td data-lang="id">AUC URPD Stage-0 (window 0,5 s)</td>
-            <td class="num"><b>0.9136</b></td><td class="num"><b>0,9136</b></td>
-            <td>Abstract · Tab 12</td><td>Abstract · Tab 12</td>
-            <td><code>stage0_urpd_metrics.csv</code></td>
-            <td><code>stage0_urpd_metrics.csv</code></td>
-            <td class="num">+0.00007</td><td class="num">+0,00007</td>
-          </tr>
-          <tr>
-            <td>7</td>
-            <td data-lang="en">Blind-zone radius (Balanced gate)</td>
-            <td data-lang="id">Radius blind-zone (gate Balanced)</td>
-            <td class="num">11 km</td><td class="num">11 km</td>
-            <td>Tab 12 · Sec 5.1</td><td>Tab 12 · Sec 5.1</td>
-            <td><code>blind_zone_reduction.csv</code></td>
-            <td><code>blind_zone_reduction.csv</code></td>
-            <td class="num">0</td><td class="num">0</td>
-          </tr>
-          <tr>
-            <td>8</td>
-            <td data-lang="en">Blind-zone radius (Aggressive gate)</td>
-            <td data-lang="id">Radius blind-zone (gate Aggressive)</td>
-            <td class="num">4 km</td><td class="num">4 km</td>
-            <td>Tab 12</td><td>Tab 12</td>
-            <td><code>blind_zone_reduction.csv</code></td>
-            <td><code>blind_zone_reduction.csv</code></td>
-            <td class="num">0</td><td class="num">0</td>
-          </tr>
-          <tr class="highlight">
-            <td>9</td>
-            <td data-lang="en">ΔR² vs Atkinson–Boore GMPE</td>
-            <td data-lang="id">ΔR² vs GMPE Atkinson–Boore</td>
-            <td class="num"><b>+0.067</b></td><td class="num"><b>+0,067</b></td>
-            <td>Abstract · Tab 18</td><td>Abstract · Tab 18</td>
-            <td><code>gmpe_vs_idaptw.csv</code></td>
-            <td><code>gmpe_vs_idaptw.csv</code></td>
-            <td class="num">+0.00012</td><td class="num">+0,00012</td>
-          </tr>
-          <tr>
-            <td>10</td>
-            <td data-lang="en">σ_total at T = 1.0 s</td>
-            <td data-lang="id">σ_total di T = 1,0 s</td>
-            <td class="num">0.862</td><td class="num">0,862</td>
-            <td>Tab 17 · Sec 5.5</td><td>Tab 17 · Sec 5.5</td>
-            <td><code>sigma_decomposition.csv</code></td>
-            <td><code>sigma_decomposition.csv</code></td>
-            <td class="num">+0.00038</td><td class="num">+0,00038</td>
-          </tr>
-          <tr>
-            <td>11</td>
-            <td data-lang="en">σ_inter-event (φ) at T = 1.0 s</td>
-            <td data-lang="id">σ_inter-event (φ) di T = 1,0 s</td>
-            <td class="num">0.451</td><td class="num">0,451</td>
-            <td>Tab 17</td><td>Tab 17</td>
-            <td><code>sigma_decomposition.csv</code></td>
-            <td><code>sigma_decomposition.csv</code></td>
-            <td class="num">+0.00026</td><td class="num">+0,00026</td>
-          </tr>
-          <tr>
-            <td>12</td>
-            <td data-lang="en">σ_intra-event (τ) at T = 1.0 s</td>
-            <td data-lang="id">σ_intra-event (τ) di T = 1,0 s</td>
-            <td class="num">0.734</td><td class="num">0,734</td>
-            <td>Tab 17</td><td>Tab 17</td>
-            <td><code>sigma_decomposition.csv</code></td>
-            <td><code>sigma_decomposition.csv</code></td>
-            <td class="num">+0.00031</td><td class="num">+0,00031</td>
-          </tr>
-          <tr class="highlight">
-            <td>13</td>
-            <td data-lang="en">End-to-end latency (median)</td>
-            <td data-lang="id">Latensi end-to-end (median)</td>
-            <td class="num">10.65 s</td><td class="num">10,65 s</td>
-            <td>Abstract · Tab 15</td><td>Abstract · Tab 15</td>
-            <td><code>latency_breakdown.csv</code></td>
-            <td><code>latency_breakdown.csv</code></td>
-            <td class="num">−0.0014 s</td><td class="num">−0,0014 s</td>
-          </tr>
-          <tr>
-            <td>14</td>
-            <td data-lang="en">Golden-time compliance</td>
-            <td data-lang="id">Kepatuhan golden-time</td>
-            <td class="num">99.44%</td><td class="num">99,44%</td>
-            <td>Tab 15</td><td>Tab 15</td>
-            <td><code>latency_breakdown.csv</code></td>
-            <td><code>latency_breakdown.csv</code></td>
-            <td class="num">0</td><td class="num">0</td>
-          </tr>
-          <tr>
-            <td>15</td>
-            <td data-lang="en">Dataset size (traces)</td>
-            <td data-lang="id">Ukuran dataset (traces)</td>
-            <td class="num">25,058</td><td class="num">25.058</td>
-            <td>Sec 3 · Tab 1</td><td>Sec 3 · Tab 1</td>
-            <td><code>dataset_manifest.csv</code></td>
-            <td><code>dataset_manifest.csv</code></td>
-            <td class="num">0</td><td class="num">0</td>
-          </tr>
-          <tr>
-            <td>16</td>
-            <td data-lang="en">Events / stations (Java-Sunda)</td>
-            <td data-lang="id">Event / stasiun (Jawa-Sunda)</td>
-            <td class="num">338 / 151</td><td class="num">338 / 151</td>
-            <td>Sec 3 · Tab 1</td><td>Sec 3 · Tab 1</td>
-            <td><code>events_catalog.csv</code></td>
-            <td><code>events_catalog.csv</code></td>
-            <td class="num">0</td><td class="num">0</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <p class="small muted" data-lang="en">
+<div class="callout tip">
+<div class="ic">✅</div>
+<div>
+<b data-lang="en">Status:</b><b data-lang="id">Status:</b>
+<span data-lang="en"> 16 / 16 PASS · 51 / 51 audit checks PASS · FULL re-run drift max = 0.00043 (Stage-1 BAcc).</span>
+<span data-lang="id"> 16 / 16 LULUS · 51 / 51 cek audit LULUS · drift maks re-run FULL = 0,00043 (BAcc Stage-1).</span>
+</div>
+</div>
+</section>
+<section class="card">
+<h2 data-lang="en">Headline Metrics — Source Trace Table</h2>
+<h2 data-lang="id">Metrik Utama — Tabel Pelacakan Sumber</h2>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th data-lang="en">Metric</th><th data-lang="id">Metrik</th>
+<th class="num" data-lang="en">Value</th><th class="num" data-lang="id">Nilai</th>
+<th data-lang="en">Manuscript</th><th data-lang="id">Manuskrip</th>
+<th data-lang="en">Canonical Source</th><th data-lang="id">Sumber Kanonik</th>
+<th data-lang="en">Drift</th><th data-lang="id">Drift</th>
+</tr>
+</thead>
+<tbody>
+<tr class="highlight">
+<td>1</td>
+<td data-lang="en">Composite R² (103 periods)</td>
+<td data-lang="id">Composite R² (103 periode)</td>
+<td class="num" data-lang="en"><b>0.7091</b></td><td class="num" data-lang="id"><b>0,7091</b></td>
+<td data-lang="en">Abstract · Tab 19</td>
+<td data-lang="id">Abstract · Tab 19</td>
+<td data-lang="en"><code>ida_ptw_task15.json</code></td>
+<td data-lang="id"><code>ida_ptw_task15.json</code></td>
+<td class="num" data-lang="en">+0.00010</td><td class="num" data-lang="id">+0,00010</td>
+</tr>
+<tr>
+<td>2</td>
+<td data-lang="en">Oracle upper bound</td>
+<td data-lang="id">Oracle upper bound</td>
+<td class="num" data-lang="en">0.7779</td><td class="num" data-lang="id">0,7779</td>
+<td data-lang="en">Tab 19 · Sec 5.4</td><td data-lang="id">Tab 19 · Sec 5.4</td>
+<td data-lang="en"><code>oracle_ub_per_class.csv</code></td>
+<td data-lang="id"><code>oracle_ub_per_class.csv</code></td>
+<td class="num" data-lang="en">+0.00006</td><td class="num" data-lang="id">+0,00006</td>
+</tr>
+<tr class="highlight">
+<td>3</td>
+<td data-lang="en">Stage-1 balanced accuracy (OOF)</td>
+<td data-lang="id">Balanced accuracy Stage-1 (OOF)</td>
+<td class="num" data-lang="en"><b>81.68%</b></td><td class="num" data-lang="id"><b>81,68%</b></td>
+<td data-lang="en">Abstract · Tab 14</td><td data-lang="id">Abstract · Tab 14</td>
+<td data-lang="en"><code>stage1_oof_metrics.csv</code></td>
+<td data-lang="id"><code>stage1_oof_metrics.csv</code></td>
+<td class="num" data-lang="en">+0.00043</td><td class="num" data-lang="id">+0,00043</td>
+</tr>
+<tr>
+<td>4</td>
+<td data-lang="en">Stage-1 overall accuracy</td>
+<td data-lang="id">Akurasi keseluruhan Stage-1</td>
+<td class="num" data-lang="en">79.64%</td><td class="num" data-lang="id">79,64%</td>
+<td data-lang="en">Sec 5.2 · Tab 14</td><td data-lang="id">Sec 5.2 · Tab 14</td>
+<td data-lang="en"><code>stage1_oof_metrics.csv</code></td>
+<td data-lang="id"><code>stage1_oof_metrics.csv</code></td>
+<td class="num" data-lang="en">+0.00018</td><td class="num" data-lang="id">+0,00018</td>
+</tr>
+<tr>
+<td>5</td>
+<td data-lang="en">Damaging-class recall (Stage 1)</td>
+<td data-lang="id">Recall kelas Damaging (Stage 1)</td>
+<td class="num" data-lang="en">≈ 86%</td><td class="num" data-lang="id">≈ 86%</td>
+<td data-lang="en">Sec 5.2 · Fig 11</td><td data-lang="id">Sec 5.2 · Fig 11</td>
+<td data-lang="en"><code>stage1_confusion_oof.csv</code></td>
+<td data-lang="id"><code>stage1_confusion_oof.csv</code></td>
+<td class="num" data-lang="en">+0.00021</td><td class="num" data-lang="id">+0,00021</td>
+</tr>
+<tr class="highlight">
+<td>6</td>
+<td data-lang="en">Stage-0 URPD AUC (0.5 s window)</td>
+<td data-lang="id">AUC URPD Stage-0 (window 0,5 s)</td>
+<td class="num" data-lang="en"><b>0.9136</b></td><td class="num" data-lang="id"><b>0,9136</b></td>
+<td data-lang="en">Abstract · Tab 12</td><td data-lang="id">Abstract · Tab 12</td>
+<td data-lang="en"><code>stage0_urpd_metrics.csv</code></td>
+<td data-lang="id"><code>stage0_urpd_metrics.csv</code></td>
+<td class="num" data-lang="en">+0.00007</td><td class="num" data-lang="id">+0,00007</td>
+</tr>
+<tr>
+<td>7</td>
+<td data-lang="en">Blind-zone radius (Balanced gate)</td>
+<td data-lang="id">Radius blind-zone (gate Balanced)</td>
+<td class="num" data-lang="en">11 km</td><td class="num" data-lang="id">11 km</td>
+<td data-lang="en">Tab 12 · Sec 5.1</td><td data-lang="id">Tab 12 · Sec 5.1</td>
+<td data-lang="en"><code>blind_zone_reduction.csv</code></td>
+<td data-lang="id"><code>blind_zone_reduction.csv</code></td>
+<td class="num" data-lang="en">0</td><td class="num" data-lang="id">0</td>
+</tr>
+<tr>
+<td>8</td>
+<td data-lang="en">Blind-zone radius (Aggressive gate)</td>
+<td data-lang="id">Radius blind-zone (gate Aggressive)</td>
+<td class="num" data-lang="en">4 km</td><td class="num" data-lang="id">4 km</td>
+<td data-lang="en">Tab 12</td><td data-lang="id">Tab 12</td>
+<td data-lang="en"><code>blind_zone_reduction.csv</code></td>
+<td data-lang="id"><code>blind_zone_reduction.csv</code></td>
+<td class="num" data-lang="en">0</td><td class="num" data-lang="id">0</td>
+</tr>
+<tr class="highlight">
+<td>9</td>
+<td data-lang="en">ΔR² vs Atkinson–Boore GMPE</td>
+<td data-lang="id">ΔR² vs GMPE Atkinson–Boore</td>
+<td class="num" data-lang="en"><b>+0.067</b></td><td class="num" data-lang="id"><b>+0,067</b></td>
+<td data-lang="en">Abstract · Tab 18</td><td data-lang="id">Abstract · Tab 18</td>
+<td data-lang="en"><code>gmpe_vs_idaptw.csv</code></td>
+<td data-lang="id"><code>gmpe_vs_idaptw.csv</code></td>
+<td class="num" data-lang="en">+0.00012</td><td class="num" data-lang="id">+0,00012</td>
+</tr>
+<tr>
+<td>10</td>
+<td data-lang="en">σ_total at T = 1.0 s</td>
+<td data-lang="id">σ_total di T = 1,0 s</td>
+<td class="num" data-lang="en">0.862</td><td class="num" data-lang="id">0,862</td>
+<td data-lang="en">Tab 17 · Sec 5.5</td><td data-lang="id">Tab 17 · Sec 5.5</td>
+<td data-lang="en"><code>sigma_decomposition.csv</code></td>
+<td data-lang="id"><code>sigma_decomposition.csv</code></td>
+<td class="num" data-lang="en">+0.00038</td><td class="num" data-lang="id">+0,00038</td>
+</tr>
+<tr>
+<td>11</td>
+<td data-lang="en">σ_inter-event (φ) at T = 1.0 s</td>
+<td data-lang="id">σ_inter-event (φ) di T = 1,0 s</td>
+<td class="num" data-lang="en">0.451</td><td class="num" data-lang="id">0,451</td>
+<td data-lang="en">Tab 17</td><td data-lang="id">Tab 17</td>
+<td data-lang="en"><code>sigma_decomposition.csv</code></td>
+<td data-lang="id"><code>sigma_decomposition.csv</code></td>
+<td class="num" data-lang="en">+0.00026</td><td class="num" data-lang="id">+0,00026</td>
+</tr>
+<tr>
+<td>12</td>
+<td data-lang="en">σ_intra-event (τ) at T = 1.0 s</td>
+<td data-lang="id">σ_intra-event (τ) di T = 1,0 s</td>
+<td class="num" data-lang="en">0.734</td><td class="num" data-lang="id">0,734</td>
+<td data-lang="en">Tab 17</td><td data-lang="id">Tab 17</td>
+<td data-lang="en"><code>sigma_decomposition.csv</code></td>
+<td data-lang="id"><code>sigma_decomposition.csv</code></td>
+<td class="num" data-lang="en">+0.00031</td><td class="num" data-lang="id">+0,00031</td>
+</tr>
+<tr class="highlight">
+<td>13</td>
+<td data-lang="en">End-to-end latency (median)</td>
+<td data-lang="id">Latensi end-to-end (median)</td>
+<td class="num" data-lang="en">10.65 s</td><td class="num" data-lang="id">10,65 s</td>
+<td data-lang="en">Abstract · Tab 15</td><td data-lang="id">Abstract · Tab 15</td>
+<td data-lang="en"><code>latency_breakdown.csv</code></td>
+<td data-lang="id"><code>latency_breakdown.csv</code></td>
+<td class="num" data-lang="en">−0.0014 s</td><td class="num" data-lang="id">−0,0014 s</td>
+</tr>
+<tr>
+<td>14</td>
+<td data-lang="en">Golden-time compliance</td>
+<td data-lang="id">Kepatuhan golden-time</td>
+<td class="num" data-lang="en">99.44%</td><td class="num" data-lang="id">99,44%</td>
+<td data-lang="en">Tab 15</td><td data-lang="id">Tab 15</td>
+<td data-lang="en"><code>latency_breakdown.csv</code></td>
+<td data-lang="id"><code>latency_breakdown.csv</code></td>
+<td class="num" data-lang="en">0</td><td class="num" data-lang="id">0</td>
+</tr>
+<tr>
+<td>15</td>
+<td data-lang="en">Dataset size (traces)</td>
+<td data-lang="id">Ukuran dataset (traces)</td>
+<td class="num" data-lang="en">25,058</td><td class="num" data-lang="id">25.058</td>
+<td data-lang="en">Sec 3 · Tab 1</td><td data-lang="id">Sec 3 · Tab 1</td>
+<td data-lang="en"><code>dataset_manifest.csv</code></td>
+<td data-lang="id"><code>dataset_manifest.csv</code></td>
+<td class="num" data-lang="en">0</td><td class="num" data-lang="id">0</td>
+</tr>
+<tr>
+<td>16</td>
+<td data-lang="en">Events / stations (Java-Sunda)</td>
+<td data-lang="id">Event / stasiun (Jawa-Sunda)</td>
+<td class="num" data-lang="en">338 / 151</td><td class="num" data-lang="id">338 / 151</td>
+<td data-lang="en">Sec 3 · Tab 1</td><td data-lang="id">Sec 3 · Tab 1</td>
+<td data-lang="en"><code>events_catalog.csv</code></td>
+<td data-lang="id"><code>events_catalog.csv</code></td>
+<td class="num" data-lang="en">0</td><td class="num" data-lang="id">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="small muted" data-lang="en">
       All canonical sources are pinned by MD5 checksum in <code>artifacts/canonical/checksums.txt</code>.
       A fresh clone + <code>python3 verify_repro.py</code> reproduces the 51-check audit (incl. all 16 above) in ~12 minutes.
     </p>
-    <p class="small muted" data-lang="id">
+<p class="small muted" data-lang="id">
       Semua sumber kanonik dipin oleh MD5 checksum di <code>artifacts/canonical/checksums.txt</code>.
       Fresh clone + <code>python3 verify_repro.py</code> mereproduksi audit 51-cek (termasuk 16 di atas) dalam ~12 menit.
     </p>
-  </section>
-
-  <section class="card">
-    <h2 data-lang="en">Pipeline Optimisation Journey (task 11 → 15)</h2>
-    <h2 data-lang="id">Perjalanan Optimisasi Pipeline (task 11 → 15)</h2>
-
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th data-lang="en">Task</th><th data-lang="id">Task</th>
-            <th data-lang="en">Method Added</th><th data-lang="id">Metode Ditambah</th>
-            <th class="num">R²</th>
-            <th class="num">Δ</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>task 11</td><td>task 11</td>
-            <td data-lang="en">Class-conditional marginalisation baseline</td>
-            <td data-lang="id">Baseline class-conditional marginalisation</td>
-            <td class="num">0.6074</td><td class="num">—</td>
-          </tr>
-          <tr>
-            <td>task 12</td><td>task 12</td>
-            <td data-lang="en">+ Site features (VS30, log-distance prior)</td>
-            <td data-lang="id">+ Fitur site (VS30, log-distance prior)</td>
-            <td class="num">0.6641</td><td class="num">+0.057</td>
-          </tr>
-          <tr>
-            <td>task 14</td><td>task 14</td>
-            <td data-lang="en">+ Dai multi-window features (2, 5, 10 s post-P)</td>
-            <td data-lang="id">+ Fitur multi-window Dai (2, 5, 10 s pasca-P)</td>
-            <td class="num">0.6966</td><td class="num">+0.033</td>
-          </tr>
-          <tr class="highlight">
-            <td><b>task 15</b></td><td><b>task 15</b></td>
-            <td data-lang="en"><b>+ XGB + LGB ensemble, SMOTE, Optuna, frequency-domain features</b></td>
-            <td data-lang="id"><b>+ Ensemble XGB + LGB, SMOTE, Optuna, fitur frequency-domain</b></td>
-            <td class="num"><b>0.7091</b></td><td class="num"><b>+0.013</b></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="small muted" data-lang="en">Total improvement +0.102 R² across four feature-engineering generations under identical GroupKFold 5-fold CV (seed 42).</p>
-    <p class="small muted" data-lang="id">Total peningkatan +0,102 R² melalui empat generasi feature-engineering di bawah CV GroupKFold 5-fold identik (seed 42).</p>
-  </section>
-
-  <section class="card">
-    <h2 data-lang="en">Verification Instructions</h2>
-    <h2 data-lang="id">Instruksi Verifikasi</h2>
-    <p data-lang="en">Promotors who want to reproduce the cross-check independently:</p>
-    <p data-lang="id">Promotor yang ingin mereproduksi cross-check secara independen:</p>
-    <pre><code>git clone https://github.com/hanif7108/IDA-PTW.git
+</section>
+<section class="card">
+<h2 data-lang="en">Pipeline Optimisation Journey (task 11 → 15)</h2>
+<h2 data-lang="id">Perjalanan Optimisasi Pipeline (task 11 → 15)</h2>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th data-lang="en">Task</th><th data-lang="id">Task</th>
+<th data-lang="en">Method Added</th><th data-lang="id">Metode Ditambah</th>
+<th class="num">R²</th>
+<th class="num">Δ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-lang="en">task 11</td><td data-lang="id">task 11</td>
+<td data-lang="en">Class-conditional marginalisation baseline</td>
+<td data-lang="id">Baseline class-conditional marginalisation</td>
+<td class="num">0.6074</td><td class="num">—</td>
+</tr>
+<tr>
+<td data-lang="en">task 12</td><td data-lang="id">task 12</td>
+<td data-lang="en">+ Site features (VS30, log-distance prior)</td>
+<td data-lang="id">+ Fitur site (VS30, log-distance prior)</td>
+<td class="num">0.6641</td><td class="num">+0.057</td>
+</tr>
+<tr>
+<td data-lang="en">task 14</td><td data-lang="id">task 14</td>
+<td data-lang="en">+ Dai multi-window features (2, 5, 10 s post-P)</td>
+<td data-lang="id">+ Fitur multi-window Dai (2, 5, 10 s pasca-P)</td>
+<td class="num">0.6966</td><td class="num">+0.033</td>
+</tr>
+<tr class="highlight">
+<td data-lang="en"><b>task 15</b></td><td data-lang="id"><b>task 15</b></td>
+<td data-lang="en"><b>+ XGB + LGB ensemble, SMOTE, Optuna, frequency-domain features</b></td>
+<td data-lang="id"><b>+ Ensemble XGB + LGB, SMOTE, Optuna, fitur frequency-domain</b></td>
+<td class="num"><b>0.7091</b></td><td class="num"><b>+0.013</b></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="small muted" data-lang="en">Total improvement +0.102 R² across four feature-engineering generations under identical GroupKFold 5-fold CV (seed 42).</p>
+<p class="small muted" data-lang="id">Total peningkatan +0,102 R² melalui empat generasi feature-engineering di bawah CV GroupKFold 5-fold identik (seed 42).</p>
+</section>
+<section class="card">
+<h2 data-lang="en">Verification Instructions</h2>
+<h2 data-lang="id">Instruksi Verifikasi</h2>
+<p data-lang="en">Promotors who want to reproduce the cross-check independently:</p>
+<p data-lang="id">Promotor yang ingin mereproduksi cross-check secara independen:</p>
+<pre><code>git clone https://github.com/hanif7108/IDA-PTW.git
 cd IDA-PTW
 git checkout review/v60-promotor
 pip install -r requirements.txt
 python3 verify_repro.py        # 51 checks · ~12 min
 # Optional FULL re-run (3 h 40 min):
 python3 pipeline/run_all.py --full --seed 42</code></pre>
-    <p class="small muted" data-lang="en">PR #2 at <a href="https://github.com/hanif7108/IDA-PTW/pull/2" target="_blank">hanif7108/IDA-PTW</a> tracks the audit trail of co-author review comments.</p>
-    <p class="small muted" data-lang="id">PR #2 di <a href="https://github.com/hanif7108/IDA-PTW/pull/2" target="_blank">hanif7108/IDA-PTW</a> mencatat jejak audit komentar tinjauan co-author.</p>
-  </section>
-
+<p class="small muted" data-lang="en">PR #2 at <a href="https://github.com/hanif7108/IDA-PTW/pull/2" target="_blank">hanif7108/IDA-PTW</a> tracks the audit trail of co-author review comments.</p>
+<p class="small muted" data-lang="id">PR #2 di <a href="https://github.com/hanif7108/IDA-PTW/pull/2" target="_blank">hanif7108/IDA-PTW</a> mencatat jejak audit komentar tinjauan co-author.</p>
+</section>
 </main>
-
 <footer class="site">
-  <p>
-    <span data-lang="en">© 2026 Hanif Andi Nugraha · IDA-PTW v60 Review · 01 Cross-check · <a href="index.html" data-keep-lang>← Back to dashboard</a></span>
-    <span data-lang="id">© 2026 Hanif Andi Nugraha · Tinjauan IDA-PTW v60 · 01 Cross-check · <a href="index.html" data-keep-lang>← Kembali ke beranda</a></span>
-  </p>
+<p>
+<span data-lang="en">© 2026 Hanif Andi Nugraha · IDA-PTW v60 Review · 01 Cross-check · <a data-keep-lang="" href="index.html">← Back to dashboard</a></span>
+<span data-lang="id">© 2026 Hanif Andi Nugraha · Tinjauan IDA-PTW v60 · 01 Cross-check · <a data-keep-lang="" href="index.html">← Kembali ke beranda</a></span>
+</p>
 </footer>
-
 <script src="assets/js/i18n.js"></script>
 </body>
 </html>

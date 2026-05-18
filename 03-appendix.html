@@ -1,363 +1,346 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="id">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>03 · Equation Derivations — IDA-PTW v60</title>
-<meta name="description" content="20 equation derivations for the IDA-PTW v60 manuscript: Brune source, σ decomposition, GMPE, Sa(T) ↔ building height, ensemble.">
-<meta name="robots" content="noindex,nofollow">
-<link rel="stylesheet" href="assets/css/style.css">
+<meta content="20 equation derivations for the IDA-PTW v60 manuscript: Brune source, σ decomposition, GMPE, Sa(T) ↔ building height, ensemble." name="description"/>
+<meta content="noindex,nofollow" name="robots"/>
+<link href="assets/css/style.css" rel="stylesheet"/>
 </head>
 <body class="lang-id">
-
 <header class="top">
-  <div class="wrap">
-    <a class="brand" href="index.html" data-keep-lang>
-      <div class="brand-mark">v60</div>
-      <div class="brand-text">
-        <b data-lang="en">IDA-PTW v60 Review</b>
-        <b data-lang="id">Tinjauan IDA-PTW v60</b>
-        <span data-lang="en">03 · Equation Derivations</span>
-        <span data-lang="id">03 · Derivasi Persamaan</span>
-      </div>
-    </a>
-    <nav class="nav">
-      <a href="index.html" data-keep-lang data-lang="en">Dashboard</a>
-      <a href="index.html" data-keep-lang data-lang="id">Beranda</a>
-      <a href="07-final-results.html" data-keep-lang data-lang="en">Final Results</a>
-      <a href="07-final-results.html" data-keep-lang data-lang="id">Hasil Akhir</a>
-      <a href="01-crosscheck.html" data-keep-lang data-lang="en">Cross-check</a>
-      <a href="01-crosscheck.html" data-keep-lang data-lang="id">Cross-check</a>
-      <a href="02-audit.html" data-keep-lang data-lang="en">Audit</a>
-      <a href="02-audit.html" data-keep-lang data-lang="id">Audit</a>
-      <a href="03-appendix.html" class="active" data-keep-lang data-lang="en">Derivations</a>
-      <a href="03-appendix.html" class="active" data-keep-lang data-lang="id">Derivasi</a>
-      <a href="04-figure.html" data-keep-lang data-lang="en">Figures</a>
-      <a href="04-figure.html" data-keep-lang data-lang="id">Figur</a>
-      <a href="05-readiness.html" data-keep-lang data-lang="en">Readiness</a>
-      <a href="05-readiness.html" data-keep-lang data-lang="id">Kesiapan</a>
-      <a href="06-sigbmkg.html" data-keep-lang data-lang="en">SIG-BMKG</a>
-      <a href="06-sigbmkg.html" data-keep-lang data-lang="id">SIG-BMKG</a>
-    </nav>
-    <div class="lang-toggle" role="tablist" aria-label="Language">
-      <button data-lang="en">EN</button>
-      <button data-lang="id">ID</button>
-    </div>
-  </div>
+<div class="wrap">
+<a class="brand" data-keep-lang="" href="index.html">
+<div class="brand-mark">v60</div>
+<div class="brand-text">
+<b data-lang="en">IDA-PTW v60 Review</b>
+<b data-lang="id">Tinjauan IDA-PTW v60</b>
+<span data-lang="en">03 · Equation Derivations</span>
+<span data-lang="id">03 · Derivasi Persamaan</span>
+</div>
+</a>
+<nav class="nav">
+<a data-keep-lang="" data-lang="en" href="index.html">Dashboard</a>
+<a data-keep-lang="" data-lang="id" href="index.html">Beranda</a>
+<a data-keep-lang="" data-lang="en" href="07-final-results.html">Final Results</a>
+<a data-keep-lang="" data-lang="id" href="07-final-results.html">Hasil Akhir</a>
+<a data-keep-lang="" data-lang="en" href="01-crosscheck.html">Cross-check</a>
+<a data-keep-lang="" data-lang="id" href="01-crosscheck.html">Cross-check</a>
+<a data-keep-lang="" data-lang="en" href="02-audit.html">Audit</a>
+<a data-keep-lang="" data-lang="id" href="02-audit.html">Audit</a>
+<a class="active" data-keep-lang="" data-lang="en" href="03-appendix.html">Derivations</a>
+<a class="active" data-keep-lang="" data-lang="id" href="03-appendix.html">Derivasi</a>
+<a data-keep-lang="" data-lang="en" href="04-figure.html">Figures</a>
+<a data-keep-lang="" data-lang="id" href="04-figure.html">Figur</a>
+<a data-keep-lang="" data-lang="en" href="05-readiness.html">Readiness</a>
+<a data-keep-lang="" data-lang="id" href="05-readiness.html">Kesiapan</a>
+<a data-keep-lang="" data-lang="en" href="06-sigbmkg.html">SIG-BMKG</a>
+<a data-keep-lang="" data-lang="id" href="06-sigbmkg.html">SIG-BMKG</a>
+</nav>
+<div aria-label="Language" class="lang-toggle" role="tablist">
+<button data-lang="en">EN</button>
+<button data-lang="id">ID</button>
+</div>
+</div>
 </header>
-
 <main>
-
-  <section class="card">
-    <h2 data-lang="en">03 · Equation Derivations Appendix</h2>
-    <h2 data-lang="id">03 · Lampiran Derivasi Persamaan</h2>
-
-    <p data-lang="en">
+<section class="card">
+<h2 data-lang="en">03 · Equation Derivations Appendix</h2>
+<h2 data-lang="id">03 · Lampiran Derivasi Persamaan</h2>
+<p data-lang="en">
       For a PhD physics dissertation defence, every equation in the manuscript should be traceable to a published source
       with step-by-step derivation. <a href="pdfs/EVIDENCE_v59_derivations.pdf" target="_blank"><code>EVIDENCE_v59_derivations.pdf</code></a>
       (27 pages) contains all 20 equations with full derivation, source code line-references, and a special section on the
       Sa(T) ↔ building height correlation. This page is an index — open the PDF for the full derivations.
     </p>
-    <p data-lang="id">
+<p data-lang="id">
       Untuk sidang doktoral fisika, setiap persamaan di manuskrip harus dapat dilacak ke sumber publikasi dengan derivasi langkah-demi-langkah.
       <a href="pdfs/EVIDENCE_v59_derivations.pdf" target="_blank"><code>EVIDENCE_v59_derivations.pdf</code></a> (27 halaman)
       memuat semua 20 persamaan dengan derivasi lengkap, referensi baris kode sumber, dan seksi khusus korelasi Sa(T) ↔ tinggi gedung.
       Halaman ini adalah indeks — buka PDF untuk derivasi lengkap.
     </p>
-
-    <div class="btn-row">
-      <a class="btn btn-primary" href="pdfs/EVIDENCE_v59_derivations.pdf" target="_blank">📐 <span data-lang="en">View full derivations PDF (27 pp)</span><span data-lang="id">Buka PDF derivasi lengkap (27 hal)</span></a>
-      <a class="btn btn-outline" href="pdfs/EVIDENCE_v59_derivations.pdf" download>⬇ PDF</a>
-    </div>
-  </section>
-
-  <section class="card">
-    <h2 data-lang="en">20 Equations Index</h2>
-    <h2 data-lang="id">Indeks 20 Persamaan</h2>
-
-    <h3 data-lang="en">A · Source Physics (Brune model)</h3>
-    <h3 data-lang="id">A · Fisika Sumber (model Brune)</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr>
-          <th>#</th><th data-lang="en">Equation</th><th data-lang="id">Persamaan</th>
-          <th data-lang="en">Source</th><th data-lang="id">Sumber</th>
-        </tr></thead>
-        <tbody>
-          <tr><td>Eq 1</td>
-            <td data-lang="en">ω-square Brune source spectrum: Ω(f) = Ω₀ / (1 + (f/fc)²)</td>
-            <td data-lang="id">Spektrum sumber ω-square Brune: Ω(f) = Ω₀ / (1 + (f/fc)²)</td>
-            <td>Brune 1970, JGR</td><td>Brune 1970, JGR</td>
-          </tr>
-          <tr><td>Eq 2</td>
-            <td data-lang="en">Corner frequency: fc = 0.49 β (Δσ / M₀)^(1/3)</td>
-            <td data-lang="id">Corner frequency: fc = 0,49 β (Δσ / M₀)^(1/3)</td>
-            <td>Brune 1970 · Aki &amp; Richards 2002</td>
-            <td>Brune 1970 · Aki &amp; Richards 2002</td>
-          </tr>
-          <tr><td>Eq 3</td>
-            <td data-lang="en">Seismic moment: M₀ = 10^(1.5 Mw + 9.1) [N·m]</td>
-            <td data-lang="id">Momen seismik: M₀ = 10^(1,5 Mw + 9,1) [N·m]</td>
-            <td>Hanks &amp; Kanamori 1979</td>
-            <td>Hanks &amp; Kanamori 1979</td>
-          </tr>
-          <tr><td>Eq 4</td>
-            <td data-lang="en">Saturation threshold: Mw* ≈ 6.5 → fc &lt; 1 Hz</td>
-            <td data-lang="id">Threshold saturasi: Mw* ≈ 6,5 → fc &lt; 1 Hz</td>
-            <td>Lomax 2007 · Allen 2003</td>
-            <td>Lomax 2007 · Allen 2003</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3 data-lang="en">B · Site Response &amp; Path</h3>
-    <h3 data-lang="id">B · Respons Site &amp; Path</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr>
-          <th>#</th><th data-lang="en">Equation</th><th data-lang="id">Persamaan</th>
-          <th data-lang="en">Source</th><th data-lang="id">Sumber</th>
-        </tr></thead>
-        <tbody>
-          <tr><td>Eq 5</td>
-            <td data-lang="en">VS30 amplification factor (Boore &amp; Atkinson 2008)</td>
-            <td data-lang="id">Faktor amplifikasi VS30 (Boore &amp; Atkinson 2008)</td>
-            <td>BA08 PEER</td><td>BA08 PEER</td>
-          </tr>
-          <tr><td>Eq 6</td>
-            <td data-lang="en">Anelastic attenuation: log(A) = log(A₀) − Q(f) · R</td>
-            <td data-lang="id">Atenuasi anelastik: log(A) = log(A₀) − Q(f) · R</td>
-            <td>Aki 1980</td><td>Aki 1980</td>
-          </tr>
-          <tr><td>Eq 7</td>
-            <td data-lang="en">Geometric spreading: A(R) ∝ R^(−1) (body), R^(−0.5) (surface)</td>
-            <td data-lang="id">Geometric spreading: A(R) ∝ R^(−1) (body), R^(−0,5) (surface)</td>
-            <td>Stein &amp; Wysession 2003</td>
-            <td>Stein &amp; Wysession 2003</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3 data-lang="en">C · Ground-Motion Prediction (GMPE)</h3>
-    <h3 data-lang="id">C · Prediksi Ground-Motion (GMPE)</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr>
-          <th>#</th><th data-lang="en">Equation</th><th data-lang="id">Persamaan</th>
-          <th data-lang="en">Source</th><th data-lang="id">Sumber</th>
-        </tr></thead>
-        <tbody>
-          <tr><td>Eq 8</td>
-            <td data-lang="en">Atkinson–Boore subduction GMPE: log Sa(T) = c₁ + c₂ Mw + c₃ log(R + c₄) + c₅ h + ε</td>
-            <td data-lang="id">GMPE subduksi Atkinson–Boore: log Sa(T) = c₁ + c₂ Mw + c₃ log(R + c₄) + c₅ h + ε</td>
-            <td>Atkinson &amp; Boore 2003</td>
-            <td>Atkinson &amp; Boore 2003</td>
-          </tr>
-          <tr><td>Eq 9</td>
-            <td data-lang="en">Hypocentral distance: R = √(R_epi² + h²)</td>
-            <td data-lang="id">Jarak hiposenter: R = √(R_epi² + h²)</td>
-            <td data-lang="en">Standard geometry</td><td data-lang="id">Geometri standar</td>
-          </tr>
-          <tr><td>Eq 10</td>
-            <td data-lang="en">σ_total² = φ² + τ² (single-station decomposition)</td>
-            <td data-lang="id">σ_total² = φ² + τ² (dekomposisi single-station)</td>
-            <td>Al Atik et al. 2010, SRL</td>
-            <td>Al Atik et al. 2010, SRL</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3 data-lang="en">D · Structural Response &amp; Sa(T) ↔ Building Height</h3>
-    <h3 data-lang="id">D · Respons Struktural &amp; Sa(T) ↔ Tinggi Gedung</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr>
-          <th>#</th><th data-lang="en">Equation</th><th data-lang="id">Persamaan</th>
-          <th data-lang="en">Source</th><th data-lang="id">Sumber</th>
-        </tr></thead>
-        <tbody>
-          <tr><td>Eq 11</td>
-            <td data-lang="en">SDOF response spectrum: Sa(T) = max|ẍ + g| under EOM ẍ + 2ζω ẋ + ω²x = −ü</td>
-            <td data-lang="id">Spektrum respons SDOF: Sa(T) = max|ẍ + g| dengan EOM ẍ + 2ζω ẋ + ω²x = −ü</td>
-            <td>Chopra 2017</td><td>Chopra 2017</td>
-          </tr>
-          <tr><td>Eq 12</td>
-            <td data-lang="en">Period ↔ height: T ≈ 0.1 N (N = number of storeys, RC frame)</td>
-            <td data-lang="id">Periode ↔ tinggi: T ≈ 0,1 N (N = jumlah lantai, frame RC)</td>
-            <td>ASCE 7-22 · SNI 1726:2019</td>
-            <td>ASCE 7-22 · SNI 1726:2019</td>
-          </tr>
-          <tr><td>Eq 13</td>
-            <td data-lang="en">Period band mapping: T ∈ {0.05–0.3 s} (low-rise), {0.3–1.0 s} (mid-rise), {1.0–5.0 s} (high-rise)</td>
-            <td data-lang="id">Pemetaan band periode: T ∈ {0,05–0,3 s} (low-rise), {0,3–1,0 s} (mid-rise), {1,0–5,0 s} (high-rise)</td>
-            <td>FEMA P-58</td><td>FEMA P-58</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3 data-lang="en">E · Machine Learning</h3>
-    <h3 data-lang="id">E · Machine Learning</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr>
-          <th>#</th><th data-lang="en">Equation</th><th data-lang="id">Persamaan</th>
-          <th data-lang="en">Source</th><th data-lang="id">Sumber</th>
-        </tr></thead>
-        <tbody>
-          <tr><td>Eq 14</td>
-            <td data-lang="en">XGBoost objective: ℒ = Σ ℓ(y, ŷ) + Σ Ω(f_k) with Ω(f) = γT + ½λ‖w‖²</td>
-            <td data-lang="id">Objective XGBoost: ℒ = Σ ℓ(y, ŷ) + Σ Ω(f_k) dengan Ω(f) = γT + ½λ‖w‖²</td>
-            <td>Chen &amp; Guestrin 2016</td>
-            <td>Chen &amp; Guestrin 2016</td>
-          </tr>
-          <tr><td>Eq 15</td>
-            <td data-lang="en">LightGBM leaf-wise gain (Histogram-based GOSS)</td>
-            <td data-lang="id">Gain leaf-wise LightGBM (Histogram-based GOSS)</td>
-            <td>Ke et al. 2017</td><td>Ke et al. 2017</td>
-          </tr>
-          <tr><td>Eq 16</td>
-            <td data-lang="en">Soft-voting ensemble: ŷ = α · ŷ_XGB + (1−α) · ŷ_LGB, α = 0.55 (Optuna)</td>
-            <td data-lang="id">Ensemble soft-voting: ŷ = α · ŷ_XGB + (1−α) · ŷ_LGB, α = 0,55 (Optuna)</td>
-            <td data-lang="en">Optuna-tuned (this work)</td>
-            <td data-lang="id">Tuning Optuna (karya ini)</td>
-          </tr>
-          <tr><td>Eq 17</td>
-            <td data-lang="en">SMOTE synthetic sample: x_new = x_i + λ(x_NN − x_i), λ ∈ [0, 1]</td>
-            <td data-lang="id">Sampel sintetik SMOTE: x_new = x_i + λ(x_NN − x_i), λ ∈ [0, 1]</td>
-            <td>Chawla et al. 2002</td>
-            <td>Chawla et al. 2002</td>
-          </tr>
-          <tr><td>Eq 18</td>
-            <td data-lang="en">Balanced Accuracy: BAcc = ½(TPR + TNR), multiclass macro-averaged</td>
-            <td data-lang="id">Balanced Accuracy: BAcc = ½(TPR + TNR), macro-averaged multikelas</td>
-            <td>Brodersen et al. 2010</td>
-            <td>Brodersen et al. 2010</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3 data-lang="en">F · Composite Metric &amp; Marginalisation</h3>
-    <h3 data-lang="id">F · Metrik Komposit &amp; Marginalisasi</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr>
-          <th>#</th><th data-lang="en">Equation</th><th data-lang="id">Persamaan</th>
-          <th data-lang="en">Source</th><th data-lang="id">Sumber</th>
-        </tr></thead>
-        <tbody>
-          <tr><td>Eq 19</td>
-            <td data-lang="en">Class-conditional marginalisation: R²_comp = Σ_k π_k · R²_k, π_k = empirical class prior</td>
-            <td data-lang="id">Marginalisasi class-conditional: R²_comp = Σ_k π_k · R²_k, π_k = prior kelas empiris</td>
-            <td data-lang="en">Section 4.4 (this work)</td>
-            <td data-lang="id">Seksi 4.4 (karya ini)</td>
-          </tr>
-          <tr><td>Eq 20</td>
-            <td data-lang="en">Oracle upper bound: R²_oracle = E[R²_k | true class] (Stage 1 perfect)</td>
-            <td data-lang="id">Oracle upper bound: R²_oracle = E[R²_k | kelas benar] (Stage 1 sempurna)</td>
-            <td data-lang="en">Section 5.4 (this work)</td>
-            <td data-lang="id">Seksi 5.4 (karya ini)</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section class="card">
-    <h2 data-lang="en">Sa(T) ↔ Building Height Correlation</h2>
-    <h2 data-lang="id">Korelasi Sa(T) ↔ Tinggi Gedung</h2>
-    <p data-lang="en">
+<div class="btn-row">
+<a class="btn btn-primary" href="pdfs/EVIDENCE_v59_derivations.pdf" target="_blank">📐 <span data-lang="en">View full derivations PDF (27 pp)</span><span data-lang="id">Buka PDF derivasi lengkap (27 hal)</span></a>
+<a class="btn btn-outline" download="" href="pdfs/EVIDENCE_v59_derivations.pdf">⬇ PDF</a>
+</div>
+</section>
+<section class="card">
+<h2 data-lang="en">20 Equations Index</h2>
+<h2 data-lang="id">Indeks 20 Persamaan</h2>
+<h3 data-lang="en">A · Source Physics (Brune model)</h3>
+<h3 data-lang="id">A · Fisika Sumber (model Brune)</h3>
+<div class="table-wrap">
+<table>
+<thead><tr>
+<th>#</th><th data-lang="en">Equation</th><th data-lang="id">Persamaan</th>
+<th data-lang="en">Source</th><th data-lang="id">Sumber</th>
+</tr></thead>
+<tbody>
+<tr><td>Eq 1</td>
+<td data-lang="en">ω-square Brune source spectrum: Ω(f) = Ω₀ / (1 + (f/fc)²)</td>
+<td data-lang="id">Spektrum sumber ω-square Brune: Ω(f) = Ω₀ / (1 + (f/fc)²)</td>
+<td data-lang="en">Brune 1970, JGR</td><td data-lang="id">Brune 1970, JGR</td>
+</tr>
+<tr><td>Eq 2</td>
+<td data-lang="en">Corner frequency: fc = 0.49 β (Δσ / M₀)^(1/3)</td>
+<td data-lang="id">Corner frequency: fc = 0,49 β (Δσ / M₀)^(1/3)</td>
+<td data-lang="en">Brune 1970 · Aki &amp; Richards 2002</td>
+<td data-lang="id">Brune 1970 · Aki &amp; Richards 2002</td>
+</tr>
+<tr><td>Eq 3</td>
+<td data-lang="en">Seismic moment: M₀ = 10^(1.5 Mw + 9.1) [N·m]</td>
+<td data-lang="id">Momen seismik: M₀ = 10^(1,5 Mw + 9,1) [N·m]</td>
+<td data-lang="en">Hanks &amp; Kanamori 1979</td>
+<td data-lang="id">Hanks &amp; Kanamori 1979</td>
+</tr>
+<tr><td>Eq 4</td>
+<td data-lang="en">Saturation threshold: Mw* ≈ 6.5 → fc &lt; 1 Hz</td>
+<td data-lang="id">Threshold saturasi: Mw* ≈ 6,5 → fc &lt; 1 Hz</td>
+<td data-lang="en">Lomax 2007 · Allen 2003</td>
+<td data-lang="id">Lomax 2007 · Allen 2003</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 data-lang="en">B · Site Response &amp; Path</h3>
+<h3 data-lang="id">B · Respons Site &amp; Path</h3>
+<div class="table-wrap">
+<table>
+<thead><tr>
+<th>#</th><th data-lang="en">Equation</th><th data-lang="id">Persamaan</th>
+<th data-lang="en">Source</th><th data-lang="id">Sumber</th>
+</tr></thead>
+<tbody>
+<tr><td>Eq 5</td>
+<td data-lang="en">VS30 amplification factor (Boore &amp; Atkinson 2008)</td>
+<td data-lang="id">Faktor amplifikasi VS30 (Boore &amp; Atkinson 2008)</td>
+<td data-lang="en">BA08 PEER</td><td data-lang="id">BA08 PEER</td>
+</tr>
+<tr><td>Eq 6</td>
+<td data-lang="en">Anelastic attenuation: log(A) = log(A₀) − Q(f) · R</td>
+<td data-lang="id">Atenuasi anelastik: log(A) = log(A₀) − Q(f) · R</td>
+<td data-lang="en">Aki 1980</td><td data-lang="id">Aki 1980</td>
+</tr>
+<tr><td>Eq 7</td>
+<td data-lang="en">Geometric spreading: A(R) ∝ R^(−1) (body), R^(−0.5) (surface)</td>
+<td data-lang="id">Geometric spreading: A(R) ∝ R^(−1) (body), R^(−0,5) (surface)</td>
+<td data-lang="en">Stein &amp; Wysession 2003</td>
+<td data-lang="id">Stein &amp; Wysession 2003</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 data-lang="en">C · Ground-Motion Prediction (GMPE)</h3>
+<h3 data-lang="id">C · Prediksi Ground-Motion (GMPE)</h3>
+<div class="table-wrap">
+<table>
+<thead><tr>
+<th>#</th><th data-lang="en">Equation</th><th data-lang="id">Persamaan</th>
+<th data-lang="en">Source</th><th data-lang="id">Sumber</th>
+</tr></thead>
+<tbody>
+<tr><td>Eq 8</td>
+<td data-lang="en">Atkinson–Boore subduction GMPE: log Sa(T) = c₁ + c₂ Mw + c₃ log(R + c₄) + c₅ h + ε</td>
+<td data-lang="id">GMPE subduksi Atkinson–Boore: log Sa(T) = c₁ + c₂ Mw + c₃ log(R + c₄) + c₅ h + ε</td>
+<td data-lang="en">Atkinson &amp; Boore 2003</td>
+<td data-lang="id">Atkinson &amp; Boore 2003</td>
+</tr>
+<tr><td>Eq 9</td>
+<td data-lang="en">Hypocentral distance: R = √(R_epi² + h²)</td>
+<td data-lang="id">Jarak hiposenter: R = √(R_epi² + h²)</td>
+<td data-lang="en">Standard geometry</td><td data-lang="id">Geometri standar</td>
+</tr>
+<tr><td>Eq 10</td>
+<td data-lang="en">σ_total² = φ² + τ² (single-station decomposition)</td>
+<td data-lang="id">σ_total² = φ² + τ² (dekomposisi single-station)</td>
+<td data-lang="en">Al Atik et al. 2010, SRL</td>
+<td data-lang="id">Al Atik et al. 2010, SRL</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 data-lang="en">D · Structural Response &amp; Sa(T) ↔ Building Height</h3>
+<h3 data-lang="id">D · Respons Struktural &amp; Sa(T) ↔ Tinggi Gedung</h3>
+<div class="table-wrap">
+<table>
+<thead><tr>
+<th>#</th><th data-lang="en">Equation</th><th data-lang="id">Persamaan</th>
+<th data-lang="en">Source</th><th data-lang="id">Sumber</th>
+</tr></thead>
+<tbody>
+<tr><td>Eq 11</td>
+<td data-lang="en">SDOF response spectrum: Sa(T) = max|ẍ + g| under EOM ẍ + 2ζω ẋ + ω²x = −ü</td>
+<td data-lang="id">Spektrum respons SDOF: Sa(T) = max|ẍ + g| dengan EOM ẍ + 2ζω ẋ + ω²x = −ü</td>
+<td data-lang="en">Chopra 2017</td><td data-lang="id">Chopra 2017</td>
+</tr>
+<tr><td>Eq 12</td>
+<td data-lang="en">Period ↔ height: T ≈ 0.1 N (N = number of storeys, RC frame)</td>
+<td data-lang="id">Periode ↔ tinggi: T ≈ 0,1 N (N = jumlah lantai, frame RC)</td>
+<td data-lang="en">ASCE 7-22 · SNI 1726:2019</td>
+<td data-lang="id">ASCE 7-22 · SNI 1726:2019</td>
+</tr>
+<tr><td>Eq 13</td>
+<td data-lang="en">Period band mapping: T ∈ {0.05–0.3 s} (low-rise), {0.3–1.0 s} (mid-rise), {1.0–5.0 s} (high-rise)</td>
+<td data-lang="id">Pemetaan band periode: T ∈ {0,05–0,3 s} (low-rise), {0,3–1,0 s} (mid-rise), {1,0–5,0 s} (high-rise)</td>
+<td data-lang="en">FEMA P-58</td><td data-lang="id">FEMA P-58</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 data-lang="en">E · Machine Learning</h3>
+<h3 data-lang="id">E · Machine Learning</h3>
+<div class="table-wrap">
+<table>
+<thead><tr>
+<th>#</th><th data-lang="en">Equation</th><th data-lang="id">Persamaan</th>
+<th data-lang="en">Source</th><th data-lang="id">Sumber</th>
+</tr></thead>
+<tbody>
+<tr><td>Eq 14</td>
+<td data-lang="en">XGBoost objective: ℒ = Σ ℓ(y, ŷ) + Σ Ω(f_k) with Ω(f) = γT + ½λ‖w‖²</td>
+<td data-lang="id">Objective XGBoost: ℒ = Σ ℓ(y, ŷ) + Σ Ω(f_k) dengan Ω(f) = γT + ½λ‖w‖²</td>
+<td data-lang="en">Chen &amp; Guestrin 2016</td>
+<td data-lang="id">Chen &amp; Guestrin 2016</td>
+</tr>
+<tr><td>Eq 15</td>
+<td data-lang="en">LightGBM leaf-wise gain (Histogram-based GOSS)</td>
+<td data-lang="id">Gain leaf-wise LightGBM (Histogram-based GOSS)</td>
+<td data-lang="en">Ke et al. 2017</td><td data-lang="id">Ke et al. 2017</td>
+</tr>
+<tr><td>Eq 16</td>
+<td data-lang="en">Soft-voting ensemble: ŷ = α · ŷ_XGB + (1−α) · ŷ_LGB, α = 0.55 (Optuna)</td>
+<td data-lang="id">Ensemble soft-voting: ŷ = α · ŷ_XGB + (1−α) · ŷ_LGB, α = 0,55 (Optuna)</td>
+<td data-lang="en">Optuna-tuned (this work)</td>
+<td data-lang="id">Tuning Optuna (karya ini)</td>
+</tr>
+<tr><td>Eq 17</td>
+<td data-lang="en">SMOTE synthetic sample: x_new = x_i + λ(x_NN − x_i), λ ∈ [0, 1]</td>
+<td data-lang="id">Sampel sintetik SMOTE: x_new = x_i + λ(x_NN − x_i), λ ∈ [0, 1]</td>
+<td data-lang="en">Chawla et al. 2002</td>
+<td data-lang="id">Chawla et al. 2002</td>
+</tr>
+<tr><td>Eq 18</td>
+<td data-lang="en">Balanced Accuracy: BAcc = ½(TPR + TNR), multiclass macro-averaged</td>
+<td data-lang="id">Balanced Accuracy: BAcc = ½(TPR + TNR), macro-averaged multikelas</td>
+<td data-lang="en">Brodersen et al. 2010</td>
+<td data-lang="id">Brodersen et al. 2010</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 data-lang="en">F · Composite Metric &amp; Marginalisation</h3>
+<h3 data-lang="id">F · Metrik Komposit &amp; Marginalisasi</h3>
+<div class="table-wrap">
+<table>
+<thead><tr>
+<th>#</th><th data-lang="en">Equation</th><th data-lang="id">Persamaan</th>
+<th data-lang="en">Source</th><th data-lang="id">Sumber</th>
+</tr></thead>
+<tbody>
+<tr><td>Eq 19</td>
+<td data-lang="en">Class-conditional marginalisation: R²_comp = Σ_k π_k · R²_k, π_k = empirical class prior</td>
+<td data-lang="id">Marginalisasi class-conditional: R²_comp = Σ_k π_k · R²_k, π_k = prior kelas empiris</td>
+<td data-lang="en">Section 4.4 (this work)</td>
+<td data-lang="id">Seksi 4.4 (karya ini)</td>
+</tr>
+<tr><td>Eq 20</td>
+<td data-lang="en">Oracle upper bound: R²_oracle = E[R²_k | true class] (Stage 1 perfect)</td>
+<td data-lang="id">Oracle upper bound: R²_oracle = E[R²_k | kelas benar] (Stage 1 sempurna)</td>
+<td data-lang="en">Section 5.4 (this work)</td>
+<td data-lang="id">Seksi 5.4 (karya ini)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="card">
+<h2 data-lang="en">Sa(T) ↔ Building Height Correlation</h2>
+<h2 data-lang="id">Korelasi Sa(T) ↔ Tinggi Gedung</h2>
+<p data-lang="en">
       A natural question raised by the promotor: <em>why predict Sa(T) at 103 periods, and how does period T correlate with building height?</em>
       The 27-page derivations PDF contains a dedicated subsection mapping the 103 spectral periods to the operational consequence for
       Indonesian construction stock. The summary mapping:
     </p>
-    <p data-lang="id">
+<p data-lang="id">
       Pertanyaan natural dari promotor: <em>mengapa prediksi Sa(T) di 103 periode, dan bagaimana periode T berkorelasi dengan tinggi gedung?</em>
       PDF derivasi 27-halaman memuat subseksi khusus yang memetakan 103 periode spektral ke konsekuensi operasional bagi stok bangunan Indonesia. Ringkasan pemetaan:
     </p>
-
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th data-lang="en">Period T (s)</th><th data-lang="id">Periode T (s)</th>
-            <th data-lang="en">Approx. height</th><th data-lang="id">Tinggi sekitar</th>
-            <th data-lang="en">Storeys (RC frame, T ≈ 0.1N)</th>
-            <th data-lang="id">Lantai (frame RC, T ≈ 0,1N)</th>
-            <th data-lang="en">Typical Indonesian stock</th>
-            <th data-lang="id">Stok Indonesia tipikal</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>0.05–0.1</td><td>0,05–0,1</td>
-            <td>≤ 3 m</td><td>≤ 3 m</td>
-            <td>1</td><td>1</td>
-            <td data-lang="en">Rumah tinggal 1-lantai (≈ 75% Indonesia)</td>
-            <td data-lang="id">Rumah tinggal 1-lantai (≈ 75% Indonesia)</td>
-          </tr>
-          <tr>
-            <td>0.1–0.3</td><td>0,1–0,3</td>
-            <td>3–9 m</td><td>3–9 m</td>
-            <td>1–3</td><td>1–3</td>
-            <td data-lang="en">Ruko, sekolah dasar, puskesmas</td>
-            <td data-lang="id">Ruko, sekolah dasar, puskesmas</td>
-          </tr>
-          <tr class="highlight">
-            <td>0.3–1.0</td><td>0,3–1,0</td>
-            <td>9–30 m</td><td>9–30 m</td>
-            <td>3–10</td><td>3–10</td>
-            <td data-lang="en">Apartment mid-rise, perkantoran kota satelit</td>
-            <td data-lang="id">Apartemen mid-rise, perkantoran kota satelit</td>
-          </tr>
-          <tr>
-            <td>1.0–2.0</td><td>1,0–2,0</td>
-            <td>30–60 m</td><td>30–60 m</td>
-            <td>10–20</td><td>10–20</td>
-            <td data-lang="en">High-rise residential / commercial</td>
-            <td data-lang="id">High-rise residential / komersial</td>
-          </tr>
-          <tr>
-            <td>2.0–5.0</td><td>2,0–5,0</td>
-            <td>60–150 m</td><td>60–150 m</td>
-            <td>20–50</td><td>20–50</td>
-            <td data-lang="en">Tall buildings (Jakarta, Surabaya CBD)</td>
-            <td data-lang="id">Gedung tinggi (CBD Jakarta, Surabaya)</td>
-          </tr>
-          <tr>
-            <td>5.0–10.0</td><td>5,0–10,0</td>
-            <td>150–300 m</td><td>150–300 m</td>
-            <td>50+</td><td>50+</td>
-            <td data-lang="en">Skyscrapers (rare, Jakarta CBD only)</td>
-            <td data-lang="id">Pencakar langit (langka, hanya CBD Jakarta)</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <p class="small muted" data-lang="en">
-      <b>Operational implication:</b> the densest portion of the period grid (0.1–1.0 s) aligns with the 90%+ majority of Indonesian
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th data-lang="en">Period T (s)</th><th data-lang="id">Periode T (s)</th>
+<th data-lang="en">Approx. height</th><th data-lang="id">Tinggi sekitar</th>
+<th data-lang="en">Storeys (RC frame, T ≈ 0.1N)</th>
+<th data-lang="id">Lantai (frame RC, T ≈ 0,1N)</th>
+<th data-lang="en">Typical Indonesian stock</th>
+<th data-lang="id">Stok Indonesia tipikal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-lang="en">0.05–0.1</td><td data-lang="id">0,05–0,1</td>
+<td data-lang="en">≤ 3 m</td><td data-lang="id">≤ 3 m</td>
+<td data-lang="en">1</td><td data-lang="id">1</td>
+<td data-lang="en">Rumah tinggal 1-lantai (≈ 75% Indonesia)</td>
+<td data-lang="id">Rumah tinggal 1-lantai (≈ 75% Indonesia)</td>
+</tr>
+<tr>
+<td data-lang="en">0.1–0.3</td><td data-lang="id">0,1–0,3</td>
+<td data-lang="en">3–9 m</td><td data-lang="id">3–9 m</td>
+<td data-lang="en">1–3</td><td data-lang="id">1–3</td>
+<td data-lang="en">Ruko, sekolah dasar, puskesmas</td>
+<td data-lang="id">Ruko, sekolah dasar, puskesmas</td>
+</tr>
+<tr class="highlight">
+<td data-lang="en">0.3–1.0</td><td data-lang="id">0,3–1,0</td>
+<td data-lang="en">9–30 m</td><td data-lang="id">9–30 m</td>
+<td data-lang="en">3–10</td><td data-lang="id">3–10</td>
+<td data-lang="en">Apartment mid-rise, perkantoran kota satelit</td>
+<td data-lang="id">Apartemen mid-rise, perkantoran kota satelit</td>
+</tr>
+<tr>
+<td data-lang="en">1.0–2.0</td><td data-lang="id">1,0–2,0</td>
+<td data-lang="en">30–60 m</td><td data-lang="id">30–60 m</td>
+<td data-lang="en">10–20</td><td data-lang="id">10–20</td>
+<td data-lang="en">High-rise residential / commercial</td>
+<td data-lang="id">High-rise residential / komersial</td>
+</tr>
+<tr>
+<td data-lang="en">2.0–5.0</td><td data-lang="id">2,0–5,0</td>
+<td data-lang="en">60–150 m</td><td data-lang="id">60–150 m</td>
+<td data-lang="en">20–50</td><td data-lang="id">20–50</td>
+<td data-lang="en">Tall buildings (Jakarta, Surabaya CBD)</td>
+<td data-lang="id">Gedung tinggi (CBD Jakarta, Surabaya)</td>
+</tr>
+<tr>
+<td data-lang="en">5.0–10.0</td><td data-lang="id">5,0–10,0</td>
+<td data-lang="en">150–300 m</td><td data-lang="id">150–300 m</td>
+<td data-lang="en">50+</td><td data-lang="id">50+</td>
+<td data-lang="en">Skyscrapers (rare, Jakarta CBD only)</td>
+<td data-lang="id">Pencakar langit (langka, hanya CBD Jakarta)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="small muted" data-lang="en">
+<b>Operational implication:</b> the densest portion of the period grid (0.1–1.0 s) aligns with the 90%+ majority of Indonesian
       occupied building stock per BMKG/PUPR survey 2024. Predicting Sa(T) across this entire band enables targeted alerting per asset class.
     </p>
-    <p class="small muted" data-lang="id">
-      <b>Implikasi operasional:</b> porsi terpadat grid periode (0,1–1,0 s) sesuai dengan 90%+ mayoritas stok bangunan ber-okupansi Indonesia
+<p class="small muted" data-lang="id">
+<b>Implikasi operasional:</b> porsi terpadat grid periode (0,1–1,0 s) sesuai dengan 90%+ mayoritas stok bangunan ber-okupansi Indonesia
       menurut survei BMKG/PUPR 2024. Prediksi Sa(T) di seluruh band ini memungkinkan alert tertarget per kelas aset.
     </p>
-  </section>
-
+</section>
 </main>
-
 <footer class="site">
-  <p>
-    <span data-lang="en">© 2026 Hanif Andi Nugraha · IDA-PTW v60 Review · 03 Derivations · <a href="index.html" data-keep-lang>← Back to dashboard</a></span>
-    <span data-lang="id">© 2026 Hanif Andi Nugraha · Tinjauan IDA-PTW v60 · 03 Derivasi · <a href="index.html" data-keep-lang>← Kembali ke beranda</a></span>
-  </p>
+<p>
+<span data-lang="en">© 2026 Hanif Andi Nugraha · IDA-PTW v60 Review · 03 Derivations · <a data-keep-lang="" href="index.html">← Back to dashboard</a></span>
+<span data-lang="id">© 2026 Hanif Andi Nugraha · Tinjauan IDA-PTW v60 · 03 Derivasi · <a data-keep-lang="" href="index.html">← Kembali ke beranda</a></span>
+</p>
 </footer>
-
 <script src="assets/js/i18n.js"></script>
 </body>
 </html>
