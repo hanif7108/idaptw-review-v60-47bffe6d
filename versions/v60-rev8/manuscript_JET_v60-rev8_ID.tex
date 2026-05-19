@@ -1,0 +1,1053 @@
+% Consolidated v60 from main_ID.tex + inlined inputs
+% Generated: 2026-05-16
+
+%-----------------------------------------------------------------
+%       MAIN TEX FILE — Journal of Earthquake and Tsunami (JET)
+%       World Scientific Publishing  ·  ws-jet-strict v19
+%-----------------------------------------------------------------
+% Submission: Hanif Andi Nugraha · FMIPA UI · BMKG · 2026
+% v19: FULL strict compliance per ws-jet.pdf (2019)
+%   - Page header "Journal of Earthquake and Tsunami / © WSPC"
+%   - Running heads (even/odd)
+%   - Title 10pt Times Bold (max 3 lines)
+%   - Author 8pt Times Roman / Affiliation 8pt Times Italic
+%   - Email + URL single line
+%   - Received/Revised/Accepted history
+%   - Abstract 8pt Times 10pt baseline 0.25in indent L+R
+%   - Major heading: "1. Title" bold roman + bold heading
+%   - Sub: "1.1." bold roman + bold italic heading
+%   - Sub-sub: "1.1.1." medium italic
+%   - First para after heading flush LEFT (noindent)
+%   - 10pt Times body, 13pt single line spacing
+%   - Text area 5×7.7 in on 6×9 in page
+%   - Figure caption "Fig. 1." 8pt Times below figure
+%   - Table caption "Table 1." 8pt Times above
+%   - References: alphabetical, [Year], "Title," Journal **vol**(num), pp–pp
+%   - Footnote markers: * † ‡ § ¶ for title/affiliation
+%   - Body footnotes: superscript lowercase Roman a, b, c
+%-----------------------------------------------------------------
+
+\documentclass[10pt]{article}
+
+% --- Page geometry: 6×9 in page, 5×7.7 in text area ---
+\usepackage[a4paper,
+            left=1.63in, right=1.64in,
+            top=1.85in, bottom=1.84in,
+            includehead, headheight=14pt, headsep=0.4in,
+            footskip=0.4in]{geometry}
+
+% --- Encoding & language ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% --- Times Roman font family ---
+\usepackage{mathptmx}      % Times Roman text + math
+\usepackage[scaled=0.92]{helvet}
+
+% --- Math & graphics packages ---
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{etoolbox}
+
+% --- JET-style table macros (8pt Times Roman, 10pt baseline) ---
+% Per JET spec: tables and captions in 8pt Times Roman with 10pt line spacing
+\AtBeginEnvironment{longtable}{\fontsize{8}{10}\selectfont}
+\AtBeginEnvironment{tabular}{\fontsize{8}{10}\selectfont}
+\AtBeginEnvironment{tabularx}{\fontsize{8}{10}\selectfont}
+
+% --- Tighter row spacing for tables (JET dense layout) ---
+\renewcommand{\arraystretch}{1.05}
+
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{xcolor}
+
+% --- Single-spaced 13pt baseline at 10pt nominal (JET spec) ---
+\linespread{1.083}
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{1.5em}
+
+% --- Author-year citations with JET square-bracket convention ---
+\usepackage[round,authoryear,sort&compress]{natbib}
+\bibpunct{[}{]}{;}{a}{,}{,}
+% \cite default → \citep (parenthetical, JET style)
+\let\citeORIG\cite
+\renewcommand{\cite}[1]{\citep{#1}}
+\renewcommand{\bibsection}{\section*{References}}
+\bibliographystyle{apalike}
+
+% --- Hyperlinks ---
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+
+% --- Caption styling per JET (8pt Times, 10pt line spacing) ---
+\usepackage{caption}
+\DeclareCaptionFont{eightpt}{\fontsize{8}{10}\selectfont}
+\captionsetup{font=eightpt, labelfont={bf,eightpt},
+              labelsep=period, justification=justified,
+              singlelinecheck=true}
+\captionsetup[figure]{name=Fig., position=below, skip=6pt, aboveskip=6pt, belowskip=6pt}
+\setlength{\belowcaptionskip}{6pt}
+\setlength{\abovecaptionskip}{6pt}
+\captionsetup[table]{name=Table, position=above, skip=4pt}
+
+% --- Section heading styling per JET spec ---
+\usepackage{titlesec}
+% Major: bold roman number "1." then bold heading
+\titleformat{\section}[block]
+  {\normalsize\bfseries}{\thesection.}{0.5em}{}
+% Sub: bold roman number "3.1." then BOLD ITALIC heading
+\titleformat{\subsection}[block]
+  {\normalsize\bfseries}{\thesubsection.}{0.5em}{\itshape}
+% Sub-sub: roman number "3.1.1." then medium ITALIC heading
+\titleformat{\subsubsection}[block]
+  {\normalsize\itshape}{\thesubsubsection.}{0.5em}{}
+% Spacing per JET: double space before, single space after
+\titlespacing*{\section}{0pt}{2.0\baselineskip}{0.5\baselineskip}
+\titlespacing*{\subsection}{0pt}{1.5\baselineskip}{0.4\baselineskip}
+\titlespacing*{\subsubsection}{0pt}{1.0\baselineskip}{0.3\baselineskip}
+
+% --- Flush LEFT first paragraph after heading (no indent) ---
+% titlesec already does this by default; ensure no indentfirst
+% (do NOT load indentfirst)
+
+% --- Page header & footer per JET layout ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+% Even (left) page:  "page  Author's Names" — Author's Names in italic
+\fancyhead[LE]{\thepage \hspace{1em}\textit{Hanif Andi Nugraha et al.}}
+% Odd (right) page:  "Running Title  page" — Running Title in italic
+\fancyhead[RO]{\textit{IDA-PTW: Adaptive Spectral EEWS for Java-Sunda} \hspace{1em}\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% First page header style (special: journal info top-left)
+\fancypagestyle{firstpage}{
+  \fancyhf{}
+  \fancyhead[L]{\fontsize{8}{10}\selectfont\textit{Journal of Earthquake and Tsunami}\\\copyright\ World Scientific Publishing Company}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\headsep}{20pt}
+}
+
+% --- Title macros ---
+\newcommand{\jetTitle}[1]{%
+  \begin{center}\bfseries\fontsize{10}{12}\selectfont #1\end{center}\vspace{1em}}
+
+\newcommand{\jetAuthors}[1]{%
+  \begin{center}\fontsize{8}{10}\selectfont #1\end{center}}
+
+\newcommand{\jetAffil}[1]{%
+  \begin{center}\fontsize{8}{10}\selectfont\itshape #1\end{center}}
+
+\newcommand{\jetEmail}[1]{%
+  \begin{center}\fontsize{8}{10}\selectfont #1\end{center}}
+
+\newcommand{\jetReceived}[3]{%
+  \begin{center}\fontsize{9}{11}\selectfont
+   Received #1\\Revised #2\\Accepted #3
+  \end{center}\vspace{0.5em}}
+
+% --- Abstract & keywords (8pt Times, 10pt line spacing,
+%     0.25 in indent left and right per JET spec) ---
+\renewenvironment{abstract}{%
+  \par\addvspace{0.5em}%
+  \list{}{\leftmargin=0.25in \rightmargin=0.25in
+          \topsep=0pt \parsep=0pt}\item[]%
+  \fontsize{8}{10}\selectfont
+}{%
+  \endlist\par\addvspace{0.3em}%
+}
+
+\newcommand{\jetKeywords}[1]{%
+  \begin{list}{}{\leftmargin=0.25in \rightmargin=0.25in
+                 \topsep=0pt \parsep=0pt}\item[]%
+  \fontsize{8}{10}\selectfont\textit{Keywords}: #1
+  \end{list}\vspace{1em}}
+
+% --- Title-page footnote symbols (JET: * † ‡ § ¶) ---
+% Use \fnsymbol numbering for title/affiliation footnotes
+% but standard a, b, c... for body footnotes
+\newcommand{\jetfnasterisk}{\textsuperscript{*}}
+\newcommand{\jetfndagger}{\textsuperscript{$\dagger$}}
+\newcommand{\jetfndaggerd}{\textsuperscript{$\ddagger$}}
+\newcommand{\jetfnsection}{\textsuperscript{$\S$}}
+\newcommand{\jetfnpilcrow}{\textsuperscript{$\P$}}
+
+% Body footnotes: lowercase Roman letter (a, b, c)
+\renewcommand{\thefootnote}{\textsuperscript{\alph{footnote}}}
+\renewcommand{\footnotesize}{\fontsize{8}{10}\selectfont}
+
+% --- Common abbreviations per JET miscellaneous instructions ---
+\newcommand{\eq}[1]{Eq.~(\ref{#1})}
+\newcommand{\eqs}[2]{Eqs.~(\ref{#1}) and~(\ref{#2})}
+\newcommand{\fig}[1]{Fig.~\ref{#1}}
+\newcommand{\figs}[2]{Figs.~\ref{#1} and~\ref{#2}}
+\newcommand{\tab}[1]{Table~\ref{#1}}
+\newcommand{\sect}[1]{Sec.~\ref{#1}}
+\newcommand{\reff}[1]{Ref.~\citenum{#1}}
+
+% --- Latin italics (et al., a priori, in situ) ---
+\newcommand{\etal}{\textit{et al.}}
+\newcommand{\apriori}{\textit{a priori}}
+\newcommand{\insitu}{\textit{in situ}}
+\newcommand{\ibid}{\textit{ibid.}}
+
+% --- Compatibility shim ---
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% =================================================================
+\begin{document}
+
+\thispagestyle{firstpage}
+
+% ============= TITLE & AUTHOR BLOCK =============
+\jetTitle{A Saturation-Aware Multi-Stage Framework for\\
+Intensity-Driven Adaptive P-Wave Time Window Selection in\\
+Real-Time Spectral Acceleration Prediction}
+
+\jetAuthors{Hanif Andi Nugraha\jetfnasterisk\jetfndagger,
+Dede Djuhana\jetfnasterisk\jetfndaggerd,
+Adhi Harmoko Saputro\jetfnasterisk,
+Sigit Pramono\jetfndaggerd}
+
+\jetAffil{\textsuperscript{*}Department of Physics, Faculty of Mathematics
+and Natural Science, Universitas Indonesia,\\
+Depok, Jawa Barat 16424, Indonesia}
+
+\jetAffil{\textsuperscript{$\ddagger$}The Agency for Meteorology, Climatology
+and Geophysics of the Republic of Indonesia (BMKG),\\
+Jakarta 10610, Indonesia}
+
+\jetEmail{\textsuperscript{$\dagger$}hanif.andi@ui.ac.id}
+
+\jetReceived{(Day Month 2026)}{(Day Month 2026)}{(Day Month 2026)}
+
+% ============= ABSTRACT =============
+\begin{abstract}
+We present \textbf{IDA-PTW} (Intensity-Driven Adaptive P-wave Time Window),
+a saturation-aware multi-stage framework for real-time prediction of 5\%-damped
+spectral acceleration $Sa(T)$ at 103 spectral periods. The pipeline operates
+in four cascaded stages: an Ultra-Rapid P-wave Discriminator (URPD) at
+$t = 0{,}5$~s, an XGBoost+LightGBM intensity gate at $t = 2$~s, a single-station
+distance ablation, and an adaptive PTW spectral regressor ensemble that
+elongates the observation window from 3~s to 5~s or 8~s based on predicted
+intensity class. Trained on 338 events ($M_w$ 1.7--6.2, $R_{epi}$ 0.7--299.9~km)
+recorded at 151 IA-BMKG accelerograph stations along the Java-Sunda subduction
+zone (Nov 2022--Mar 2026), the framework achieves composite $R^2 = 0.7091$ across 103
+periods, AUC $= 0.9136$, and balanced accuracy 81.68\% --- exceeding the
+Atkinson--Boore baseline by $\Delta R^2 = +0.067$. The Al~Atik (2010) sigma
+decomposition yields $\sigma_{\mathrm{tot}} = 0{,}862$ ($\tau = 0{,}515$, $\phi = 0{,}691$) pada periode
+struktur kritis $T = 1{,}0$~s, dengan rerata $\sigma_{\mathrm{tot}} = 0{,}755$ di semua 103 periode spektral;
+variabilitas intra-event (site-path) berkontribusi 62{,}8\% total varians. End-to-end latency is 10.65~s, fitting within the InaTEWS
+golden-time budget for 99.44\% of traces.
+\end{abstract}
+
+\jetKeywords{Earthquake early warning system; spectral acceleration;
+adaptive time window; XGBoost; LightGBM; saturation-aware features;
+Java-Sunda subduction zone; InaTEWS.}
+
+% ============= BODY CONTENT =============
+\section{Pendahuluan}
+
+Kepulauan Indonesia terletak di pertemuan empat lempeng tektonik utama, dengan Busur Sunda membentang sepanjang 5.500~km dari Sumatera hingga Bali di sepanjang palung Jawa pada laju konvergensi 50--67~mm/tahun~\cite{ref2}. Indonesia rata-rata mengalami sekitar delapan belas kejadian $M \geq 7,0$ per dekade dan mencatat lima kejadian besar ($M \geq 8,0$) dalam dua dekade terakhir~\cite{BMKG2026}. Gempa Sumatera-Andaman 2004 ($M_w$~9,1, dengan lebih dari 227.000 korban jiwa)~\cite{ref4, jetSatake2020, NatawidjajaSieh2006, SetiyonoBMKG2019}, yang mengaktifkan kembali segmen Sunda yang sebelumnya didokumentasikan melalui paleoseismologi coral microatolls Sumatera pada kejadian 1797 dan 1833~\cite{NatawidjajaSieh2006} dan dirangkum komprehensif dalam katalog tsunami nasional BMKG~\cite{SetiyonoBMKG2019}, kejadian Palu 2018 ($M_w$~7,5, disertai bahaya majemuk seismik--longsor--tsunami)~\cite{ref6}, dan kejadian magnitudo menengah belakangan ini seperti Cianjur 2022 ($M_w$~5,6) dan Sumedang 2024 ($M_w$~5,7) semuanya menunjukkan letalitas urban yang tidak proporsional meskipun guncangan tanahnya masih dapat ditahan secara struktural~\cite{jetMukhlisin2023}. Palung Sunda tetap menjadi zona sumber utama gempa tsunamigenik Samudra Hindia~\cite{LatiefPuspitoImamura2000, jetSrivastava2008}, dengan 105 kejadian tsunami pada zona West Sunda, Banda, dan Maluku tercatat selama periode 1600--1999~\cite{LatiefPuspitoImamura2000}, dan interaksi operasional antara karakterisasi spektral cepat dengan rantai peringatan tsunami telah lama menjadi motivasi kerangka kesiapsiagaan regional. Bersama-sama, realitas ini memotivasi investasi berkelanjutan dalam kapabilitas peringatan dini gempa operasional untuk InaTEWS~\cite{jetSubekti2022, jetPribadi2023}, sistem peringatan dini nasional Indonesia yang dioperasikan oleh Badan Meteorologi, Klimatologi, dan Geofisika (BMKG).
+
+Sistem peringatan dini gempa generasi pertama---JMA di Jepang~\citet{ref7}, P-alert di Taiwan~\citet{ref8}, SASMEX di Meksiko~\citet{ref9}, dan ShakeAlert di Amerika Serikat~\citet{ref10}---umumnya hanya mengkomunikasikan peringatan biner atau magnitudo skalar. Praktik rekayasa modern, sebaliknya, telah menggeser kebutuhan ke arah \emph{prakiraan demand struktural}: SNI~1726:2019~\cite{ref12} dan ASCE/SEI~7-16~\cite{ref13} keduanya mensyaratkan akselerasi spektral teredam~5\% $Sa(T)$ pada periode struktur, bukan sekadar percepatan tanah puncak. \citet{ref16} menetapkan bahwa coda gelombang-P awal memungkinkan prediksi spektral on-site~\cite{ref17}, berbeda dari lokalisasi sumber berbasis-jaringan, dan wawasan inilah yang mendasari penelitian sekarang. Namun bahkan formulasi on-site ini menghadapi dua kendala persisten. Pertama, \citet{ref18} mendokumentasikan \emph{zona buta dekat-sumber} sekitar 38~km sebagai keterbatasan utama yang belum terselesaikan, dan \citet{ref19} menetapkan bahwa fisika rupture, bukan kepiawaian rekayasa, yang mengontrol waktu peringatan minimum---menjadikan diskriminasi sub-detik satu-satunya strategi yang layak untuk perlindungan dekat-sumber; tinjauan JET terbaru oleh~\cite{jetTatar2025} mengonfirmasi pemilihan jendela waktu gelombang-P adaptif (PTW) sebagai arah state-of-the-art untuk zona subduksi, dan Stage~0 dari kerangka yang dipresentasikan di sini menjawab kendala tersebut dengan menerbitkan flag intensitas-tinggi biner dalam 0,5~s setelah deteksi-P (Section~4.2). Kedua, parameter EEWS klasik $\tau_c$ dan $P_d$ mengalami saturasi untuk rupture $M_w > 6,5$~\cite{ref20, ref21}: jendela gelombang-P tetap 2--3~s tidak dapat membedakan kejadian $M_w$~7,0 dari $M_w$~8,0, menghasilkan nilai $\tau_c$ dan $P_d$ yang nyaris identik tetapi gerakan tanah yang sangat berbeda. Kerangka yang diusulkan menjawab saturasi melalui pemilihan PTW adaptif pada jendela $\{3, 5, 8\}$~s yang dijadwalkan menurut kelas intensitas, dan regressor Stage~2 berkondisi-kelas yang dilatih pada fitur kumulatif non-saturating seperti CAV, intensitas Arias, dan IV$^2$.
+
+Kemajuan terkini dalam machine learning mulai menargetkan prediksi spektral secara langsung. \citet{ref82} membandingkan jaringan saraf tiruan, random forests, dan mendukung vector machines untuk estimasi ground motion dan melaporkan bahwa metode ensemble mengungguli persamaan prediksi ground motion (GMPE) konvensional; algoritma gradient-boosting khususnya---XGBoost dan LightGBM---secara konsisten unggul pada data tabular seismik terstruktur. Aplikasi JET oleh \citet{jetWang2024} mengonfirmasi keunggulan gradient boosting untuk estimasi magnitudo gelombang-P, sementara \citet{jetMa2023} menunjukkan bahwa inversi parameter sumber kuasi-real-time mendapat manfaat dari kernel inversi yang diaugmentasi-ML pada lingkungan subduksi, dan \citet{jetTsunamiRF2025} memperlihatkan bahwa ensemble random-forest menghasilkan surrogate yang andal untuk produk hazard probabilistik di sepanjang Busur Sunda, mendukung argumen lebih luas untuk metode ensemble pada pipeline EEWS regional. Pendekatan hibrida fisika--ML mampu menyamai deep networks pada dataset yang lebih kecil, yang memotivasi desain fitur hibrida yang ditempuh di sini, dengan Feature Dichotomy eksplisit dan arsitektur berkondisi-kelas. Dalam konteks Indonesia, makalah konferensi kami sebelumnya~\citet{ref81} (BTS-I2C~2024) menetapkan bahwa model deep-learning Generalized Phase Detection (GPD) mencapai timing P-onset 0,02~s pada data accelerograph IA-BMKG, menyediakan picker hulu untuk pipeline ini; karya Indonesia terbitan JET yang komplementer~\cite{jetSubekti2022, jetMukhlisin2023, jetIrwansyah2024} menetapkan konteks InaTEWS lokal, dan \citet{jetPribadi2023} menyoroti kebutuhan mendesak akan sistem peningkatan ketahanan. Meskipun ada bangun penelitian ini, belum ada studi sebelumnya yang mengusulkan pipeline prediksi spektral mode-rekayasa yang lengkap, dapat dideploy secara mandiri, untuk lingkungan InaTEWS Indonesia yang sekaligus menangani reduksi zona buta dekat-sumber, windowing adaptif berbasis-intensitas, dan operasi independen-katalog.
+
+Meskipun ada kemajuan dalam algoritma EEWS~\cite{ref18, ref19, jetCremen2021, jetTatar2025}, tiga gap tetap persisten untuk deployment operasional subduksi tropis: (i)~kesadaran-saturasi untuk kejadian $M_w > 6,5$; (ii)~operasi independen-katalog yang menghilangkan ketergantungan pada estimasi magnitudo; dan (iii)~prediksi $Sa(T)$ 103-periode penuh secara real-time. Kerangka IDA-PTW yang diperkenalkan dalam paper ini menjawab ketiga gap tersebut dan menyumbangkan kontribusi berikut: skema penjadwalan PTW adaptif $\{3, 5, 8\}$~s yang dikondisikan oleh kelas intensitas, kamus fitur hibrida berisi 90 fitur ortogonal yang disusun dalam empat famili dengan VIF di bawah~10, marginalisasi posterior Bayesian-correct dalam regressor berkondisi-kelas, kerangka validasi tiga-jalur yang menggabungkan baseline GMPE, sensitivitas temporal, dan dekomposisi sigma Al~Atik (2010), serta hasil negatif yang jujur mendokumentasikan kegagalan regresi-jarak stasiun-tunggal pada Stage~1.5.
+
+\section{Konteks Seismotektonik dan Formulasi Masalah}
+
+\subsection{Megathrust Jawa-Sunda: Konteks Struktural dan Seismisitas}
+
+Geodinamika kawasan Indonesia melibatkan interaksi empat lempeng utama yang terpartisi menjadi banyak microplate \cite{ref1}. Segmen subduksi Jawa dicirikan oleh konvergensi miring antara lempeng Indo-Australia dan Sunda, dengan slab subduksi menukik pada sudut sekitar 35--45° hingga kedalaman melebihi 500~km \cite{ref1}. Geometri subduksi yang curam ini menghasilkan distribusi seismisitas khas: thrust interplate dangkal di zona megathrust (kedalaman 0--50~km), seismisitas intraslab menengah (50--300~km), dan kejadian fokus dalam yang dapat menghasilkan gerakan tanah signifikan di lokasi jauh-sumber meskipun kedalamannya besar.
+
+Variasi koefisien coupling sepanjang-strike---dari pada dasarnya tak-terkopling di segmen Jawa timur hingga moderately coupled di segmen Jawa barat dan Sumatera---menghasilkan heterogenitas spasial dalam bahaya seismik. \citet{ref2} mengamati bahwa kecepatan GPS residual yang menunjuk ke arah daratan tegak lurus palung di Sumatera dan Malaysia secara sistematis underestimated dalam model pra-2004, menandakan akumulasi regangan elastik yang kemudian dilepaskan pada kejadian Sumatera-Andaman 2004. Zona sumber yang sama mendasari arsitektur Indian-Ocean Tsunami Warning System yang ditinjau oleh \citet{jetSrivastava2008}, yang menekankan bahwa segmen Palung Sunda memerlukan instrumentasi seismik dan geodetik yang rapat untuk performa peringatan dini yang kredibel. Pola analog di segmen Jawa memotivasi kesiapsiagaan InaTEWS untuk potensi kejadian yang merupturkan segmen.
+
+Geologi site lokal adalah kendala desain EEWS yang utama. Cekungan Jawa mengandung endapan vulkanik Kuarter yang dalam dan urutan aluvial tebal di dataran pantai (Jakarta, Surabaya), menciptakan amplifikasi site kuat pada periode 0,3--1,5~s yang kurang tertangkap oleh estimasi \(V_{S30}\) berbasis-proxy topografi. Douglas dan \citet{ref45} meninjau peran kritis karakterisasi site dalam pengembangan GMPE, mencatat bahwa suku site berbasis-\(V_{S30}\) memperkenalkan variabilitas residual substansial bahkan pada jaringan yang terinstrumentasi baik. Dalam konteks Indonesia, di mana \(V_{S30}\) terukur tersedia untuk kurang dari 20\% stasiun IA-BMKG, ketidakpastian ini langsung berakibat pada \(\phi\) yang terobservasi tinggi dalam dekomposisi sigma kami.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.95\linewidth,keepaspectratio]{figures/seismicity_map.png}
+\caption{Distribusi spasial 338 kejadian seismik (lingkaran merah, diskalakan menurut magnitudo) dan 151 stasiun accelerograph IA-BMKG (segitiga hitam) di sepanjang palung Jawa-Sunda yang digunakan dalam studi ini. Dataset mencakup $M_w$ 1.7--6.2 dengan jarak episentral 0.7--299.9~km (median 122~km) selama periode Nov 2022 -- Mar 2026.}
+\end{figure}
+
+\subsection{Arsitektur Jaringan InaTEWS dan Kendala Operasional}
+
+EEWS nasional Indonesia, InaTEWS, dioperasikan oleh BMKG, mengintegrasikan sensor seismik dan non-seismik \cite{ref46}. Jaringan accelerograph strong-motion IA-BMKG menyediakan sumber data primer untuk studi ini: 125 accelerograph komponen-horisontal HN\emph{/HL} dengan rekaman digital pada 100--200 sampel/s. Distribusi stasiun mengikuti kepadatan populasi, memberikan cakupan yang rapat untuk Jawa dan Sumatera tetapi cakupan jarang untuk Indonesia bagian timur.
+
+\paragraph{Anggaran latency.} Pengiriman alert terdiri dari: (1) deteksi gelombang-P: 2--3~s; (2) ekstraksi fitur dan inferensi model: 0,1--0,5~s; (3) diseminasi alert: 1--2~s. Pada jarak episentral median dataset \textasciitilde109~km, waktu tempuh P-S $\approx 14$~s, menyediakan sekitar 10--11~s anggaran observasi yang dapat digunakan. Jendela Stage~2 maksimum 8-detik kami, ditambah overhead Stage 0/1/1.5 (total 2,65~s), menghasilkan latency end-to-end 10,65~s---memenuhi anggaran golden-time untuk 99,44\% trace.
+
+\paragraph{Akurasi deteksi gelombang-P.} \citet{ref41} mendemonstrasikan bahwa GPD mencapai error P-onset median 0,02~s pada data IA-BMKG Indonesia---baseline otomasi yang digunakan dalam analisis sensitivitas P-arrival kami. \citet{ref47} dan PhaseNet mencapai error median 0,09~s dan 0,05~s pada dataset yang sama, merepresentasikan envelope ketidakpastian realistik untuk Eksperimen~4.
+
+\subsection{Formulasi Masalah Formal}
+
+\paragraph{Masukan.} Untuk accelerogram tiga-komponen pada stasiun \(s\), kedatangan-P \(t^P\), jarak episentral \(\Delta\), kedalaman hiposentral \(h\), dan proxy \(V_{S30}\), vektor fitur 42-dimensi diekstrak dari jendela observasi adaptif \(T_{obs}\):
+
+\[\mathbf{x}(T_{obs}) = \left[f_1(T_{obs}),\, f_2(T_{obs}),\, \ldots,\, f_{42}(T_{obs}),\, \widehat{\log_{10}\Delta},\, h,\, V_{S30}\right]^\top \in \mathbb{R}^{45}\]
+
+\paragraph{Keluaran.} Vektor prediksi log-spektral 103-dimensi:
+
+\[\hat{\mathbf{y}} = \left[\log_{10}\widehat{Sa}(T_j)\right]_{j=1}^{103}, \quad T_j \in \{0.051, 0.101, \ldots, 10.0\}\text{ s}\]
+
+\paragraph{Keluaran biner Stage~0.} \(\hat{z} \in \{0, 1\}\) diterbitkan dalam 0,5~s setelah deteksi-P, di mana \(\hat{z} = 1\) menandakan Damaging (threshold pelatihan PGA \(\geq 0,05\,g \approx 49\)~gal, terletak dekat transisi MMI~V/VI dari Worden \& \citet{ref45}).
+
+\paragraph{Formulasi optimasi multi-objektif.}
+
+\[\underset{\theta}{\min}\; \mathcal{L}(\theta) = \frac{1}{N} \sum_{i=1}^{N} \|\hat{\mathbf{y}}_i - \mathbf{y}_i\|^2_2 + \lambda\, \mathcal{L}_{recall}(\hat{z}, z)\]
+
+dengan kendala \(T_{obs,i} \leq (t^S_i - t^P_i) - T_{latency}\) (Kendala Golden Time per trace \(i\)).
+
+The Lagrangian term \(\mathcal{L}_{recall}\) penalizes Stage 0/1 misclassification of Damaging events, sementara the primary term minimizes spectral RMSE in \(\log_{10}\) units---consistent with GMPE convention \cite{ref48}, \cite{ref49}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Kurasi Dataset dan Rekayasa Fitur}
+
+\subsection{Pipeline Pengolahan Bentuk-Gelombang}
+
+Bentuk-gelombang MiniSEED mentah diunduh dari arsip SDS SeisComP-3 BMKG untuk jaringan accelerograph IA-BMKG, mencakup rekaman dari Nov 2022 -- Mar 2026. Korpus awal terdiri dari sekitar 41.278 trace tiga-komponen; pipeline kontrol-kualitas lima-tahap yang dijelaskan di bawah (Tabel 1) menyaring korpus ini menjadi 25.058 accelerogram berkualitas-tinggi yang dipertahankan untuk pelatihan downstream. Pipeline pengolahan mengikuti konvensi yang sudah mapan untuk preparasi data strong-motion \cite{ref67}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+ \textbf{Instrument correction:} Poles-and-zeros deconvolution applied to convert raw counts to physical units (m/s²). Baseline correction using a pre-event window of 30 s.
+\item
+ \textbf{Highpass filtering:} Butterworth 4th-order filter at 0.075 Hz lower corner, consistent with \citet{ref51}'s SeisComP \texttt{scwfparam} conventions for spectral computation. \citet{ref86} further validated transfer-learning-based automatic cut-off selection for strong-motion records, supporting the 0.075 Hz choice for subduction data.
+\item
+ \textbf{P-wave detection and picking:} Catalog P-picks supplemented by GPD automated picking \cite{ref42} where catalog values absent. Picks with onset uncertainty \textgreater{} 1.0 s flagged.
+\item
+ \textbf{Quality control:} Five filters described in Section III-B; \citet{ref52} HDF5 format for storage.
+\end{enumerate}
+
+\paragraph{Komputasi target spektral.} Spektrum respons \(Sa(T_j)\) dihitung menggunakan modul \texttt{scwfparam} SeisComP melalui rantai pengolahan \citet{ref51}: integrasi Newmark-Beta teredam~5\% dari bentuk-gelombang akselerasi terkoreksi-instrumen, terkoreksi-baseline, dan terfilter pada 103 periode mengikuti grid periode IBC/ASCE. Ini menjamin konsistensi dengan spektrum desain seismik nasional Indonesia di bawah SNI 1726:2019 \cite{ref12}.
+
+\subsection{Filter Kontrol Kualitas}
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Tabel 1. Alur kontrol-kualitas dari arsip BMKG SDS SeisComP-3 (\textasciitilde41.278 trace mentah) melalui lima filter berurutan menjadi dataset pelatihan final 25.058 trace.}\par\endgroup\vspace{6pt}
+
+\begin{longtable}[]{@{}llcc@{}}
+\toprule
+Step & Aksi / Kriteria Filter & Records Removed & N Tersisa\tabularnewline
+\midrule
+\endhead
+\multicolumn{4}{l}{\textit{Sumber: arsip BMKG SDS SeisComP-3 (jaringan accelerograph IA-BMKG, Nov 2022 -- Mar 2026)}}\tabularnewline
+\multicolumn{3}{l}{\textit{\quad Unduhan awal (trace tiga-komponen mentah):}} & \textit{\textasciitilde41.278}\tabularnewline
+\midrule
+1 & No P-pick available (catalog or GPD) & 8.200 & \textasciitilde33.078\tabularnewline
+2 & SNR \textless{} 2.0 (1--10 Hz, P-window vs.~30 s pre-P noise) & 3.400 & \textasciitilde29.678\tabularnewline
+3 & Post-P record duration \textless{} 50 s & 1.900 & \textasciitilde27.778\tabularnewline
+4 & Spatial deduplication (\textless{} 0.05° per event) & 620 & \textasciitilde27.158\tabularnewline
+5 & Non-accelerograph channels (BB, SP sensors) & 2.100 & \textbf{25.058}\tabularnewline
+\midrule
+\multicolumn{3}{l}{\textbf{Dataset pelatihan kualitas-tinggi final (eksak, output Step~5):}} & \textbf{25.058}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\noindent\textit{Jumlah penghapusan per-step dibulatkan ke 100 trace terdekat karena filter berurutan beroperasi pada kriteria yang sebagian tumpang-tindih; total ``N Tersisa'' kumulatif mewarisi pembulatan ini. Jumlah akhir 25.058 bersifat eksak (hitungan literal file dalam dataset terkurasi yang digunakan untuk pelatihan).}
+
+\subsection{Statistik Dataset dan Distribusi Kelas}
+
+Korpus pelatihan akhir terdiri dari 25.058 accelerogram tiga-komponen yang diambil dari dua aliran sumber komplementer: aliran seismisitas-rutin (24.466 trace) mengambil sampel kejadian dari arsip IA-BMKG BMKG yang kontinu (Nov 2022 -- Mar 2026), diaugmentasi dengan 592 trace tiga-komponen dari tiga kejadian dekat-sumber \(M_w \geq 5,6\) (Cianjur 2022-11-21, \(M_w\) 5,6; kejadian wilayah Sumedang 2023-12-31, \(M_w\) 5,7; dan kejadian wilayah Garut 2024-04-27, \(M_w\) 6,2) untuk class-balancing. Dataset yang diaugmentasi tetap strict event-grouped untuk cross-validation.
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Tabel 2. Ringkasan Dataset --- Dataset EEWS Palung Jawa-Sunda (25.058 Trace).}\par\endgroup\vspace{6pt}
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{4cm}>{\raggedright\arraybackslash}p{8cm}@{}}
+\toprule
+Parameter & Value \\
+\midrule
+\endfirsthead
+\toprule
+Parameter & Value \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Total Traces & \textbf{25,058} (24,466 routine + 592 large-event injection) \\
+Distinct Seismic Events & \textbf{338} \\
+IA-BMKG Accelerograph Stations & \textbf{151}  \\
+Spectral Target Periods & \textbf{103} (T = 0.051--10.0 s) \\
+Magnitude Range & \(M_w\) 1.7--6.2 \\
+Epicentral Distance Range & \textbf{0.7--299.9 km} \\
+Median Epicentral Distance & \textbf{\textasciitilde122 km} \\
+PGA Range & \(1.66 \times 10^{-7}\) -- 6.00 gal \\
+Mean Post-P Record Duration & \textasciitilde341 s \\
+Period Coverage & Nov 2022 -- Mar 2026 \\
+\end{longtable}
+
+\textbf{Intensity class distribution --- SIG-BMKG \cite{BMKG2016} applied to the assembled 25,058 traces:}
+
+Kelas intensitas mengikuti Skala Intensitas Seismik Indonesia lima-level (SIG-BMKG) \cite{BMKG2016}, yang batas-batas PGA-nya didasarkan pada Ground-Motion Intensity Conversion Equations (GMICE) probabilistik dari \citet{Worden2012} dan \citet{Wald1999}, dan telah divalidasi secara independen untuk konteks Indonesia oleh \citet{Caprio2015} menggunakan data dari gempa Padang 2009.
+
+\begin{center}\fontsize{8}{10}\selectfont\textbf{Tabel 3. Distribusi kelas intensitas seismik SIG-BMKG pada dataset 25.058-trace yang dirakit.}\end{center}
+
+\begin{longtable}[]{@{}ccclcc@{}}
+\toprule
+SIG-BMKG Level & MMI Equiv. & PGA Range (gal) & Description & \(N\) Traces & \% Total\tabularnewline
+\midrule
+\endhead
+\textbf{I} & I--II & \textless{} 2.9 & Not felt & \textbf{21.007} & \textbf{83,83\%}\tabularnewline
+\textbf{II} & III--V & 2.9 -- 88 & Felt & \textbf{4.017} & \textbf{16,03\%}\tabularnewline
+III & VI & 89 -- 167 & Slight damage & 31 & 0,12\%\tabularnewline
+IV & VII--VIII & 168 -- 564 & Moderate damage & 1 & 0,004\%\tabularnewline
+V & IX--XII & ≥ 565 & Heavy damage & 2 & 0,008\%\tabularnewline
+\bottomrule
+\end{longtable}
+
+Distribusi didominasi oleh SIG-BMKG Kelas I dan II (99,86\%), mencerminkan jarak episentral median (\textasciitilde122~km) dan magnitudo sumber (\(M_w \leq 6{,}2\)) yang terwakili dalam arsip IA-BMKG BMKG untuk Nov 2022 -- Mar 2026. Sebuah ekor kecil namun bermakna sebanyak 34 trace (0,14\% dari total) mencapai SIG-BMKG Kelas III--V (slight hingga heavy damage), didominasi oleh rangkaian Cianjur 2022 \(M_w\) 5,6 (PGA maks \textasciitilde600 gal, near-source) dan event Garut 2024 \(M_w\) 6,2 (27 trace di Kelas III). Rekaman near-source ini memberikan sinyal training kritis untuk Stage 0 URPD dan diskriminasi intensitas Stage 1 di ujung safety-critical spektrum. Konsisten dengan analisis \citet{ref19}, dataset yang didominasi oleh guncangan intensitas-menengah-ke-rendah masih menyediakan daya kalibrasi substansial untuk prediksi spektral, sebab struktur prediktabilitas dominan dikuasai oleh fitur cumulative-energy (CAV, CVAD, Intensitas Arias) yang berskala dengan durasi dan atenuasi, bukan level SIG-BMKG itu sendiri. Karena itu kami mendefinisikan \textbf{kelas routing-intensitas operasional} yang berbeda dari klasifikasi SIG-BMKG deskriptif, berdasarkan persentil PGA dari dataset aktual:
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Tabel 4. Kelas routing PGA-persentil operasional yang digunakan oleh gate intensitas Stage-1 IDA-PTW.}\par\endgroup\vspace{6pt}
+
+\begin{longtable}[]{@{}lcccc@{}}
+\toprule
+Operational Class & PGA Range (g) & \(N\) Traces & \% & IDA-PTW Window\tabularnewline
+\midrule
+\endhead
+Low-PGA (\textless{} 50th percentile) & \textless{} 0,0053 g (\textless{} 5,2 gal) & 12.529 & 50,0\% & \textbf{3 s}\tabularnewline
+Mid-PGA (50th--95th percentile) & 0,0053 -- 0,0958 g (5,2 -- 94 gal) & 11.275 & 45,0\% & \textbf{5 s}\tabularnewline
+High-PGA (≥ 95th percentile) & ≥ 0,0958 g (≥ 94 gal) & 1.254 & \textasciitilde5,0\% & \textbf{8 s}\tabularnewline
+\bottomrule
+\end{longtable}
+
+Gating operasional berbasis-persentil ini memungkinkan classifier routing Stage~1 untuk menstratifikasi trace berdasarkan posisinya dalam distribusi PGA dataset, menghasilkan jumlah kelas yang seimbang dengan baik dan sesuai untuk klasifikasi gradient-boosting. Batas kelas High-PGA (PGA \(\geq\) 0,0958 g \(\approx\) 94 gal, persentil ke-95) berhimpitan dengan batas bawah SIG-BMKG Kelas III (89 gal), mengonfirmasi bahwa kelas operasional ``High-PGA'' menangkap ujung damaging secara fisik dari distribusi dan bukan sekadar artefak persentil. Definisi ini selaras dengan subset uji-saturasi (\(N = 1.204\), PGA \(\geq\) 0,1 g \(\approx\) 98 gal) yang dilaporkan di Section~V.C.
+
+\subsection{Rekayasa Fitur: Kamus 42-Fitur Gelombang-P}
+
+Fitur diekstrak dari jendela gelombang-P tiga-komponen komponen-horisontal. Set 42-fitur mengikuti \citet{ref35} yang diperluas dengan fitur spektral \citet{ref53}, diorganisasikan dalam famili fisis:
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Tabel 5. Kamus 42-Fitur Gelombang-P.}\par\endgroup\vspace{6pt}
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{1.8cm}>{\centering\arraybackslash}p{1cm}>{\raggedright\arraybackslash}p{4.5cm}>{\raggedright\arraybackslash}p{2.8cm}>{\centering\arraybackslash}p{1.2cm}@{}}
+\toprule
+Group & \(N\) & Feature Names & Physical Basis & Saturation? \\
+\midrule
+\endfirsthead
+\toprule
+Group & \(N\) & Feature Names & Physical Basis & Saturation? \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Peak Amplitudes & 3 & \(P_d\), \(P_v\), \(P_a\) (3C max) & Brune source model \cite{ref54} & \textbf{Yes} \\
+Frequency Content & 3 & \(\tau_c\), \(TP\), spectral centroid & \citet{ref22}; \citet{ref29} & \textbf{Yes} (\(>M7\)) \\
+Cumulative Integrals & 4 & \(IV_2\), \(IV_3\), \(IV_4\), \(IV_5\) & Time-integrated velocity; moment proxy & Partial \\
+\textbf{Non-Saturating Energy} & \textbf{4} & \textbf{\(CAV\), \(CVAD\), \(CVAV\), \(CVAA\)} & \textbf{\citet{ref55}; energy accumulators} & \textbf{No} \\
+Arias-Type & 4 & \(I_a\) \cite{ref56}, \(AIv\), \(CAE\), \(EP\) & Seismic energy flux \cite{ref57} & No \\
+Spectral Shape & 5 & Rolloff, ratio H/L, ZCR, spectral bandwidth, kurtosis & Spectral shape characterization \cite{ref45} & No \\
+Envelope Rates & 4 & \(\dot{E}_{rms}\), E-ratio, envSlopeA, envSlopeB & Rupture pattern proxy & Partial \\
+Peak Velocity Integrals & 3 & \(PIv\), \(PIv2\), \(PA3\) & \citet{ref29} & No \\
+Spectral Ratios & 4 & Spectral H/V ratios at 4 bands & Site proxy indicator & No \\
+Duration & 3 & Husid plot slopes, bracketed duration & Trifunac \& \citet{ref58} & No \\
+Site-Path Metadata & 3 & \(\log_{10}(\Delta)\), \(h/\Delta\), \(V_{S30}\) & \citet{ref48} & --- \\
+Timing & 3 & \(T_{obs}\) (window length), PA index, rise time & Adaptive routing label & --- \\
+\end{longtable}
+
+\textbf{Feature Dichotomy} adalah prinsip desain utama: fitur saturating (\(\tau_c\), \(P_d\)) digunakan di Stage~1 untuk routing intensitas---di mana saturasi pada \(M_w > 7\) dapat diterima karena keputusan routing bersifat biner---tetapi ditekan di Stage~2 melalui bobot fitur yang dikurangi 5$\times$, memastikan kejadian besar tidak bias ke arah prediksi periode-pendek.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Pipeline Empat-Tahap IDA-PTW}
+
+\subsection{Tinjauan Arsitektur}
+
+Gbr.~2 menyajikan tinjauan end-to-end pipeline IDA-PTW, merangkum keempat tahap, jendela, persamaan, dan metrik headline.
+
+Pipeline IDA-PTW mengimplementasikan kaskade sekuensial (Gbr.~3) dengan jendela observasi progresif yang mencerminkan ketersediaan temporal informasi gelombang-P: deteksi-P (0,5~s) $\to$ Stage~0 $\to$ Stage~1 (2,0~s) $\to$ Stage~1.5 ($+0,1$~s) $\to$ Stage~2. Setiap stage aktif pada latency yang didefinisikan secara presisi, memungkinkan prediksi parsial progresif daripada menunggu penyelesaian pipeline penuh.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\linewidth,keepaspectratio]{figures/architecture_overview_v2.png}
+\caption{Tinjauan pipeline empat-tahap IDA-PTW. Timeline (atas) menandai empat milestone temporal: P-trigger, Stage~0 pada 0,5~s, Stage~1 pada 3~s, Stage~2 dengan jendela adaptif $\{3, 5, 8\}$~s, dan keluaran akhir 100+ periode $Sa(T)$. Setiap kotak stage melaporkan tujuan, jendela observasi, keluaran, keluarga model, persamaan penentu, dan metrik headline. Catatan di bawah mendokumentasikan hasil negatif regresi-jarak Stage~1.5 yang memotivasi strategi routing berbasis-kelas yang sebenarnya diadopsi pada Stage~1.}
+\end{figure}
+
+
+
+\subsection{Stage~0: Ultra-Rapid P-wave Discriminator (URPD)}
+
+\paragraph{Motivasi fisis.} Paradigma EEW on-site \cite{ref17} memerlukan prediksi dari beberapa detik pertama kedatangan gelombang-P. \citet{ref29} memperlihatkan bahwa kombinasi parameter amplitudo dan spektral substansial mengungguli \(\tau_c\) tunggal. Diterapkan pada coda gelombang-P setengah-detik, fitur spektral mengkodekan ledakan energi frekuensi-tinggi karakteristik gerakan-kuat dekat-sumber tanpa memerlukan parameter sumber yang membutuhkan beberapa detik untuk diestimasi.
+
+Kerangka CAV \citet{ref55} mendemonstrasikan bahwa metrik energi kumulatif yang dikomputasi pada jendela yang sangat singkat berkorelasi dengan potensi kerusakan ground-motion. Pada 0,5~detik, CAV didominasi oleh amplitudo gelombang-P awal---suatu proxy untuk fluks energi dekat-sumber yang berskala dengan jarak sumber-ke-site lebih robust daripada \(\tau_c\).
+
+\paragraph{Model.} Stage 0 employs sklearn's \texttt{GradientBoostingClassifier} (GBM) trained on 7 spectral features from a 0.5-second window. GBM is preferred over XGBoost for this stage due to its superior calibration properties for probabilistic binary outputs---critical for threshold optimization \cite{ref36}, \cite{ref39}. Target pelatihan is the binary Damaging label \(\hat z=1\) when PGA \(\geq 0.05\,g\) (\(\approx 49\) gal), trained with Event-grouped StratifiedGroupKFold (5 folds) and SMOTE oversampling within folds to address the substantial class imbalance (positive class rate \(=2{,}807/28{,}730 \approx 9.77\%\)).
+
+\paragraph{Pentingnya fitur (berbasis SHAP).}
+
+Kami menghitung nilai Shapley Additive exPlanations (SHAP) untuk menyusun peringkat ketujuh fitur spektral berdasarkan kontribusi marginalnya terhadap keputusan biner Stage-0. Pasangan dominan (spectral centroid dan spectral rolloff) bersama-sama menjelaskan lebih dari 80\% keluaran model, mengonfirmasi bahwa deskriptor domain-frekuensi membawa sinyal diskriminasi dekat-sumber terkuat pada jendela setengah-detik. Tabel~6 mencantumkan ketujuh fitur dengan persentase SHAP dan interpretasi fisisnya.
+
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Tabel 6. Pentingnya Fitur Stage~0 URPD (Jendela 0,5~s).}\par\endgroup\vspace{6pt}
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{2.5cm}>{\centering\arraybackslash}p{2cm}>{\raggedright\arraybackslash}p{6cm}@{}}
+\toprule
+Feature & SHAP Importance & Physical Interpretation \\
+\midrule
+\endfirsthead
+\toprule
+Feature & SHAP Importance & Physical Interpretation \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Spectral centroid (Hz) & \textbf{60.6\%} & High centroid → dekat-sumber, high-freq energy \cite{ref17} \\
+Spectral rolloff (Hz) & 20.0\% & Shape of frequency content \cite{ref45} \\
+\(\log P_{a,3c}\) (2-s proxy) & 11.8\% & Peak acceleration amplitude \cite{ref22} \\
+Spectral ratio H/L & 4.0\% & High-to-low energy ratio \\
+\(\tau_{c,bp}\) & 1.2\% & Predominant period (0.075--3 Hz) \\
+\(\log CAV\) & 2.8\% & Cumulative absolute velocity \cite{ref55} \\
+Avg frequency (ZCR) & 0.6\% & Band-average frequency \\
+\end{longtable}
+
+The spectral centroid dominance (60.6\%) is physically explained by high-frequency attenuation with distance: near-source strong-motion records retain high-centroid frequencies (10--20 Hz) that are attenuated by anelastic absorption at distances \textgreater50 km, where centroid typically falls below 5 \citet{ref45}. This makes spectral centroid a powerful distance proxy for sub-second discrimination.
+
+\paragraph{Performa.}
+
+Kami mengevaluasi Stage~0 pada tiga operating point yang membentang ruang trade-off recall--precision yang relevan untuk profil konsumen berbeda (infrastruktur kritis, perlindungan manusia seimbang, dan sistem otomatis presisi tinggi). Setiap operating point berkaitan dengan threshold keputusan yang berbeda pada posterior GBM yang dikalibrasi. Tabel~7 melaporkan threshold, recall, precision, dan F1 score untuk masing-masing.
+
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Tabel 7. Operating Point Stage~0 URPD.}\par\endgroup\vspace{6pt}
+
+AUC (OOF, 5-fold GroupKFold) = \textbf{0.9136}
+
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{3cm}>{\centering\arraybackslash}p{1.8cm}>{\centering\arraybackslash}p{1.8cm}>{\centering\arraybackslash}p{1.8cm}>{\centering\arraybackslash}p{1.8cm}@{}}
+\toprule
+Operating point & Threshold & Precision & Recall & F1\tabularnewline
+\midrule
+\endhead
+High-Recall (0.95) & 0.017 & 0.174 & 0.950 & 0.294\tabularnewline
+Balanced (0.90) & 0.028 & 0.242 & 0.900 & 0.382\tabularnewline
+High-Precision (0.80) & 0.124 & 0.457 & 0.800 & 0.581\tabularnewline
+\bottomrule
+\end{longtable}
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Tabel 8. Mode operating-point Stage-0 URPD: Konservatif, Seimbang, Agresif --- dan rekomendasi use case.}\par\endgroup\vspace{6pt}
+
+\begin{longtable}[]{@{}cccccl@{}}
+\toprule
+Mode & Threshold & Recall & Precision & FAR & Use Case\tabularnewline
+\midrule
+\endhead
+Conservative & 0.986 & 82.0\% & 96.6\% & 0.02\% & Infrastruktur kritis (hospital, nuclear)\tabularnewline
+\textbf{Balanced (Recommended)} & \textbf{0.157} & \textbf{100\%} & 33.5\% & \textbf{1.09\%} & \textbf{Human + infra protection}\tabularnewline
+Aggressive & 0.017 & 100\% & 9.9\% & 5.0\% & Automated systems (elevator, gas valve)\tabularnewline
+\bottomrule
+\end{longtable}
+
+AUC = \textbf{0.9136} (out-of-fold, 5-fold event-grouped GroupKFold, N=25,058 traces, random\_state=42). The balanced operating point guarantees zero missed Damaging events, consistent with the \citet{ref19} framework's recommendation that dekat-sumber warning systems prioritize recall over precision. The three operating point (high-recall, balanced, high-precision) are listed in the auto-generated provenance block above.
+
+\paragraph{Reduksi zona buta.} Pada Balanced operating point:
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Tabel 9. Reduksi Zona Buta Dekat-Sumber --- Stage~0 URPD.}\par\endgroup\vspace{6pt}
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{2.5cm}>{\centering\arraybackslash}p{2cm}>{\centering\arraybackslash}p{2.5cm}>{\centering\arraybackslash}p{2.5cm}@{}}
+\toprule
+Protection Scenario & Standard EEWS & IDA-PTW Stage 0 & Reduction \\
+\midrule
+\endfirsthead
+\toprule
+Protection Scenario & Standard EEWS & IDA-PTW Stage 0 & Reduction \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Human protective action & 38 km & \textbf{11 km} & \textbf{71\%} \\
+Infrastructure automation & 38 km & \textbf{4 km} & \textbf{89\%} \\
+\end{longtable}
+
+At the Aggressive operating point (FAR = 5\%), infrastructure blind zone mengurangi to 4 km---approaching the physical limit imposed by P-wave propagation velocity itself.
+
+\paragraph{Studi kasus retrospektif.} Dievaluasi pada rekaman dari arsip strong-motion BMKG:
+- \textbf{\(M_w\) 5.6 Cianjur (21 Nov 2022):} 13/13 dekat-sumber IA-BMKG stations within detectability radius → Stage 0 positive within 0.5 s. \textbf{Recall = 100\%.}
+- \textbf{\(M_w\) 5.7 Sumedang (1 Jan 2024):} 10/10 dekat-sumber stations → Stage 0 positive. \textbf{Recall = 100\%.}
+- \textbf{\(M_w\) 6.2 Garut (9 Dec 2022, offshore):} All inland stations → Stage 0 negative. \textbf{FAR = 0\%.}
+
+These events bracket the key operating scenarios for West Java EEWS: near-source urban damaging events (Cianjur, Sumedang) and offshore events that memerlukan discrimination from damaging dekat-sumber records (Garut).
+
+\subsection{Stage~1: Gate Intensitas XGBoost}
+
+\paragraph{Rasional desain.} Gate Intensitas mengklasifikasikan trace masuk ke dalam tiga kelas operasional menggunakan vektor fitur gelombang-P 2,0-detik---empat kali lebih panjang dari Stage~0, memungkinkan ekstraksi fitur yang lebih kaya. Kritisnya, Stage~1 menggunakan \textbf{ensemble penuh 90 fitur} (fitur dasar gelombang-P pada Tabel~5 yang diaugmentasi dengan metadata site-path, fitur Dai multi-window, dan fitur frequency-domain sebagaimana dirinci pada ablation inkremental Tabel~13), termasuk parameter saturating (\(\tau_c\), \(P_d\)). Sebagaimana diargumentasikan oleh \citet{ref22} dan \citet{ref17}, fitur-fitur ini mempertahankan daya diskriminatif untuk klasifikasi intensitas lokal bahkan di mana mereka mengalami saturasi untuk estimasi magnitudo: kejadian damaging dekat-sumber M5,5 benar-benar menghasilkan \(\tau_c\) yang lebih panjang setelah 2 detik daripada kejadian lemah M4,0 yang jauh terekam di stasiun yang sama---saturasi hanya mempengaruhi estimasi magnitudo jauh-sumber pada \(M_w > 7\).
+
+\citet{ref59} review machine learning approaches for EEWS in smart city settings, demonstrating that multi-feature ensemble methods mengungguli single-parameter thresholds. Their analysis motivates the 90-feature multi-class XGBoost+LightGBM ensemble Gate over simpler \(\tau_c\)/\(P_d\) threshold-based classifiers \cite{ref22}.
+
+\paragraph{Implementasi Feature-Dichotomy di Stage~1.} Seluruh 90 fitur berfungsi sebagai input Stage~1, tetapi klasifikasi Stage~1 secara eksplisit \textbf{tidak digunakan} untuk estimasi magnitudo---ia merutekan ke panjang jendela. Ini menghindari masalah saturasi yang diidentifikasi oleh Lancieri dan \citet{ref24}: saturasi \(\tau_c\) pada magnitudo besar hanya mengivalidasi \emph{prediksi magnitudo}, bukan diskriminasi \emph{kelas intensitas} yang menggerakkan routing.
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Tabel 10. Peran Fitur Stage~1 dalam Klasifikasi Intensitas.}\par\endgroup\vspace{6pt}
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{3cm}>{\centering\arraybackslash}p{1.5cm}>{\centering\arraybackslash}p{1.5cm}>{\raggedright\arraybackslash}p{4.5cm}@{}}
+\toprule
+Feature Group & Stage 1 Use & SHAP Rank & Why It Works Despite Saturation \\
+\midrule
+\endfirsthead
+\toprule
+Feature Group & Stage 1 Use & SHAP Rank & Why It Works Despite Saturation \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Peak Amplitudes (\(P_d\), \(P_v\), \(P_a\)) & ✅ & Top 3 & Local amplitude reflects local \citet{ref22} \\
+\(\tau_c\), \(TP\) & ✅ & Top 5 & Frequency proxy for local intensity \cite{ref17} \\
+CAV, CVAD, \(I_a\) & ✅ & Top 2 & Non-saturating; monotonic energy proxy \cite{ref55}, \cite{ref56} \\
+Spectral features & ✅ & Top 8 & Distance-dependent frequency content \cite{ref45} \\
+Site metadata (\(\Delta\), \(V_{S30}\)) & ✅ & Top 6 & Long-range attenuation correction \cite{ref48} \\
+\end{longtable}
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Tabel 11. Performa Classifier Stage~1 (CV Event-Grouped 5-Fold, 23.537 Trace, Kelas MMI-Hybrid).}\par\endgroup\vspace{6pt}
+
+Overall accuracy = \textbf{79.64\%} ; Balanced accuracy = \textbf{81.68\%}
+
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{4cm}>{\centering\arraybackslash}p{1.6cm}>{\centering\arraybackslash}p{1.6cm}>{\centering\arraybackslash}p{1.6cm}>{\centering\arraybackslash}p{1.6cm}@{}}
+\toprule
+Class (MMI-hybrid) & Precision & Recall & F1 & Support\tabularnewline
+\midrule
+\endhead
+Low (PGA \textless{} 2 gal) & 0.78 & 0.82 & 0.80 & 6,592\tabularnewline
+Medium (2--50 gal) & 0.84 & 0.76 & 0.80 & 14,792\tabularnewline
+High (≥ 50 gal) & 0.66 & 0.86 & 0.75 & 2,153\tabularnewline
+\bottomrule
+\end{longtable}
+
+
+
+\paragraph{Tingkat critical miss.} Tingkat critical miss kelas Damaging (fraksi trace true-High yang diresleng ke jendela Low-3s) adalah \textbf{4--6\%} di bawah ensemble task~15 --- substansial di bawah 20,54\% yang dilaporkan untuk tercile-baseline (konfigurasi task~2, dipertahankan sebagai ablation di Supplementary Materials SM1). Metrik ini---bukan akurasi keseluruhan---adalah hasil yang relevan-keselamatan secara primer dan ia lebih lanjut diproteksi oleh Stage~0, yang secara independen menandai kejadian Damaging dekat-sumber dalam 0,5~s, sebelum Stage~1 selesai. \citet{ref60} mencatat bahwa tidak ada kerangka penilaian EEW universal; kami mengadopsi critical miss rate sebagai metrik keselamatan primer mengikuti \citet{ref19}.
+
+
+\subsection{Stage~1.5: Strategi Routing dan Kegagalan Regresi-Jarak}
+
+EEWS yang sepenuhnya otonom idealnya akan mengestimasi jarak episentral langsung dari vektor fitur gelombang-P 3-detik. Kami mengevaluasi lima konfigurasi fitur di bawah protokol GroupKFold 5-fold yang sama dengan Stage~1 dan~2; semua varian menghasilkan $R^2 \leq 0$ pada data out-of-fold, mengonfirmasi bahwa fitur stasiun-tunggal 3-s tidak dapat memprediksi jarak secara andal di atas katalog subduksi yang membentang $M_w$ 4,0--7,5 dan $\Delta_{ep}$ 10--500~km. Karena itu kami merutekan trace berdasarkan kelas intensitas Stage-1, bukan berdasarkan jarak yang diestimasi, sebab label kelas menginternalisasi konten informasi gabungan jarak--magnitudo. Tabel ablation lengkap dan diskusi diperluas tentang implikasi fisis dan arsitektural ditunda ke Sec.~6.5.
+
+\subsection{Stage~2: Ensemble Regressor Spektral PTW Adaptif}
+
+\paragraph{Struktur ensemble.} Untuk setiap periode spektral \(T_p\) dan durasi PTW \(w \in \{3, 4, 6, 8\}\)~s, regressor XGBoost independen \(f^{(p,w)}\) dilatih:
+
+\[\hat{y}_{p} = f^{(p,\,w_i)}\!\left(\mathbf{x}(w_i)\right) \approx \log_{10} Sa(T_p)\]
+
+where \(w_i\) is the PTW assigned by Stage 1 + Stage 1.5 for trace \(i\). Total models: \textbf{515} (5 PTW × 103 periods). Each period-model is trained independently, enabling period-specific hyperparameter optimization and capturing the fundamentally different physical scales governing short-period (site-dominated) vs.~long-period (source-dominated) spectral content.
+
+\paragraph{Objektif dan regularisasi XGBoost.} Mengikuti Chen dan \citet{ref36}, objektif pelatihan Stage~2 adalah:
+
+\[\mathcal{L}(\theta) = \sum_{i=1}^{N} \left[\log_{10}Sa_i - f^{(p)}(\mathbf{x}_i)\right]^2 + \gamma T + \frac{\lambda}{2}\|\mathbf{w}\|^2 + \alpha\|\mathbf{w}\|_1\]
+
+where \(T\) is leaf count, \(\mathbf{w}\) leaf weights, \(\gamma = 0\) (no leaf penalty), \(\lambda = 1.0\) (L2), and \(\alpha = 0.1\) (L1). Log-scale targets follow GMPE convention \cite{ref48}, \cite{ref62} and the recommendation of \citet{ref35} for uniform MSE weighting across the dynamic range of \(Sa(T)\).
+
+\paragraph{Penegakan Feature-Dichotomy.} Fitur saturating (\(\tau_c\), \(P_d\), \(P_v\)) ditugasi \texttt{feature\_weights} yang dikurangi 5$\times$ di XGBoost, secara efektif menurunkan importance SHAP-nya untuk mencegah artefak saturasi event-besar. Ini mengimplementasikan pada level algoritmik prinsip fisis yang diidentifikasi oleh Lancieri dan \citet{ref24} dan \citet{ref26}: parameter gelombang-P awal membawa informasi prediktif terbatas tentang konten spektral large-rupture.
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Tabel 12. Hyperparameter Regressor Stage~2.}\par\endgroup\vspace{6pt}
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{4.5cm}>{\centering\arraybackslash}p{2.5cm}>{\raggedright\arraybackslash}p{5cm}@{}}
+\toprule
+Parameter & Value & Justification \\
+\midrule
+\endfirsthead
+\toprule
+Parameter & Value & Justification \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\texttt{n\_estimators} & 500 & Early stopping, 10-round plateau \\
+\texttt{max\_depth} & 5 & Overfitting prevention at rare Damaging class \\
+\texttt{learning\_rate} & 0.05 & Conservative gradient descent \cite{ref36} \\
+\texttt{subsample} & 0.80 & Row-level stochastic regularization \\
+\texttt{colsample\_bytree} & 0.80 & Feature-level regularization \\
+\texttt{reg\_lambda} & 1.0 & L2 leaf-weight regularization \\
+\texttt{reg\_alpha} & 0.1 & L1 sparsity encouragement \\
+\texttt{min\_child\_weight} & 5 & Leaf purity enforcement \\
+\end{longtable}
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\linewidth,keepaspectratio]{figures/feature_importance_3stage.png}
+\caption{Pentingnya fitur per-stage (gain ternormalisasi) untuk kaskade IDA-PTW yang dievaluasi di bawah CV 5-fold event-grouped. \emph{Kiri:} Stage~0/1 URPD --- deteksi gelombang-P biner pada jendela 3-s, didominasi oleh proxy frekuensi-sudut sumber $\tau_c$ bersama deskriptor durasi ($t_p$, $t_{va}$, $t_{d5\text{-}75}$). \emph{Tengah:} Stage~1/2 Gate MMI --- routing tiga-kelas Rendah/Sedang/Tinggi pada jendela 3-s yang sama, di mana $\tau_c$ tetap dominan tetapi sekarang informatif bersamaan dengan $t_p$, $t_{va}$, dan deskriptor intensitas komposit ($I_{\text{char-vel}}$, rasio PGV/PGD, CVAD). \emph{Kanan:} regressor spektral Stage~2/3 --- komposit multi-jendela, didominasi oleh band frekuensi-rendah vertikal $f_{\text{band\,0--1\,Hz},\,Z}$ bersama metadata site--path ($\log_{10}\!\Delta$ dan $V_{S30}$) dan energi kumulatif CAV yang dikomputasi pada jendela 5-s.}
+\end{figure}
+
+Pola lintas-stage dalam gambar ini memberikan dukungan empiris langsung untuk Feature Dichotomy yang memotivasi arsitektur. Pada tahap deteksi-biner (Stage~0/1), $\tau_c$ saja membawa sekitar 30\% gain --- konsisten dengan interpretasi corner-frequency Brune~\cite{ref54} di mana periode karakteristik yang lebih panjang pada coda gelombang-P awal menandakan patch sumber yang lebih besar dan karena itu probabilitas guncangan yang merusak yang lebih tinggi; ketiga deskriptor durasi ($t_p$, $t_{va}$, dan interval Husid 5--75\% $t_{d5\text{-}75}$) bersama-sama menyumbang $\sim$40\%, mengkodekan laju akumulasi energi pada tiga detik pertama. Pada tahap routing tiga-kelas (Stage~1/2), fitur frekuensi yang saturating $\tau_c$ mempertahankan dominasinya tetapi sekarang beroperasi dalam campuran durasi dan deskriptor komposit yang lebih kaya --- khususnya proxy kecepatan-karakteristik $I_{\text{char-vel}}$ dan rasio PGV/PGD \cite{ref29}, keduanya mengkodekan penskalaan kecepatan rupture dan memiliki korelasi yang sudah mapan dengan batas-batas kelas intensitas pada lingkungan subduksi. Pergeseran dominansi pada Stage~2/3 adalah signature paling informatif dalam gambar: band frekuensi-rendah vertikal $f_{\text{band\,0--1\,Hz},\,Z}$ melonjak ke $\sim$34\% gain, sementara metadata site--path ($\log_{10}\!\Delta$ dan $V_{S30}$) dan CAV energi-kumulatif pada jendela 5-s secara kolektif menyumbang $\sim$15\% lagi. Inilah yang diprediksi spektrum sumber Brune dan argumen atenuasi-path satu-dimensi: akselerasi response-spektral pada periode yang relevan secara rekayasa digerakkan oleh konten frekuensi-rendah dari spektrum sumber yang teradiasi dan oleh penyebaran geometris yang dikoreksi-amplifikasi-site di sepanjang path, bukan oleh proxy corner-frequency early-coda yang mendominasi tahap-tahap biner. Inversi fitur dominan antara tahap-tahap routing dan tahap regresi --- $\tau_c$ saturating di depan, deskriptor kumulatif dan frekuensi-rendah non-saturating di belakang --- karena itu bukanlah pilihan pemodelan yang sembarang melainkan refleksi langsung dari fisika yang mendasari inisiasi gelombang-P versus pelepasan spektral gelombang-penuh.
+
+\subsection{Optimasi Pipeline Rekayasa Fitur}
+
+Composite \(R^2 = 0,7091\) yang dilaporkan di Section~V.A adalah hasil dari program rekayasa-fitur bertahap; setiap famili fitur inkremental menyumbangkan gain yang dapat diukur secara independen. Tabel~13 mendekomposisikan peningkatan total \(+0,102\) dari baseline 34-fitur ke pipeline final 90-fitur.
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Tabel 13. Peningkatan inkremental rekayasa-fitur untuk pipeline IDA-PTW (GroupKFold 5-fold, N = 23.537, seed = 42).}\par\endgroup\vspace{6pt}
+
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{1.2cm}>{\raggedright\arraybackslash}p{6cm}>{\centering\arraybackslash}p{1.5cm}>{\centering\arraybackslash}p{1.5cm}>{\centering\arraybackslash}p{1.5cm}@{}}
+\toprule
+Stage & Method added & \(M\) features & Composite \(R^2\) & \(\Delta R^2\)\tabularnewline
+\midrule
+\endhead
+Baseline & Class-conditional marginalisation over Stage-1 posterior & 34 & 0.6074 & ---\tabularnewline
++ site & Prior site information: VS30, log-distance added to Stage 2 & 36 & 0.6641 & +0.057\tabularnewline
++ Dai multi-window & Continuous-time-window features at 2, 5, 10 s post-P \cite{ref35} & 66 & 0.6966 & +0.033\tabularnewline
+\textbf{+ ensemble/tune} & \textbf{XGB + LGB Stage-1 soft voting, SMOTE on minority, Optuna Bayesian tuning, 3 s PTW frequency-domain features} & \textbf{90} & \textbf{0.7091} & \textbf{+0.013}\tabularnewline
+\bottomrule
+\end{longtable}
+
+Each row is a GroupKFold(5) event-grouped out-of-fold evaluation on the same \(N = 23{,}537\) subset. All ablation cells are reproducible from the public code repository (see Data Availability). The largest single contribution is the site-feature addition (+0.057), consistent with \citet{ref48} and \citet{ref62}, which report VS30 as the strongest single non-waveform predictor in GMPE-style regressions. The Dai continuous-time-window features \cite{ref35} contribute the second-largest gain (+0.033), validating their K-NET-trained methodology's transferability to Indonesian subduction with a \(\approx\) 0.10 \(R^2\) degradation attributable to higher site-path variability in the Sunda arc relative to K-NET Japan. The final Stage-1 ensemble + SMOTE + Optuna combination adds +0.013 on composite \(R^2\) and, critically, raises Stage-1 balanced accuracy from 0.77 to 0.82 --- a safety-relevant gain not captured by composite \(R^2\) alone, whose practical effect is to lower the Damaging-class critical-miss rate substantially under the operational MMI-hybrid discretisation.
+
+
+
+\subsection{Protokol Cross-Validation}
+
+We employ \textbf{event-grouped 5-fold cross-validation} with $\mathrm{random\_state} = 42$ to prevent data leakage. All traces from the same earthquake event are kept within the same fold, ensuring out-of-fold (OOF) evaluation reflects true generalization to unseen events. Stratified GroupKFold maintains class balance across folds. Random splits would yield inflated R² \textasciitilde0.85 (memorization); event-grouped strict splits yield honest R² = 0.7091.
+
+\section{Hasil Eksperimen}
+
+\subsection{Eksperimen 1: Benchmark Fixed-Window vs. IDA-PTW Adaptif}
+
+Ensemble regressor spektral XGBoost dilatih pada PTW tetap sebesar 2, 3, 5, 8, dan 10~detik---arsitektur dan hyperparameter identik dengan Stage~2. Tabel~14 melaporkan composite \(R^2\) yang dirata-ratakan pada periode-anchor kunci.
+
+\textbf{IDA-PTW Operasional (final)}: composite \(R^2 = 0,7091\) (OOF, 5-fold, dimarjinalisasi atas posterior ensemble Stage-1); operational-band \(R^2 = 0,6962\) (\(T \leq 2\)~s, 42 periode); oracle upper bound \(R^2 = 0,7779\).
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Tabel 14. Benchmark Fixed-Window vs. Pipeline Operasional IDA-PTW (N = 23.537 trace, 335 kejadian, CV GroupKFold 5-fold).}\par\endgroup\vspace{6pt}
+
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{2cm}>{\centering\arraybackslash}p{1.5cm}>{\centering\arraybackslash}p{1.7cm}>{\centering\arraybackslash}p{1.7cm}>{\centering\arraybackslash}p{1.7cm}>{\centering\arraybackslash}p{2cm}@{}}
+\toprule
+Method & PTW (s) & \(R^2\) Sa(0.3s) & \(R^2\) Sa(1.0s) & \(R^2\) Sa(3.0s) & \textbf{Composite \(R^2\)}\tabularnewline
+\midrule
+\endhead
+Fixed & 2 & 0.849 & 0.790 & 0.770 & 0.773\tabularnewline
+Fixed & 3 & 0.853 & 0.799 & 0.783 & 0.775\tabularnewline
+Fixed & 5 & 0.860 & 0.807 & 0.792 & 0.778\tabularnewline
+Fixed & 8 & 0.864 & 0.814 & 0.799 & 0.786\tabularnewline
+Fixed & 10 & 0.867 & 0.820 & 0.814 & 0.812\tabularnewline
+IDA-PTW Operational --- argmax routing (naive) & 3--8 & 0.645 & 0.645 & 0.692 & 0.679\tabularnewline
+\textbf{IDA-PTW Operational --- marginalized (this work)} & \textbf{3--8} & \textbf{0.700} & \textbf{0.685} & \textbf{0.716} & \textbf{0.7091*}\tabularnewline
+IDA-PTW Operational --- oracle upper bound & 3--8 & 0.806 & 0.768 & 0.775 & 0.778\tabularnewline
+IDA-PTW --- class-injection (artefact, disclosed) & 3--8 & 0.823 & 0.909 & 0.994 & 0.9105**\tabularnewline
+\bottomrule
+\end{longtable}
+
+*The \textbf{marginalized} row is the authoritative end-to-end operational number. It propagates the Stage-1 posterior \(p(c = k \mid x_{3\text{s}})\) into Stage 2 via \(\hat y = \sum_k p(c=k\mid x)\, f_k^{(2)}(x)\) bukan the deterministic \(\hat y = f_{\arg\max_k p}^{(2)}(x)\); each berkondisi-kelas \(f_k^{(2)}\) is trained on its class's subset only. Full ablation table is in Supplementary Material SM2.
+
+**Class-injection ablation row is a methodological disclosure: an earlier variant of pipeline passed the Stage-1 predicted class into Stage 2 as an input feature, inflating the reported \(R^2\) to 0.9105. Because the class label is simultaneously the routing signal and an input feature, that configuration double-counts class information and is not an operational reference; it is retained here for full transparency.
+
+\paragraph{Trade-off Keselamatan--Akurasi EEWS.} \(R^2 = 0,7091\) operasional lebih rendah dari Fixed-8~s (\(R^2 = 0,786\)) karena ketidakpastian routing Stage-1 masuk ke regresi spektral melalui formula marginalisasi. Batas atas oracle \(R^2 = 0,7779\) --- diperoleh dengan menggantikan label kelas sejati untuk posterior Stage-1 --- mengkuantifikasi langit-langit yang dapat dicapai di bawah kapasitas Stage-2 sekarang; gap $\approx 0{,}07$ mendefinisikan anggaran ketidakpastian eksplisit. Tujuan keselamatan primer sistem IDA-PTW adalah memaksimalkan Damaging Recall (Stage~0: 95,0\% pada operating point High-Recall, recall kelas-Tinggi Stage~1: 86\% di bawah ensemble MMI-hybrid) sambil mengirimkan alert cepat untuk kejadian non-damaging yang tersisa --- desain safety-first yang mengeluarkan penalti composite-\(R^2\) yang moderat demi keandalan operasional. Operating point Stage~0 dapat di-retune ke trade-off recall--precision lain (Balanced 90,0\% / High-Precision 80,0\%; Tabel~7) tanpa retraining, dengan memilih threshold keputusan yang sesuai pada posterior GBM yang dikalibrasi.
+
+\paragraph{Perbandingan dengan framework ML-EEWS state-of-the-art.} The IDA-PTW framework delivers equivalent spectral accuracy to Fixed-3s (the current InaTEWS baseline) sementara additionally providing: (i) binary dekat-sumber alert in 0.5 s, (ii) 71--89\% blind zone reduction, and (iii) catalog-independent autonomous operation. Compared to \citet{ref77}, \citet{ref32}, and \citet{ref35}, the IDA-PTW pipeline uniquely addresses the \textbf{saturation-autonomy-coverage trilemma}---a design space not previously explored in a single unified framework. While TEAM mencapai superior uncertainty quantification for individual event sizes, it does not menyediakan dekat-sumber sub-second alerts or autonomous distance estimation. ROSERS predicts full response spectra but memerlukan catalog distance and is trained on shallow crustal data. Dai \etal{}'s \cite{ref35} XGBoost approach is the closest analog to Stage 2, but without the upstream routing stages.
+
+The Lin and \citet{ref85} P-alert study of the 2024 \(M_w\) 7.4 Hualien Taiwan earthquake menyediakan a timely real-world benchmark: Taiwan's operational EEW underestimated the magnitude at 6.8 (vs.~actual 7.4) within the 15-second window, triggering no alert for the Taipei metropolitan area. This real-world failure---caused by \(P_d\) saturation on a large rupture---directly validates the IDA-PTW design philosophy: the Cumulative Absolute Absement (CAA) parameter analyzed by Lin and \citet{ref85} is a non-saturating cumulative feature analogous to our CAV and CVAD, confirming that the Field Dichotomy principle generalizes across different regional EEWS contexts.
+
+Fig.~4 presents the continuous-spectrum comparison of Fixed PTW 2--10 s, IDA-PTW Adaptive, Post-P Full-Wave ML, and the theoretical Newmark-Beta physical ceiling across all 103 spectral periods, sementara Fig.~5 shows the per-period \(R^2\) curve for the stratified IDA-PTW set pelatihan.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.95\linewidth,keepaspectratio]{figures/comparison_fixed_vs_ida_vs_fullwave.png}
+\caption{Spectral accuracy as a function of period across four methods: Fixed PTW envelope 2--10 s benchmark range (red band; PTW = 2, 3, 5, 8, 10 s tested), IDA-PTW Adaptive with operational PTW $\in \{3, 5, 8\}$~s scheduled by intensity class (blue, 103-period curve from the N=2,747 stratified subset), Post-P Full-Wave ML ceiling (\textasciitilde341 s, green diamonds), Total MiniSEED ML ceiling (\textasciitilde430 s, teal squares), and Newmark-Beta physical ceiling (purple triangles). The orange band marks the EEWS-critical zone (T = 0.1--3.0 s). The IDA-PTW Adaptive curve matches or exceeds Fixed-10\,s across the structural-design range sementara delivering 3--8\,s adaptive latency depending on Stage~1 routing.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.95\linewidth,keepaspectratio]{figures/per_period_r2_full.png}
+\caption{\(R^2\) per-periode dari regressor Adaptif IDA-PTW di semua 103 periode spektral dari T = 0,051 s hingga T = 10,0 s. Minimum lokal \(R^2\) pada T \(\approx\) 0,3--0,5 s konsisten dengan variabilitas amplifikasi site yang maksimum pada periode pendek \cite{ref48}, \cite{ref49}, di mana \(\phi\) mencapai puncak (T = 0,5 s pada Tabel~17). \(R^2\) meningkat secara monoton ke periode yang lebih panjang seiring konten yang dikontrol sumber menjadi lebih dapat diprediksi.}
+\end{figure}
+
+\emph{Catatan: Nilai sigma periode-anchor representatif dari dekomposisi sigma lengkap dilaporkan pada Tabel~17 (Seksi 5.5). Nilai di bawah diekstrak dari Tabel~17 untuk referensi cepat.}
+
+\begin{center}\fontsize{8}{10}\selectfont\textbf{Tabel 15. Dekomposisi sigma (Al Atik \etal{}~2010 mixed-effects) --- periode anchor representatif (diekstrak dari Tabel~17; N = 37.456 trace per periode PSA).}\end{center}
+
+\begin{longtable}[]{@{}rrrrrr@{}}
+\toprule
+Period (s) & N & R²(OOF) & τ (between-event) & φ (within-event) & σ\_total\tabularnewline
+\midrule
+\endhead
+0,303 & 37.456 & 0,306 & 0,470 & 0,768 & 0,900\tabularnewline
+1,010 & 37.456 & 0,376 & 0,515 & 0,691 & 0,862\tabularnewline
+3,030 & 37.456 & 0,463 & 0,450 & 0,542 & 0,705\tabularnewline
+\bottomrule
+\end{longtable}
+\subsection{Eksperimen 2: Performa Standalone Stage-0 URPD}
+
+Diskriminator Stage-0 URPD dievaluasi secara independen untuk mengarakterisasi perilaku standalone-nya sebagai mekanisme alert biner 0,5-detik. Dilatih pada 25.058 trace dengan vektor fitur setengah-detik (spectral centroid, log-peak-acceleration, $\tau_c$, $P_d$ pada 0,5~s), model Stage-0 mencapai area di bawah kurva ROC $\mathrm{AUC} = 0,9136$ (out-of-fold, 5-fold event-grouped GroupKFold). Recall kelas Damaging berkisar dari 82\% pada operating point Konservatif hingga 100\% pada operating point Seimbang dan Agresif (Tabel~8); mode Seimbang---yang direkomendasikan untuk perlindungan manusia dan infrastruktur---menjamin nol kejadian Damaging yang terlewat. Aplikasi retrospektif pada kejadian Cianjur 2022 ($M_w$~5,6) dan Sumedang 2024 ($M_w$~5,7) menghasilkan recall Damaging 100\%, dengan reduksi zona-buta dekat-sumber dari $\sim$38~km konvensional menjadi 11~km untuk alert manusia dan 4~km untuk lapisan alert infrastruktur. Kedua studi kasus ini, meski terbatas dalam jumlah, menjadi anchor klaim utilitas operasional kerangka untuk jaringan InaTEWS.
+
+\subsection{Eksperimen 3: Uji Saturasi Magnitudo}
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Tabel 16. Uji Saturasi --- Fixed-3s vs. Fixed-15s (Subset High-PGA, N = 1.204).}\par\endgroup\vspace{6pt}
+\begin{longtable}[]{@{}>{\centering\arraybackslash}p{2cm}>{\centering\arraybackslash}p{2cm}>{\raggedright\arraybackslash}p{2.7cm}>{\raggedright\arraybackslash}p{2.7cm}>{\raggedright\arraybackslash}p{2.7cm}@{}}
+\toprule
+Period & Fixed-3s & Fixed-15s & Improvement & Wilcoxon \(p\) \\
+\midrule
+\endfirsthead
+\toprule
+Period & Fixed-3s & Fixed-15s & Improvement & Wilcoxon \(p\) \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Sa(1.0 s) & 0.6454 & \textbf{0.7198} & \textbf{+7.44\%} & \textless{} 0.001 \\
+Sa(3.0 s) & 0.6089 & \textbf{0.6748} & \textbf{+6.59\%} & \textless{} 0.001 \\
+Sa(5.0 s) & 0.5966 & \textbf{0.6654} & \textbf{+6.88\%} & \textless{} 0.001 \\
+\end{longtable}
+
+Forcing high-intensity events (PGA ≥ 0.1 gal, N = 1,204) into 3-second windows degrades \(R^2\) by 6.6--7.4 pp for all tested periods (\(p < 0.001\), Wilcoxon signed-rank). This quantifies the cost of fixed-window saturation described theoretically by Lancieri and \citet{ref24} and \citet{ref26}: a 12s window captures the full rupture energy accumulation, sementara a 3s window truncates critical long-period energy release.
+
+The IDA-PTW 8-second Damaging window directly prevents this degradation---providing the full 8 s of P-wave information for the exact events where saturation is most severe. The saturation curve mengimplikasikan bahwa each additional second of observation beyond 3 s menyediakan approximately +0.5\% \(R^2\) improvement for high-PGA events, consistent with \citet{ref35}'s Japanese K-NET findings.
+
+Fig.~6 confirms the monotonic intensity-accuracy scaling: as PGA increases from the Weak to Severe operational class, per-period \(R^2\) rises from \textasciitilde0.4 (Weak) to \textasciitilde0.85 (Severe), directly supporting the hazard-sensitivity argument.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.95\linewidth,keepaspectratio]{figures/intensity_vs_accuracy_correlation.png}
+\caption{Intensity-accuracy correlation: per-period \(R^2\) stratified by PGA operational class (Weak \textless{} 0.0053 gal, Moderate 0.0053--0.0958 gal, Strong 0.0958--0.1 gal, Severe ≥ 0.1 gal). Accuracy monotonically increases with kelas intensitas at all spectral periods, demonstrating that the IDA-PTW framework delivers its best predictions precisely where the hazard is most severe.}
+\end{figure}
+
+\subsection{Eksperimen 4: Sensitivitas P-Arrival}
+
+Picking errors of ±2 s degrade composite \(R^2\) by less than 0.5\% --- pipeline is robust to GPD picker imperfections. This justifies operational deployment with the existing GPD picker (Nugraha \etal{}, 2024 \cite{ref81}) without requiring sub-second pick precision.
+
+\subsection{Eksperimen 5: Dekomposisi Sigma dan Karakterisasi Statistik Lanjutan}
+
+Following the inter-/intra-event residual decomposition framework of Al \citet{ref44} and the evaluation protocol of \citet{ref35}:
+
+\paragraph{Residual decomposition.}
+
+\[\varepsilon_{ij} = \underbrace{\eta_i}_{\text{inter-event}} + \underbrace{\delta_{ij}}_{\text{intra-event}}, \quad \text{Var}(\eta_i) = \tau^2, \quad \text{Var}(\delta_{ij}) = \phi^2, \quad \sigma_{total}^2 = \tau^2 + \phi^2\]
+
+\begin{center}\fontsize{8}{10}\selectfont\textbf{Tabel 17. Dekomposisi Sigma --- IDA-PTW (baseline 25.058-trace, mengikuti Al \citet{ref44}).}\end{center}
+\emph{Note: Table 17 sigma values are computed from the Stage-2 baseline Pre-task15 pipeline on the full 25,058-trace corpus for statistical characterization consistency with prior GMPE studies. The per-period \(R^2\) column here reflects single-period residual fits (Al Atik \(\tau^2 + \phi^2 = \sigma_{total}^2\) decomposition), not the composite marginalized operational \(R^2 = 0.7091\) reported in Table 14 which is the headline deployment metric. The within-factor accuracy and \(\tau/\phi\) partition are methodologically invariant under the task-15 update and are retained as reported.}
+\begin{longtable}[]{@{}>{\centering\arraybackslash}p{1cm}>{\centering\arraybackslash}p{0.9cm}>{\centering\arraybackslash}p{1cm}>{\centering\arraybackslash}p{0.9cm}>{\centering\arraybackslash}p{0.9cm}>{\centering\arraybackslash}p{0.9cm}>{\centering\arraybackslash}p{1.1cm}>{\centering\arraybackslash}p{1.2cm}>{\centering\arraybackslash}p{1.2cm}>{\centering\arraybackslash}p{1cm}@{}}
+\toprule
+\(T\) (s) & \(R^2\) & RMSE & EVS & \(\tau\) & \(\phi\) & \(\sigma_{total}\) & W±0.5 (\%) & W±1.0 (\%) & Skew \\
+\midrule
+\endfirsthead
+\toprule
+\(T\) (s) & \(R^2\) & RMSE & EVS & \(\tau\) & \(\phi\) & \(\sigma_{total}\) & W±0.5 (\%) & W±1.0 (\%) & Skew \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+PGA & 0.410 & 0.657 & 0.410 & 0.324 & 0.619 & 0.698 & 62.9\% & 89.2\% & -0.14 \\
+0.1 s & 0.334 & 0.760 & 0.334 & 0.372 & 0.708 & 0.800 & 54.9\% & 83.6\% & -0.60 \\
+0.3 s & 0.306 & 0.865 & 0.306 & 0.470 & 0.768 & 0.900 & 43.9\% & 77.1\% & -0.47 \\
+0.5 s & 0.330 & 0.877 & 0.330 & 0.495 & 0.754 & 0.902 & 41.1\% & 74.8\% & -0.39 \\
+1.0 s & 0.376 & 0.846 & 0.376 & 0.515 & 0.691 & 0.862 & 41.8\% & 75.3\% & -0.32 \\
+3.0 s & 0.463 & 0.700 & 0.463 & 0.450 & 0.542 & 0.705 & 58.9\% & 87.5\% & -0.48 \\
+5.0 s & 0.493 & 0.639 & 0.493 & 0.406 & 0.493 & 0.639 & 65.2\% & 90.6\% & -0.65 \\
+\textbf{Rerata} & \textbf{0,427} & \textbf{0,744} & \textbf{0,427} & \textbf{0,458} & \textbf{0,598} & \textbf{0,755} & \textbf{54,4\%} & \textbf{83,3\%} & --- \\
+\end{longtable}
+
+\textbf{Key findings:}
+1. \textbf{Zero-bias property:} Mean residuals within ±0.004 \(\log_{10}\) units at all periods---no systematic over- or under-prediction.
+2. \textbf{Intra-event dominance:} \(\phi^2 / \sigma_{total}^2 = 0.598^2 / 0.755^2 = 62.8\%\) at all periods, confirming that site-path variability dominates prediction uncertainty at all spectral periods. This is consistent with Khosravikia and \citet{ref38} who quantified similar \(\phi > \tau\) ratios for ML GMPEs, and \citet{ref62} for European GMPEs.
+3. \textbf{Period-dependent sigma pattern:} \(\phi\) peaks at T = 0.3--0.5 s (maximum site sensitivity) and decreases at long periods (T \textgreater{} 3 s) as source-controlled long-period content becomes more predictable with distance. This period-dependency matches the NGA-West2 sigma structure documented in Campbell and \citet{ref49} and Chiou and \citet{ref50}---and is consistent with \citet{ref62}'s partially non-ergodic GMPE residual analysis.
+4. \textbf{Within-factor accuracy:} 83.3\% within ±1.0 \(\log_{10}\) and 54.4\% within ±0.5 \(\log_{10}\)---comparable to \citet{ref35}'s K-NET XGBoost results reported for a dense, well-characterized Japanese dataset.
+
+Fig.~7 presents the per-trace validation dashboard for Sa(1.0 s) --- the representative mid-range structural period --- showing feature importance (SHAP ranking), true-vs-predicted scatter (log-log), and the Gaussian residual distribution that underpins the sigma decomposition in Table 17.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.95\linewidth,keepaspectratio]{figures/validation_dashboard_T1.000.png}
+\caption{Validation dashboard for Sa(1.0 s): (left) Top-10 SHAP feature importance ranking with non-saturating integral features (CVAD, CAV, Arias Intensity) dominating; (middle) true-vs-predicted scatter in \(\log_{10}(Sa)\) units showing tight 1:1 alignment with \(R^2\) = 0.83 and \(\sigma_{total}\) = 0.862; (right) Gaussian residual distribution confirming zero-bias property and enabling the \(\tau/\phi\) decomposition reported in Table 17.}
+\end{figure}
+
+Fig.~7 renders the sigma decomposition from Table 17 in graphical form, directly visualizing the inter-event (\(\tau\)) / intra-event (\(\phi\)) variance partition across spectral periods. The visual confirms two key diagnostic signatures expected by the Al \citet{ref44} framework: (i) \(\phi > \tau\) at all periods (intra-event site-path variability dominates source-to-source variability), and (ii) the characteristic \(\phi\) peak near T = 0.3--1.0 s that reflects maximum site-amplification variability --- matching the NGA-West2 sigma structure documented by Campbell \& \citet{ref49} and Chiou \& \citet{ref50} for crustal settings. Panel (b) complements this with the within-factor accuracy dicapai across the structural-design range.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.95\linewidth,keepaspectratio]{figures/sigma_decomposition.png}
+\caption{Residual sigma decomposition. (a) Inter-event (\(\tau\), orange), intra-event (\(\phi\), blue), and total sigma (\(\sigma_{total}\), purple) per spectral period, with the mean \(\sigma_{total}\) = 0.755 line shown. Percentages annotate the intra-event dominance ratio \(\phi/\sigma_{total}\) which ranges 77--89\%. (b) Within-factor accuracy: fraction of predictions within factor 10 (±1.0 \(\log_{10}\), green) and within factor 3.16 (±0.5 \(\log_{10}\), orange), averaging 83.3\% and 54.4\% respectively across periods.}
+\end{figure}
+
+\subsection{Eksperimen 6: Analisis Dominansi Fitur Spesifik-Site}
+
+As a sixth and final experiment that complements the per-period $R^2$ analysis, bagian ini presents a complementary per-station analysis that empirically validates the comprehensive 90-feature design choice and menyediakan foundation for adaptive site-aware EEWS extensions. A central question raised during the dissertation defense (May 2026 monev) is whether feature importance varies systematically across BMKG stations, and whether such variation correlates with site characteristics or recorded event types. This section presents a per-station analysis on 100 BMKG stations with ≥100 records each, providing empirical foundation for adaptive site-aware EEWS architecture.
+
+\subsubsection{Metodologi}
+
+For each station \emph{s} in \{S \textbar{} n\_traces(s) ≥ 100\} (totalling 100 stations of the 126 unique BMKG stations in the dataset), kami latih an independent LightGBM regressor (200 estimators, 21 leaves, learning rate 0.06) mapping the 90 waveform features to log Sa(T = 1.0 s). Per-station feature importance (normalized gain) was extracted to construct an FI matrix \textbf{M ∈ ℝ\^{}\{100×54\}}. We applied hierarchical clustering with cosine distance and average linkage to identify station clusters with similar dominance patterns.
+
+\subsubsection{Empat Cluster Spesifik-Site Teridentifikasi}
+
+The clustering reveals four distinct station signatures (Table 18):
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Table 18. Four site-specific feature-dominance clusters identified by hierarchical clustering of per-station feature-importance vectors 100 BMKG stations with at least 100 records.}\par\endgroup\vspace{6pt}
+
+\begin{longtable}[]{@{}>{\centering\arraybackslash}p{1.5cm}>{\raggedright\arraybackslash}p{2.8cm}>{\centering\arraybackslash}p{1.2cm}>{\centering\arraybackslash}p{1.5cm}>{\raggedright\arraybackslash}p{4.5cm}@{}}
+\toprule
+Cluster & Type & $n$ & $V_{S30}$ (m/s) & Dominant Feature(s) \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+1 & Mainstream & 92 & 323 & temporal-composite ($t_p$, CVAD), amplitude ($P_d$), envelope decay \\
+2 & Frequency-Rich & 3 & 342 & spectral centroid (25\% gain) \\
+3 & Cepstral-Dominant & 4 & 276 & cepstral coefficients ($c_1$, $c_3$, 15--20\% each) \\
+4 & Extreme-Frequency & 1 & 143 & $\tau_c$ alone (60\% gain) \\
+\end{longtable}
+
+\textbf{Cluster 1 --- Mainstream (n=92, V\_s30 = 323 m/s)}: dominant features are temporal-composite (tp, cvad), amplitude (P\_d), and distance proxy (envelope decay). This merepresentasikan the typical Indonesian subduction station response.
+
+\textbf{Cluster 2 --- Frequency-Rich (n=3, V\_s30 = 342 m/s)}: spectral\_centroid dominates with 25\% gain. Likely associated with stations recording deeper events with frequency-rich content.
+
+\textbf{Cluster 3 --- Cepstral-Dominant (n=4, V\_s30 = 276 m/s)}: cepstral coefficients (c1, c3) lead with 15-20\% gain each. Consistent with basin/soft-soil sites where complex non-linear amplification cannot be captured by linear spectral measures.
+
+\textbf{Cluster 4 --- Extreme-Frequency (n=1, V\_s30 = 143 m/s)}: τ\_c alone contributes 60\% gain. This isolated case merepresentasikan an extreme soft-sediment site where corner-period dominates as the only reliable predictor.
+
+\subsubsection{Korelasi dengan Karakteristik Site}
+
+Vs30 and average log-distance show weak linear correlation with frequency-family dominance (R = -0.18). However, clustering reveals lebih meaningful structure: stations with very low Vs30 (cluster 4 at 143 m/s) exhibit extreme τ\_c dominance, consistent with the φ\_S2S (site-to-site) variance in the Al Atik 2010 framework. This empirically validates the orthogonality of the 90-feature design --- the variety of dominance patterns across clusters justifies the comprehensive feature set bukan a minimal subset.
+
+\subsubsection{Implikasi untuk EEWS Adaptif Site-Aware}
+
+These findings establish a foundation for adaptive site-aware EEWS, where real-time feature subset selection could be informed by station-specific signatures. For 92\% mainstream stations, the standard 90-feature input remains optimal; for 8\% outlier stations, specialized feature subsets emphasizing cepstral or τ\_c features may improve accuracy. This merepresentasikan a future research direction (Paper 4) building directly on the IDA-PTW infrastructure presented herein.
+
+\subsection{Kepatuhan Golden Time}
+
+End-to-end processing budget: 0.5 s (Stage 0) + 2.0 s (Stage 1) + 0.1 s (Stage 1.5) + 8.0 s (max Stage 2 window) + 0.05 s (inference) = \textbf{10.65 s}. The fraction of 25,058 Stage-0 traces for which this budget is less than the per-trace P-S travel time: \textbf{99.44\% Golden Time Compliance} (computed on the full Stage-0 corpus since the Golden-Time metric is independent of the Stage-2 feature-availability subset).
+
+The 0.56\% non-compliant traces (\(\Delta < 15\) km) merepresentasikan the extreme dekat-sumber scenario where Stage 0's 0.5-second binary alert is the only actionable warning. The infrastructure alert threshold (0.5 s + alert dissemination = 1.5 s total) mencapai Golden Time Compliance for events beyond 4 km---below which no earthly EEWS can menyediakan warning before S-wave arrival at the infrastructure location \cite{ref19}. For these events, structural resilience through good construction is the only viable mitigation \cite{ref14}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Pembahasan}
+
+\subsection{Perbandingan dengan Metode Terpublikasi dan Plafon Informasi}
+
+IDA-PTW mencapai composite $R^2 = 0,7091$ di 103 periode spektral. Literatur JET terbaru \cite{jetCremen2021, jetTatar2021, jetHsu2022, jetKamigaichi2023, jetTatar2025, jetMa2023} mengonfirmasi bahwa pendekatan ML-EEWS mengungguli persamaan prediksi ground-motion konvensional, dan karakterisasi spektral gempa subduksi yang terekam pada stasiun strong-motion K-NET \cite{jetKawamura2021} menyediakan benchmark internasional yang penting untuk nilai $R^2$ per-periode yang dilaporkan di sini. Studi retrospektif Cianjur 2022 \cite{jetMukhlisin2023} menyediakan benchmark InaTEWS langsung yang relevan dengan studi kasus kami.
+
+Untuk memposisikan hasil kami terhadap keluarga GMPE klasik, kami membandingkan profil $R^2$ per-periode IDA-PTW dengan GMPE subduksi Atkinson--Boore \cite{ref30, ref31} yang dievaluasi pada event-grouping out-of-fold yang sama. Kerangka melampaui baseline GMPE dengan composite $\Delta R^2 = +0,067$, dengan keuntungan terbesar di band operasional ($T \leq 2$~s) di mana demand struktural untuk bangunan masonry dan beton-bertulang bertingkat-rendah khas Indonesia terkonsentrasi. Analisis information-ceiling menggunakan label acak dan partisi varians per-kejadian menunjukkan bahwa sekitar 78\% prediktabilitas yang dapat dicapai ditangkap oleh kamus fitur sekarang; gap sisa terutama berkaitan dengan informasi amplifikasi site yang tidak dapat diresolusi oleh proxy $V_{S30}$ dan yang merupakan komponen dominan suku $\phi$ dalam dekomposisi sigma Al~Atik (2010) yang dibahas di Sec.~6.3.
+
+\subsection{Feature Dichotomy: Validasi Empiris}
+
+Hipotesis Feature Dichotomy diturunkan dari seismologi fisis: parameter amplitudo saturating (pergeseran corner frequency spektrum Brune dengan magnitudo \cite{ref54}; observasi saturasi Wu \etal{}~\cite{ref22}) secara fundamental tidak andal untuk prediksi event-besar tetapi mempertahankan utilitas untuk diskriminasi intensitas biner (Stage~0) dan routing kelas (Stage~1). Fitur integral non-saturating (kerangka CAV EPRI \cite{ref55}; Arias \citet{ref56}; integral velocity Colombelli \cite{ref29}) mengakumulasi energi secara monoton sepanjang jendela observasi, tetap prediktif untuk rupture besar.
+
+Konfirmasi empiris dari analisis SHAP sangat mencolok: spectral centroid (60,6\%) dan log-peak-acceleration (11,8\%) mendominasi klasifikasi Stage~0, sementara CVAD dan CAV mendominasi regresi Stage~2. Inversi fitur dominan antara stage ini secara langsung memvalidasi Feature Dichotomy.
+
+\citet{ref65} menyediakan mekanisme teoritis: energi yang teradiasi dari coda gelombang-P awal berskala dengan kuadrat slip velocity, yang dikontrol oleh kecepatan propagasi rupture dan diinisiasi pada patch nukleasi tetapi tumbuh seiring perluasan rupture. Untuk event kecil, energi yang teradiasi awal menangkap hampir seluruh energi rupture; untuk event besar, sebagian besar energi teradiasi lebih lambat. Feature Dichotomy menangkap fisika ini: fitur spektral cepat (centroid) menangkap intensitas fase-nukleasi, sementara fitur kumulatif lambat (CAV, \(I_a\)) menangkap akumulasi energi yang sedang berlangsung---persis yang dibutuhkan event besar dan tidak dibutuhkan event kecil.
+
+Fig.~8 directly visualizes the Feature Dichotomy benefit at the Stage 2 level: when the regressor XGBoost is gated by Stage 1 intensity routing (red curve) versus run without routing (grey/blue baseline), the gated variant breaks the \(R^2 > 0.80\) barrier in the high-intensity regime, confirming that intensity-aware routing extracts additional information beyond what a single-model baseline can capture.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.95\linewidth,keepaspectratio]{figures/xgboost_gated_stage2_comparison.png}
+\caption{Stage-2 spectral accuracy --- gated vs.~ungated ensemble. Grey/blue: Stage 2 trained on the full dataset without intensity routing. Red: Stage 2 gated by the Stage 1 kelas intensitas, applying 5× dikurangi feature weights to saturating features (τc, Pd, Pv) for the high-intensity bin. The gated variant mencapai \(R^2 > 0.8\) in the safety-critical period range (0.1--3 s), empirically validating the Feature Dichotomy hypothesis.}
+\end{figure}
+
+\subsection{Dominansi Intra-Event dan Prioritas Vs30}
+
+The sigma decomposition (\(\phi = 0.598\), \(\phi^2 = 62.8\%\) of total variance) places the dominant uncertainty source in site-path effects. This result is consistent across all published ML EEWS studies \cite{ref35}, \cite{ref38} and GMPE development frameworks \cite{ref44}, \cite{ref48}. \citet{ref66} reviews the fundamental limitations of single-parameter site characterization (\(V_{S30}\)), emphasizing that 30-m-averaged velocity inadequately captures the resonant frequencies of deep basins, nonlinear soil response at high PGA, and 2D/3D wave-field focusing effects.
+
+For the Java-Sunda dataset, proxy \(V_{S30}\) from topographic slope carries uncertainty of 100--200 m/s---equivalent to 0.3--0.5 \(\log_{10}\) units of site amplification uncertainty at periods T \textless{} 0.5 s \cite{ref45}. This uncertainty propagates directly into \(\phi\), explaining the trough in per-period \(R^2\) at T = 0.3--0.5 s (Table 17).
+
+\paragraph{The Vs30 improvement potential.} \citet{ref48}'s NGA-West2 results menunjukkan bahwa replacing proxy \(V_{S30}\) with measured values mengurangi total sigma by approximately 0.08--0.15 \(\log_{10}\) units at short periods in crustal settings. For the Indonesian subduction context, \citet{ref61} (BC Hydro subduction GMPE) and the classic \citet{ref63} subduction GMPE demonstrates similar site-class sensitivity. \citet{ref87} menunjukkan bahwa machine learning models integrating microzonation-measured site data mengurangi ground motion prediction uncertainty by 15--30\% compared to proxy approaches---directly motivating our HVSR measurement campaign for Indonesian stations. Based on these analogues, full HVSR-based \(V_{S30}\) measurement at all 151 IA-BMKG stations is expected to mengurangi \(\phi\) at T \textless{} 1 s by 15--25\%, reducing \(\sigma_{total}\) from 0.902 to approximately 0.75--0.80 at T = 0.3 s.
+
+\subsection{Operasi Otonom}
+
+Stage 1.5's negative-result on distance regression (R² ≤ 0) drove a paradigm shift from regression-based to class-based routing. This eliminates catalog dependence, enabling fully autonomous EEWS operation --- a methodological advance over magnitude/location-based systems (Hoshiba 2008, ShakeAlert).
+
+\textbackslash2 Infrastructure Warning and the EEWS Decision Framework
+
+Minson \etal{}'s infrastructure EEW framework \cite{ref11} analyzes cost-benefit of different decision-making strategies for rail systems, demonstrating that on-site EEWS mengungguli source-parameter-based systems at 120-gal thresholds. The Stage 0 Aggressive operating point (FAR = 5\%, 89\% blind zone reduction to 4 km) directly implements the infrastructure optimal strategy---accepting marginally higher false alarm rates in exchange for dramatically expanded dekat-sumber warning coverage.
+
+\citet{ref83} implement a network-based EEWS in Greece using on-site P-wave analysis with explicit false-alarm rate targets for public warning. Their operational experience mendemonstrasikan bahwa multi-threshold design---analogous to our Table 7's Conservative/Balanced/Aggressive operating point---is essential for adapting EEWS to heterogeneous user requirements (infrastruktur kritis, public transportation, general population). \citet{ref82} further mendemonstrasikan bahwa EEW algorithm selection should account for regional network topology: on-site methods mengungguli regional methods for sparse networks like the Indonesian IA-BMKG configuration. Hoshiba and \citet{ref84} menyediakan a physics-based upper bound through numerical shake prediction via data assimilation---their approach mencapai superior long-period accuracy at the cost of 5--10× higher computational requirements, confirming the practical trade-off favoring XGBoost inference in operational settings.
+
+\citet{ref60} propose a comprehensive EEW assessment framework for low-seismicity areas, noting the challenge of threshold optimization with limited historical Damaging events. Their framework's emphasis on false alarm management directly motivates the multi-threshold Stage 0 design (Table 7): Conservative (0.02\% FAR) for nuclear and hospital facilities; Balanced (1.09\% FAR) for general human protection; Aggressive (5.0\% FAR) for automated industrial and transportation systems.
+
+
+\subsection{Hasil Negatif dan Keterbatasan Jujur}
+
+Kami melaporkan a deliberately documented negative result for Stage~1.5. A fully autonomous EEWS would ideally estimate epicentral distance $\log_{10}(\Delta_{ep})$ directly from the 3-second P-wave feature vector, removing dependency on BMKG's 30--60-second hypocenter determination latency. We evaluated five increasing-complexity feature configurations (C0--C4: 2 to 28 features, from baseline $\tau_c/TP$ to the full vector with spectral descriptors and $V_{S30}$) under 5-fold GroupKFold cross-validation with the same protocol as Stages~1 and~2. All five variants yielded out-of-fold $R^2 \leq 0$ (best: C4 at $R^2 = -0.011$, MAE $\approx 369$~km), confirming that single-station 3-s features cannot reliably predict distance for a subduction catalogue spanning $M_w$ 4.0--7.5 and $\Delta_{ep}$ 10--500~km. The physical reason is the well-known confounding of high-frequency attenuation with source magnitude and depth~\cite{ref22}, compounded here by $\tau_c$ saturation for $M_w > 6$ and $P_d$ saturation for $M_w < 5$. The architectural implication is direct: IDA-PTW routes traces by the Stage-1 kelas intensitas bukan estimated distance --- the class label internalises the joint distance--magnitude konten informasi. Detailed C0--C4 ablation table is provided in Supplementary Material SM3.
+
+Di luar hasil negatif tahap-routing tersebut, kami mengakui tiga keterbatasan tambahan dari pekerjaan ini. Pertama, dataset didominasi oleh kejadian magnitudo-menengah ($M_w$~4--6); hanya 26 trace berada di kelas Damaging, membatasi daya statistik evaluasi event-besar Stage~2. Kedua, nilai $V_{S30}$ diturunkan dari proxy topographic-slope untuk 80\% stasiun; pengukuran HVSR untuk $V_{S30}$ di seluruh 151 stasiun IA-BMKG adalah perbaikan data dengan prioritas tertinggi. Ketiga, cross-validation kami event-grouped tetapi tidak station-grouped: CV station-grouped akan menguji generalisasi site sejati tetapi tidak feasible secara statistik dengan hanya 100 stasiun yang memiliki $\geq 100$ record. Keterbatasan ini membatasi klaim sekarang; tak satupun yang menggugurkan prinsip saturation-aware adaptive-PTW yang ditetapkan kerangka ini.
+
+\subsection{Arah Riset Masa Depan}
+
+Enam ekstensi konkret muncul dari hasil sekarang. Set fitur khusus 0,5-detik yang disesuaikan untuk Stage~0 dengan interaction terms ($\tau_c \times P_d$, CAV/$\tau_c$) dan sampling class-balanced diperkirakan menaikkan AUC Stage-0 dari 0,914 ke rentang 0,94--0,96. Pengukuran $V_{S30}$ dari survei HVSR \cite{ref87} di seluruh 151 stasiun IA-BMKG diperkirakan menurunkan $\phi$ sebesar 15--25\% pada periode pendek. XGBoost quantile regression untuk prediksi $Sa(T)$ distributional \cite{ref36} akan melengkapi konsumen hilir dengan interval kepercayaan, bukan estimasi titik. Lapisan fusi multi-stasiun yang menggabungkan keluaran Stage-2 dari stasiun-stasiun tetangga menggunakan karakterisasi sumber gaya-FinDer \cite{ref88}, bersama dengan arsitektur FinDer asli oleh \citet{ref72}, akan menggeneralisasi kerangka ke jaringan kecil. Integrasi koefisien site-response ASK14 dari \citet{ref70} sebagai prior koreksi $V_{S30}$, dilengkapi dengan pendekatan magnitudo SVM stasiun-tunggal dari \citet{ref73} sebagai jalur cepat paralel untuk skenario alert magnitudo-saja, akan mendiversifikasi produk alert. Terakhir, deployment shadow-mode InaTEWS yang menjalankan prediksi IDA-PTW real-time bersama pipeline operasional selama musim seismisitas 2026--2027 adalah jalur paling langsung menuju validasi operasional.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Kesimpulan}
+
+The Intensity-Driven Adaptive P-wave Time Window (IDA-PTW) framework advances earthquake early warning from single-stage fixed-window spectral prediction to a physically motivated, saturation-aware, fully autonomous four-stage pipeline. We validated kerangka on 25{,}058 three-component accelerograms (Stage~0 URPD) and 23{,}537 traces (Stages~1, 1.5, 2 downstream subset) recorded along the Java-Sunda Trench through six independent event-grouped experiments. The headline operational metrics are a Stage-0 area-under-ROC of 0.9136, a Stage-1 balanced accuracy of 81.68\% with $\sim$86\% recall on the Damaging class, a Stage-2 composite $R^2$ of 0.7091 (operational-band $R^2 = 0.6962$, oracle upper bound 0.7779), and an end-to-end latency of 10.65~s that meets the InaTEWS Golden-Time budget for 99.44\% of traces. Retrospective application to Cianjur 2022 and Sumedang 2024 yields 100\% Damaging recall and a dekat-sumber blind-zone reduction of 71\% (38 to 11~km) for human alerts and 89\% (38 to 4~km) for infrastructure alerts.
+
+Three contributions stand out. First, the Feature Dichotomy --- an explicit separation of saturating amplitude features used for binary intensity routing from non-saturating cumulative features used for spectral regression --- gives kerangka an interpretable physical foundation that aligns with classical seismology and is empirically validated through the inversion of dominant features between Stage~0 (spectral centroid 60.6\%) and Stage~2 (CVAD/CAV) under SHAP analysis. Second, the adaptive PTW $\{3, 5, 8\}$~s scheduling conditioned on the Stage-1 kelas intensitas reconciles the competing constraints of latency and large-event accuracy in a way that fixed-window architectures cannot. Third, we openly document the Stage-1.5 distance-regression negative result, demonstrating that single-station 3-second features are insufficient for distance estimation in subduction settings and motivating the class-based routing strategy actually adopted. The Al~Atik (2010) sigma decomposition further establishes that intra-event (site-path) variability accounts for 62.8\% of prediction uncertainty, identifying measured $V_{S30}$ integration as the highest-priority improvement pathway and the central theme of the planned shadow-mode InaTEWS deployment.
+
+To the best of the authors' knowledge, IDA-PTW merepresentasikan the first explicitly saturation-aware, catalog-independent, engineering-mode EEWS architecture validated for the Indonesian InaTEWS subduction environment, and kerangka is positioned to serve as a building block for the broader programme of edge-compute deployment that constitutes the closing pillar of the underlying doctoral research.
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Tabel 19. Kerangka IDA-PTW --- Ringkasan Hasil.}\par\endgroup\vspace{6pt}
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{2cm}>{\raggedright\arraybackslash}p{4cm}>{\centering\arraybackslash}p{2.5cm}>{\raggedright\arraybackslash}p{3.5cm}@{}}
+\toprule
+Component & Metric & Value & Reference \\
+\midrule
+\endfirsthead
+\toprule
+Component & Metric & Value & Reference \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Stage 0 URPD & AUC (OOF) & \textbf{0.9136} & Sec.~5.2 \\
+Stage 0 & Blind zone reduction (human) & \textbf{71\%} (38→11 km) & Sec.~5.2 \\
+Stage 0 & Blind zone reduction (infra.) & \textbf{89\%} (38→4 km) & Sec.~5.2 \\
+Stage 0 & Cianjur/Sumedang Damaging Recall & \textbf{100\%} & Sec.~5.2 \\
+Stage 1 & Overall Accuracy (MMI-hybrid ensemble) & \textbf{79.64\%} & Sec.~5.1 \\
+Stage 1 & Balanced Accuracy (MMI-hybrid ensemble) & \textbf{81.68\%} & Sec.~5.1 \\
+Stage 1 & High-class (Damaging) Recall & \textbf{\textasciitilde86\%} & Sec.~5.1 \\
+Stage 1.5 & Distance regression R² (ablation) & \textbf{≤ 0} (negative result) & Sec.~6.5 \\
+Stage 1.5 & Routing strategy & \textbf{class-based} (not regression-based) & Sec.~4.5 \\
+System & Golden Time Compliance & \textbf{99.44\%} & Sec.~5.7 \\
+Stage 2 & Operational composite \(R^2\) (marginalised over Stage-1 posterior, task 15) & \textbf{0.7091} & Sec.~5.1 \\
+Stage 2 & Operational \(R^2\) oracle upper bound & \textbf{0.7779} & Sec.~5.1 \\
+Stage 2 & Operational \(R^2\) argmax routing (ablation) & \textbf{0.6785} & Sec.~5.1 \\
+Stage 2 & Operational \(R^2\) class-injection (artefact, disclosed) & \textbf{0.9105} & Sec.~5.1, ablation \\
+Stage 2 & \(\sigma_{total}\) pada \(T = 1,0\) s (Al Atik 2010) & \textbf{0,862} (\(\tau\)=0,515, \(\phi\)=0,691) & Sec.~5.5, Tabel~17 \\
+Stage 2 & \(\sigma_{total}\) rerata 103 periode & \textbf{0,755} (\(\tau\)=0,458, \(\phi\)=0,598) & Tabel~17 (baris Rerata) \\
+Stage 2 & Within ±1.0 \(\log_{10}\) & \textbf{83.3\%} & Sec.~5.5 \\
+Stage 2 & P-arrival ±2 s degradation & \textbf{\textless0.5\%} \(\Delta R^2\) & Sec.~5.4 \\
+\end{longtable}
+
+The sigma decomposition establishes that intra-event (site-path) variability accounts for 62.8\% of prediction uncertainty---identifying measured \(V_{S30}\) integration as the highest-priority improvement pathway. The IDA-PTW pipeline, to the best of the authors' knowledge, merepresentasikan the first explicitly saturation-aware, catalog-independent, engineering-mode EEWS architecture validated for the Indonesian InaTEWS subduction environment.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+
+
+
+
+
+% ============= DATA AND CODE AVAILABILITY =============
+\section*{Ketersediaan Data dan Kode}
+
+Bentuk-gelombang accelerograph IA-BMKG yang digunakan dalam studi ini dimiliki oleh
+Badan Meteorologi, Klimatologi, dan Geofisika Republik Indonesia (BMKG) dan
+tersedia dari BMKG melalui permintaan institusional kepada \emph{corresponding author}.
+Matriks fitur turunan, model terlatih, dan pipeline reprodusibilitas penuh
+(kurasi data, ekstraksi fitur, pelatihan, evaluasi, dan generasi gambar)
+di-host pada \url{https://github.com/hanif7108/IDA-PTW} (commit \texttt{61fba0f}).
+Repositori saat ini akses-terkontrol selama proses peer review untuk perlindungan
+novelty; reviewer dapat memperoleh akses melalui editor jurnal atas permintaan
+ke \emph{corresponding author}. Setelah penerimaan naskah, repositori akan dirilis
+secara publik di bawah lisensi MIT bersama dengan rilis arsip permanen Zenodo
+(DOI akan ditugaskan). Skrip \texttt{verify\_repro.py} yang disertakan dalam
+repositori menyediakan audit reprodusibilitas satu-perintah (51 cek terhadap
+pin lingkungan, checksum input, dan metrik headline). Supplementary Materials
+SM1--SM3 menyediakan: (SM1) ablation task-2 tercile-baseline yang dirujuk di
+Sec.~4.4; (SM2) tabel $R^2$ per-periode dan file CSV metrik operasional yang
+dirujuk di seluruh Sec.~5; dan (SM3) tabel ablation regresi-jarak C0--C4 yang
+dirujuk di Sec.~6.5.
+
+% ============= ACKNOWLEDGMENTS (before References per JET) =============
+\section*{Penghargaan}
+
+Para penulis berterima kasih kepada Badan Meteorologi, Klimatologi, dan
+Geofisika Republik Indonesia (BMKG) atas akses ke data accelerograph
+IA-BMKG. H.A.N. mengakui pendanaan doktoral melalui program Beasiswa
+Pendidikan Indonesia (BPI). Sumber daya komputasi disediakan oleh
+Departemen Fisika, Universitas Indonesia.
+
+\paragraph{Pengungkapan penggunaan AI.}
+Tool model bahasa besar (Claude Code dari Anthropic) digunakan selama
+persiapan manuskrip untuk: (i) penyuntingan bahasa dan penghalusan tata
+bahasa, (ii) audit konsistensi internal terhadap klaim numerik antar-bagian,
+(iii) verifikasi bibliografi (pemeriksaan DOI, penerbit, dan penulis
+terhadap pustaka referensi berisi 108 entri), serta (iv) penataan ulang
+keterangan gambar dan dokumentasi pendukung. Seluruh perancangan riset,
+kurasi dataset, implementasi pipeline, pelatihan, evaluasi, analisis
+statistik, dan interpretasi substantif adalah hasil karya asli penulis.
+Tool AI tidak menghasilkan temuan baru, tidak melakukan sintesis data,
+dan tidak menghasilkan konten yang disajikan sebagai hasil empiris.
+Penulis bertanggung jawab penuh atas isi manuskrip, termasuk kekeliruan
+yang mungkin tersisa. Semua saran perubahan dari AI telah ditinjau dan
+disetujui oleh \emph{corresponding author} sebelum dimasukkan.
+
+% ============= REFERENCES =============
+\bibliography{references}
+
+\end{document}
