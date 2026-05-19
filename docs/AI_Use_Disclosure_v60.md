@@ -32,7 +32,6 @@ Statement di atas memenuhi:
 | ICMJE Recommendations 2024 | AI tools tidak boleh listed as authors; disclosed in acknowledgments | ✅ |
 | Elsevier "Use of AI" Policy | Specify AI tool name + scope of use | ✅ |
 | Springer Nature AI Policy | Confirm authors take responsibility | ✅ |
-| IEEE AI Policy | Distinguish AI-editing dari AI-generated content | ✅ |
 | arXiv AI Guidelines 2024 | Disclose AI-assisted writing | ✅ |
 
 Statement mencakup 4 elemen wajib best-practice 2026:
