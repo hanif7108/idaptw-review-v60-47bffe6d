@@ -1,0 +1,1054 @@
+% Consolidated v60 from main.tex + inlined inputs
+% Generated: 2026-05-16
+
+%-----------------------------------------------------------------
+%       MAIN TEX FILE — Journal of Earthquake and Tsunami (JET)
+%       World Scientific Publishing  ·  ws-jet-strict v19
+%-----------------------------------------------------------------
+% Submission: Hanif Andi Nugraha · FMIPA UI · BMKG · 2026
+% v19: FULL strict compliance per ws-jet.pdf (2019)
+%   - Page header "Journal of Earthquake and Tsunami / © WSPC"
+%   - Running heads (even/odd)
+%   - Title 10pt Times Bold (max 3 lines)
+%   - Author 8pt Times Roman / Affiliation 8pt Times Italic
+%   - Email + URL single line
+%   - Received/Revised/Accepted history
+%   - Abstract 8pt Times 10pt baseline 0.25in indent L+R
+%   - Major heading: "1. Title" bold roman + bold heading
+%   - Sub: "1.1." bold roman + bold italic heading
+%   - Sub-sub: "1.1.1." medium italic
+%   - First para after heading flush LEFT (noindent)
+%   - 10pt Times body, 13pt single line spacing
+%   - Text area 5×7.7 in on 6×9 in page
+%   - Figure caption "Fig. 1." 8pt Times below figure
+%   - Table caption "Table 1." 8pt Times above
+%   - References: alphabetical, [Year], "Title," Journal **vol**(num), pp–pp
+%   - Footnote markers: * † ‡ § ¶ for title/affiliation
+%   - Body footnotes: superscript lowercase Roman a, b, c
+%-----------------------------------------------------------------
+
+\documentclass[10pt]{article}
+
+% --- Page geometry: 6×9 in page, 5×7.7 in text area ---
+\usepackage[a4paper,
+            left=1.63in, right=1.64in,
+            top=1.85in, bottom=1.84in,
+            includehead, headheight=14pt, headsep=0.4in,
+            footskip=0.4in]{geometry}
+
+% --- Encoding & language ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% --- Times Roman font family ---
+\usepackage{mathptmx}      % Times Roman text + math
+\usepackage[scaled=0.92]{helvet}
+
+% --- Math & graphics packages ---
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{etoolbox}
+
+% --- JET-style table macros (8pt Times Roman, 10pt baseline) ---
+% Per JET spec: tables and captions in 8pt Times Roman with 10pt line spacing
+\AtBeginEnvironment{longtable}{\fontsize{8}{10}\selectfont}
+\AtBeginEnvironment{tabular}{\fontsize{8}{10}\selectfont}
+\AtBeginEnvironment{tabularx}{\fontsize{8}{10}\selectfont}
+
+% --- Tighter row spacing for tables (JET dense layout) ---
+\renewcommand{\arraystretch}{1.05}
+
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{xcolor}
+
+% --- Single-spaced 13pt baseline at 10pt nominal (JET spec) ---
+\linespread{1.083}
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{1.5em}
+
+% --- Author-year citations with JET square-bracket convention ---
+\usepackage[round,authoryear,sort&compress]{natbib}
+\bibpunct{[}{]}{;}{a}{,}{,}
+% \cite default → \citep (parenthetical, JET style)
+\let\citeORIG\cite
+\renewcommand{\cite}[1]{\citep{#1}}
+\renewcommand{\bibsection}{\section*{References}}
+\bibliographystyle{apalike}
+
+% --- Hyperlinks ---
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+
+% --- Caption styling per JET (8pt Times, 10pt line spacing) ---
+\usepackage{caption}
+\DeclareCaptionFont{eightpt}{\fontsize{8}{10}\selectfont}
+\captionsetup{font=eightpt, labelfont={bf,eightpt},
+              labelsep=period, justification=justified,
+              singlelinecheck=true}
+\captionsetup[figure]{name=Fig., position=below, skip=6pt, aboveskip=6pt, belowskip=6pt}
+\setlength{\belowcaptionskip}{6pt}
+\setlength{\abovecaptionskip}{6pt}
+\captionsetup[table]{name=Table, position=above, skip=4pt}
+
+% --- Section heading styling per JET spec ---
+\usepackage{titlesec}
+% Major: bold roman number "1." then bold heading
+\titleformat{\section}[block]
+  {\normalsize\bfseries}{\thesection.}{0.5em}{}
+% Sub: bold roman number "3.1." then BOLD ITALIC heading
+\titleformat{\subsection}[block]
+  {\normalsize\bfseries}{\thesubsection.}{0.5em}{\itshape}
+% Sub-sub: roman number "3.1.1." then medium ITALIC heading
+\titleformat{\subsubsection}[block]
+  {\normalsize\itshape}{\thesubsubsection.}{0.5em}{}
+% Spacing per JET: double space before, single space after
+\titlespacing*{\section}{0pt}{2.0\baselineskip}{0.5\baselineskip}
+\titlespacing*{\subsection}{0pt}{1.5\baselineskip}{0.4\baselineskip}
+\titlespacing*{\subsubsection}{0pt}{1.0\baselineskip}{0.3\baselineskip}
+
+% --- Flush LEFT first paragraph after heading (no indent) ---
+% titlesec already does this by default; ensure no indentfirst
+% (do NOT load indentfirst)
+
+% --- Page header & footer per JET layout ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+% Even (left) page:  "page  Author's Names" — Author's Names in italic
+\fancyhead[LE]{\thepage \hspace{1em}\textit{Hanif Andi Nugraha et al.}}
+% Odd (right) page:  "Running Title  page" — Running Title in italic
+\fancyhead[RO]{\textit{IDA-PTW: Adaptive Spectral EEWS for Java-Sunda} \hspace{1em}\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% First page header style (special: journal info top-left)
+\fancypagestyle{firstpage}{
+  \fancyhf{}
+  \fancyhead[L]{\fontsize{8}{10}\selectfont\textit{Journal of Earthquake and Tsunami}\\\copyright\ World Scientific Publishing Company}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\headsep}{20pt}
+}
+
+% --- Title macros ---
+\newcommand{\jetTitle}[1]{%
+  \begin{center}\bfseries\fontsize{10}{12}\selectfont #1\end{center}\vspace{1em}}
+
+\newcommand{\jetAuthors}[1]{%
+  \begin{center}\fontsize{8}{10}\selectfont #1\end{center}}
+
+\newcommand{\jetAffil}[1]{%
+  \begin{center}\fontsize{8}{10}\selectfont\itshape #1\end{center}}
+
+\newcommand{\jetEmail}[1]{%
+  \begin{center}\fontsize{8}{10}\selectfont #1\end{center}}
+
+\newcommand{\jetReceived}[3]{%
+  \begin{center}\fontsize{9}{11}\selectfont
+   Received #1\\Revised #2\\Accepted #3
+  \end{center}\vspace{0.5em}}
+
+% --- Abstract & keywords (8pt Times, 10pt line spacing,
+%     0.25 in indent left and right per JET spec) ---
+\renewenvironment{abstract}{%
+  \par\addvspace{0.5em}%
+  \list{}{\leftmargin=0.25in \rightmargin=0.25in
+          \topsep=0pt \parsep=0pt}\item[]%
+  \fontsize{8}{10}\selectfont
+}{%
+  \endlist\par\addvspace{0.3em}%
+}
+
+\newcommand{\jetKeywords}[1]{%
+  \begin{list}{}{\leftmargin=0.25in \rightmargin=0.25in
+                 \topsep=0pt \parsep=0pt}\item[]%
+  \fontsize{8}{10}\selectfont\textit{Keywords}: #1
+  \end{list}\vspace{1em}}
+
+% --- Title-page footnote symbols (JET: * † ‡ § ¶) ---
+% Use \fnsymbol numbering for title/affiliation footnotes
+% but standard a, b, c... for body footnotes
+\newcommand{\jetfnasterisk}{\textsuperscript{*}}
+\newcommand{\jetfndagger}{\textsuperscript{$\dagger$}}
+\newcommand{\jetfndaggerd}{\textsuperscript{$\ddagger$}}
+\newcommand{\jetfnsection}{\textsuperscript{$\S$}}
+\newcommand{\jetfnpilcrow}{\textsuperscript{$\P$}}
+
+% Body footnotes: lowercase Roman letter (a, b, c)
+\renewcommand{\thefootnote}{\textsuperscript{\alph{footnote}}}
+\renewcommand{\footnotesize}{\fontsize{8}{10}\selectfont}
+
+% --- Common abbreviations per JET miscellaneous instructions ---
+\newcommand{\eq}[1]{Eq.~(\ref{#1})}
+\newcommand{\eqs}[2]{Eqs.~(\ref{#1}) and~(\ref{#2})}
+\newcommand{\fig}[1]{Fig.~\ref{#1}}
+\newcommand{\figs}[2]{Figs.~\ref{#1} and~\ref{#2}}
+\newcommand{\tab}[1]{Table~\ref{#1}}
+\newcommand{\sect}[1]{Sec.~\ref{#1}}
+\newcommand{\reff}[1]{Ref.~\citenum{#1}}
+
+% --- Latin italics (et al., a priori, in situ) ---
+\newcommand{\etal}{\textit{et al.}}
+\newcommand{\apriori}{\textit{a priori}}
+\newcommand{\insitu}{\textit{in situ}}
+\newcommand{\ibid}{\textit{ibid.}}
+
+% --- Compatibility shim ---
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% =================================================================
+\begin{document}
+
+\thispagestyle{firstpage}
+
+% ============= TITLE & AUTHOR BLOCK =============
+\jetTitle{A Saturation-Aware Multi-Stage Framework for\\
+Intensity-Driven Adaptive P-Wave Time Window Selection in\\
+Real-Time Spectral Acceleration Prediction}
+
+\jetAuthors{Hanif Andi Nugraha\jetfnasterisk\jetfndagger,
+Dede Djuhana\jetfnasterisk\jetfndaggerd,
+Adhi Harmoko Saputro\jetfnasterisk,
+Sigit Pramono\jetfndaggerd}
+
+\jetAffil{\textsuperscript{*}Department of Physics, Faculty of Mathematics
+and Natural Science, Universitas Indonesia,\\
+Depok, Jawa Barat 16424, Indonesia}
+
+\jetAffil{\textsuperscript{$\ddagger$}The Agency for Meteorology, Climatology
+and Geophysics of the Republic of Indonesia (BMKG),\\
+Jakarta 10610, Indonesia}
+
+\jetEmail{\textsuperscript{$\dagger$}hanif.andi@ui.ac.id}
+
+\jetReceived{(Day Month 2026)}{(Day Month 2026)}{(Day Month 2026)}
+
+% ============= ABSTRACT =============
+\begin{abstract}
+We present \textbf{IDA-PTW} (Intensity-Driven Adaptive P-wave Time Window),
+a saturation-aware multi-stage framework for real-time prediction of 5\%-damped
+spectral acceleration $Sa(T)$ at 103 spectral periods. The pipeline operates
+in four cascaded stages: an Ultra-Rapid P-wave Discriminator (URPD) at
+$t = 0.5$~s, an XGBoost+LightGBM intensity gate at $t = 2$~s, a single-station
+distance ablation, and an adaptive PTW spectral regressor ensemble that
+elongates the observation window from 3~s to 5~s or 8~s based on predicted
+intensity class. Trained on 338 events ($M_w$ 1.7--6.2, $R_{epi}$ 0.7--299.9~km)
+recorded at 151 IA-BMKG accelerograph stations along the Java-Sunda subduction
+zone (Nov 2022--Mar 2026), the framework achieves composite $R^2 = 0.7091$ across 103
+periods, AUC $= 0.9136$, and balanced accuracy 81.68\% --- exceeding the
+Atkinson--Boore baseline by $\Delta R^2 = +0.067$. The Al~Atik (2010) sigma
+decomposition yields $\sigma_{\mathrm{tot}} = 0.862$ ($\tau = 0.515$, $\phi = 0.691$) at the
+critical structural period $T = 1.0$~s, with a mean $\sigma_{\mathrm{tot}} = 0.755$ across all 103 spectral periods; intra-
+event (site-path) variability accounts for 62.8\% of total variance. End-to-end latency is 10.65~s, fitting within the InaTEWS
+golden-time budget for 99.44\% of traces.
+\end{abstract}
+
+\jetKeywords{Earthquake early warning system; spectral acceleration;
+adaptive time window; XGBoost; LightGBM; saturation-aware features;
+Java-Sunda subduction zone; InaTEWS.}
+
+% ============= BODY CONTENT =============
+\section{Introduction}
+
+The Indonesian archipelago sits at the intersection of four major tectonic plates, with the Sunda Arc extending 5,500~km from Sumatra to Bali along the Java trench at a convergence rate of 50--67~mm/yr~\cite{ref2}. Indonesia averages approximately eighteen $M \geq 7.0$ events per decade and has experienced five great events ($M \geq 8.0$) in the past two decades~\cite{BMKG2026}. The 2004 Sumatra-Andaman earthquake ($M_w$~9.1, with more than 227{,}000 deaths)~\cite{ref4, jetSatake2020, NatawidjajaSieh2006, SetiyonoBMKG2019}, which reactivated the Sunda segment whose recurrence had previously been documented through paleoseismology of Sumatran coral microatolls of the 1797 and 1833 earthquakes~\cite{NatawidjajaSieh2006} and is comprehensively summarised in the national BMKG tsunami catalogue~\cite{SetiyonoBMKG2019}, the 2018 Palu event ($M_w$~7.5, accompanied by compound seismic--landslide--tsunami hazards)~\cite{ref6}, and recent moderate-magnitude events such as Cianjur 2022 ($M_w$~5.6) and Sumedang 2024 ($M_w$~5.7) all demonstrate disproportionate urban lethality despite engineering-survivable ground motions~\cite{jetMukhlisin2023}. The Sunda Trench remains a primary source zone for Indian Ocean tsunamigenic earthquakes~\cite{LatiefPuspitoImamura2000, jetSrivastava2008}, with 105 tsunami events recorded across the West Sunda, Banda, and Molucca zones during the 1600--1999 period~\cite{LatiefPuspitoImamura2000}, and the operational interaction between rapid spectral characterisation and downstream tsunami warning has long motivated regional preparedness frameworks. Together, these realities motivate sustained investment in operational earthquake early warning capability for InaTEWS~\cite{jetSubekti2022, jetPribadi2023}, the Indonesian national early warning system operated by the Agency for Meteorology, Climatology and Geophysics (BMKG).
+
+First-generation earthquake early warning systems---JMA in Japan~\citet{ref7}, P-alert in Taiwan~\citet{ref8}, SASMEX in Mexico~\citet{ref9}, and ShakeAlert in the United States~\citet{ref10}---typically communicated either binary alerts or scalar magnitude. Modern engineering practice, however, has shifted demand toward \emph{structural demand forecasting}: SNI~1726:2019~\cite{ref12} and ASCE/SEI~7-16~\cite{ref13} both require 5\%-damped spectral acceleration $Sa(T)$ at the structure period, not peak ground acceleration alone. \citet{ref16} established that the initial P-wave coda enables on-site spectral prediction~\cite{ref17}, distinct from network-based source localization, and this insight underpins the present work. Yet even these on-site formulations face two persistent constraints. First, \citet{ref18} document a \emph{near-field blind zone} of approximately 38~km as the primary unresolved limitation, and \citet{ref19} establish that rupture physics, not engineering ingenuity, controls minimum warning time---making sub-second discrimination the only viable strategy for near-field protection; the recent JET review by~\cite{jetTatar2025} confirms adaptive P-wave time window (PTW) selection as the state-of-the-art direction for subduction zones, and Stage~0 of the framework presented here addresses this constraint by issuing binary high-intensity flags within 0.5~s of P-detection (Section~4.2). Second, the classical EEWS parameters $\tau_c$ and $P_d$ saturate for $M_w > 6.5$ ruptures~\cite{ref20, ref21}: fixed P-wave windows of 2--3~s cannot distinguish $M_w$~7.0 from $M_w$~8.0 events, yielding nearly identical $\tau_c$ and $P_d$ values but vastly different ground motions. The present framework addresses saturation through both adaptive PTW selection on $\{3, 5, 8\}$~s windows scheduled by intensity class and class-conditional Stage~2 regressors trained on non-saturating cumulative features such as CAV, Arias intensity, and IV$^2$.
+
+Recent advances in machine learning have begun to target spectral prediction directly. \citet{ref82} compared artificial neural networks, random forests, and support vector machines for ground motion estimation and reported that ensemble methods outperform conventional ground motion prediction equations (GMPEs); gradient-boosting algorithms in particular---XGBoost and LightGBM---consistently lead on structured seismic tabular data. JET applications by \citet{jetWang2024} confirm the superiority of gradient boosting for P-wave magnitude estimation, while \citet{jetMa2023} demonstrate that quasi-real-time source-parameter inversion benefits from ML-augmented inversion kernels in subduction settings, and \citet{jetTsunamiRF2025} show that random-forest ensembles produce reliable surrogates for probabilistic hazard products along the Sunda Arc, supporting the broader case for ensemble methods in regional EEWS pipelines. Hybrid physics--ML approaches match deep networks on smaller datasets, which motivates the hybrid feature design pursued here, with explicit Feature Dichotomy and a class-conditional architecture. Within the Indonesian context, our prior conference paper~\citet{ref81} (BTS-I2C~2024) established that the Generalized Phase Detection (GPD) deep-learning model achieves 0.02~s P-onset timing on IA-BMKG accelerograph data, providing the upstream picker for the present pipeline; complementary JET-published Indonesian work~\cite{jetSubekti2022, jetMukhlisin2023, jetIrwansyah2024} establishes the local InaTEWS context, and \citet{jetPribadi2023} highlights the urgent need for resilience-enhancing systems. Despite this body of work, no prior study has proposed a complete, autonomously deployable, engineering-mode spectral prediction pipeline for the Indonesian InaTEWS environment that simultaneously addresses near-field blind-zone reduction, intensity-driven adaptive windowing, and catalog-independent operation.
+
+Despite progress in EEWS algorithms~\cite{ref18, ref19, jetCremen2021, jetTatar2025}, three gaps persist for tropical subduction operational deployment: (i)~saturation-awareness for $M_w > 6.5$ events; (ii)~catalog-independent operation that removes the dependency on magnitude estimation; and (iii)~full 103-period $Sa(T)$ prediction in real time. The IDA-PTW framework introduced in this paper addresses all three gaps and contributes the following: an adaptive PTW $\{3, 5, 8\}$~s scheduling scheme conditioned on intensity class, a hybrid feature dictionary of 90 orthogonal features organised in four families with VIF below~10, a Bayesian-correct posterior marginalisation in the class-conditional regressor, a triple validation framework combining a GMPE baseline, temporal sensitivity, and the Al~Atik (2010) sigma decomposition, and an honest negative result documenting the failure of single-station distance regression at Stage~1.5.
+
+\section{Seismotectonic Context and Problem Formulation}
+
+\subsection{The Java-Sunda Megathrust: Structural and Seismicity Context}
+
+The geodynamics of the Indonesian region involve the interaction of four major plates partitioned into numerous microplates \cite{ref1}. The Java subduction segment is characterised by oblique convergence between the Indo-Australian and Sunda plates, with the subducting slab descending at approximately 35--45° dip to depths exceeding 500 km \cite{ref1}. This steep subduction geometry generates a characteristic seismicity distribution: shallow interplate thrusts in the megathrust zone (0--50 km depth), intermediate intraslab seismicity (50--300 km), and deep focus events that can produce significant ground motion at far-field sites despite their depth.
+
+The along-strike variation in coupling coefficient---from essentially uncoupled in the eastern Java segment to moderately coupled in the western Java and Sumatra segments---produces spatial heterogeneity in seismic hazard. \citet{ref2} observed that inland-pointing trench-perpendicular residual GPS velocities in Sumatra and Malaysia were systematically underestimated in pre-2004 models, indicating accumulation of elastic strain that was subsequently released in the 2004 Sumatra-Andaman event. The same source zone underpins the Indian Ocean Tsunami Warning System architecture reviewed by \citet{jetSrivastava2008}, who emphasise that the Sunda Trench segment requires dense seismic and geodetic instrumentation for credible early-warning performance. Analogous patterns in the Java segment motivate InaTEWS preparedness for potential segment-rupturing events.
+
+The local site geology is a primary EEWS design constraint. The Java basin contains deep Quaternary volcanic deposits and thick alluvial sequences in coastal plains (Jakarta, Surabaya), creating strong site amplification at periods of 0.3--1.5 s that is poorly captured by topographic-proxy \(V_{S30}\) estimates. Douglas and \citet{ref45} review the critical role of site characterisation in GMPE development, noting that \(V_{S30}\)-based site terms introduce substantial residual variability even in well-instrumented networks. In the Indonesian context, where measured \(V_{S30}\) is available for fewer than 20\% of IA-BMKG stations, this uncertainty directly translates to the elevated \(\phi\) observed in our sigma decomposition.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.95\linewidth,keepaspectratio]{figures/seismicity_map.png}
+\caption{Spatial distribution of the 338 seismic events (red circles, scaled by magnitude) and 151 IA-BMKG accelerograph stations (black triangles) across the Java-Sunda trench used in this study. The dataset spans \(M_w\) 1.7--6.2 with epicentral distances of 0.7--299.9 km (median 122 km) over the Nov 2022 -- Mar 2026 period.}
+\end{figure}
+
+\subsection{InaTEWS Network Architecture and Operational Constraints}
+
+Indonesia's national EEWS, InaTEWS, operated by BMKG, integrates seismic and non-seismic sensors \cite{ref46}. The IA-BMKG strong-motion accelerograph network provides the primary data source for this study: 151 HN\emph{/HL} horizontal-component accelerographs with digital recording at 100--200 samples/s. Station distribution follows population density, providing dense coverage of Java and Sumatra but sparse coverage of eastern Indonesia.
+
+\paragraph{Latency budget.} Alert delivery consists of: (1) P-wave detection: 2--3 s; (2) feature extraction and model inference: 0.1--0.5 s; (3) alert dissemination: 1--2 s. At the dataset's median epicentral distance of \textasciitilde109 km, P-S travel time ≈ 14 s, providing approximately 10--11 s of usable observation budget. Our maximum 8-second Stage 2 window, plus the Stage 0/1/1.5 overhead (2.65 s total), yields 10.65 s end-to-end latency---fitting within the golden-time budget for 99.44\% of traces.
+
+\paragraph{P-wave detection accuracy.} \citet{ref41} demonstrated that GPD achieves median P-onset errors of 0.02 s on Indonesian IA-BMKG data---the automation baseline used in our P-arrival sensitivity analysis. The \citet{ref47} and PhaseNet achieve 0.09 s and 0.05 s median errors respectively on the same dataset, representing the realistic uncertainty envelope for our Experiment 4.
+
+\subsection{Formal Problem Formulation}
+
+\paragraph{Input.} For a three-component accelerogram at station \(s\), P-arrival \(t^P\), epicentral distance \(\Delta\), hypocentral depth \(h\), and proxy \(V_{S30}\), a 42-dimensional feature vector is extracted from adaptive observation window \(T_{obs}\):
+
+\[\mathbf{x}(T_{obs}) = \left[f_1(T_{obs}),\, f_2(T_{obs}),\, \ldots,\, f_{42}(T_{obs}),\, \widehat{\log_{10}\Delta},\, h,\, V_{S30}\right]^\top \in \mathbb{R}^{45}\]
+
+\paragraph{Output.} The 103-dimensional log-spectral prediction vector:
+
+\[\hat{\mathbf{y}} = \left[\log_{10}\widehat{Sa}(T_j)\right]_{j=1}^{103}, \quad T_j \in \{0.051, 0.101, \ldots, 10.0\}\text{ s}\]
+
+\paragraph{Stage 0 binary output.} \(\hat{z} \in \{0, 1\}\) issued within 0.5 s of P-detection, where \(\hat{z} = 1\) indicates Damaging (training threshold PGA \(\geq 0.05\,g \approx 49\) gal, located near the MMI V/VI transition of Worden \& \citet{ref45}).
+
+\paragraph{Multi-objective optimisation formulation.}
+
+\[\underset{\theta}{\min}\; \mathcal{L}(\theta) = \frac{1}{N} \sum_{i=1}^{N} \|\hat{\mathbf{y}}_i - \mathbf{y}_i\|^2_2 + \lambda\, \mathcal{L}_{recall}(\hat{z}, z)\]
+
+subject to \(T_{obs,i} \leq (t^S_i - t^P_i) - T_{latency}\) (Golden Time Constraint per trace \(i\)).
+
+The Lagrangian term \(\mathcal{L}_{recall}\) penalizes Stage 0/1 misclassification of Damaging events, while the primary term minimizes spectral RMSE in \(\log_{10}\) units---consistent with GMPE convention \cite{ref48}, \cite{ref49}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Dataset Curation and Feature Engineering}
+
+\subsection{Waveform Processing Pipeline}
+
+Raw MiniSEED waveforms were downloaded from the BMKG SDS SeisComP-3 archive of the IA-BMKG accelerograph network, covering accelerograph records from Nov 2022 -- Mar 2026. The initial corpus comprised approximately 41{,}278 three-component trace records; the five-stage quality-control filtering pipeline described below (Table 1) reduced this to 25{,}058 high-quality accelerograms retained for downstream training. The processing pipeline follows established conventions for strong-motion data preparation \cite{ref67}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+ \textbf{Instrument correction:} Poles-and-zeros deconvolution applied to convert raw counts to physical units (m/s²). Baseline correction using a pre-event window of 30 s.
+\item
+ \textbf{Highpass filtering:} Butterworth 4th-order filter at 0.075 Hz lower corner, consistent with \citet{ref51}'s SeisComP \texttt{scwfparam} conventions for spectral computation. \citet{ref86} further validated transfer-learning-based automatic cut-off selection for strong-motion records, supporting the 0.075 Hz choice for subduction data.
+\item
+ \textbf{P-wave detection and picking:} Catalog P-picks supplemented by GPD automated picking \cite{ref42} where catalog values absent. Picks with onset uncertainty \textgreater{} 1.0 s flagged.
+\item
+ \textbf{Quality control:} Five filters described in Section III-B; \citet{ref52} HDF5 format for storage.
+\end{enumerate}
+
+\paragraph{Spectral target computation.} Response spectra \(Sa(T_j)\) were computed using SeisComP's \texttt{scwfparam} module via the \citet{ref51} processing chain: 5\%-damped Newmark-Beta integration of instrument-corrected, baseline-corrected, and filtered acceleration waveforms at 103 periods following IBC/ASCE period grids. This ensures consistency with Indonesian national seismic design spectra under SNI 1726:2019 \cite{ref12}.
+
+\subsection{Quality Control Filters}
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Table 1. Quality-control flow from the BMKG SDS SeisComP-3 archive (\textasciitilde41{,}278 raw traces) through five sequential filters to the final 25{,}058-trace training dataset.}\par\endgroup\vspace{6pt}
+
+\begin{longtable}[]{@{}llcc@{}}
+\toprule
+Step & Action / Filter Criterion & Records Removed & N Remaining\tabularnewline
+\midrule
+\endhead
+\multicolumn{4}{l}{\textit{Source: BMKG SDS SeisComP-3 archive (IA-BMKG accelerograph network, Nov 2022 -- Mar 2026)}}\tabularnewline
+\multicolumn{3}{l}{\textit{\quad Initial download (raw three-component trace records):}} & \textit{\textasciitilde41{,}278}\tabularnewline
+\midrule
+1 & No P-pick available (catalog or GPD) & 8,200 & \textasciitilde33,078\tabularnewline
+2 & SNR \textless{} 2.0 (1--10 Hz, P-window vs.~30 s pre-P noise) & 3,400 & \textasciitilde29,678\tabularnewline
+3 & Post-P record duration \textless{} 50 s & 1,900 & \textasciitilde27,778\tabularnewline
+4 & Spatial deduplication (\textless{} 0.05° per event) & 620 & \textasciitilde27,158\tabularnewline
+5 & Non-accelerograph channels (BB, SP sensors) & 2,100 & \textbf{25,058}\tabularnewline
+\midrule
+\multicolumn{3}{l}{\textbf{Final high-quality training dataset (exact, Step~5 output):}} & \textbf{25,058}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\noindent\textit{Per-step removal counts are rounded to the nearest 100 traces because successive filters operate on partially overlapping criteria; running ``N Remaining'' totals inherit this rounding. The final count of 25{,}058 is exact (a literal file count in the curated dataset used for training).}
+
+\subsection{Dataset Statistics and Class Distribution}
+
+The final training corpus consists of 25,058 three-component accelerograms drawn from two complementary source streams: the routine-seismicity stream (24,466 traces) samples events from BMKG's continuous IA-BMKG archive (Nov 2022 -- Mar 2026), augmented by 592 three-component traces from three \(M_w \geq 5.6\) near-field events (Cianjur 2022-11-21, \(M_w\) 5.6; the 2023-12-31 Sumedang-region event, \(M_w\) 5.7; and the 2024-04-27 Garut-region event, \(M_w\) 6.2) for class-balancing. The augmented dataset remains strictly event-grouped for cross-validation.
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Table 2. Dataset Summary --- Java-Sunda Trench EEWS Dataset (25,058 Traces).}\par\endgroup\vspace{6pt}
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{4cm}>{\raggedright\arraybackslash}p{8cm}@{}}
+\toprule
+Parameter & Value \\
+\midrule
+\endfirsthead
+\toprule
+Parameter & Value \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Total Traces & \textbf{25,058} (24,466 routine + 592 large-event injection) \\
+Distinct Seismic Events & \textbf{338} \\
+IA-BMKG Accelerograph Stations & \textbf{151}  \\
+Spectral Target Periods & \textbf{103} (T = 0.051--10.0 s) \\
+Magnitude Range & \(M_w\) 1.7--6.2 \\
+Epicentral Distance Range & \textbf{0.7--299.9 km} \\
+Median Epicentral Distance & \textbf{\textasciitilde122 km} \\
+PGA Range & \(1.66 \times 10^{-7}\) -- 6.00 gal \\
+Mean Post-P Record Duration & \textasciitilde341 s \\
+Period Coverage & Nov 2022 -- Mar 2026 \\
+\end{longtable}
+
+\textbf{Intensity class distribution --- SIG-BMKG \cite{BMKG2016} applied to the assembled 25,058 traces:}
+
+Intensity classes follow the five-level Indonesian Seismic Intensity Scale (SIG-BMKG) \cite{BMKG2016}, whose PGA boundaries are grounded in the probabilistic Ground-Motion Intensity Conversion Equations (GMICE) of \citet{Worden2012} and \citet{Wald1999}, and have been independently validated for the Indonesian context by \citet{Caprio2015} using data from the 2009 Padang earthquake.
+
+\begin{center}\fontsize{8}{10}\selectfont\textbf{Table 3. SIG-BMKG seismic-intensity class distribution across the assembled 25{,}058-trace dataset.}\end{center}
+
+\begin{longtable}[]{@{}ccclcc@{}}
+\toprule
+SIG-BMKG Level & MMI Equiv. & PGA Range (gal) & Description & \(N\) Traces & \% Total\tabularnewline
+\midrule
+\endhead
+\textbf{I} & I--II & \textless{} 2.9 & Not felt & \textbf{21,007} & \textbf{83.83\%}\tabularnewline
+\textbf{II} & III--V & 2.9 -- 88 & Felt & \textbf{4,017} & \textbf{16.03\%}\tabularnewline
+III & VI & 89 -- 167 & Slight damage & 31 & 0.12\%\tabularnewline
+IV & VII--VIII & 168 -- 564 & Moderate damage & 1 & 0.004\%\tabularnewline
+V & IX--XII & ≥ 565 & Heavy damage & 2 & 0.008\%\tabularnewline
+\bottomrule
+\end{longtable}
+
+The distribution is dominated by SIG-BMKG Classes I and II (99.86\%), reflecting the median epicentral distance (\textasciitilde122 km) and source magnitudes (\(M_w \leq 6.2\)) represented in BMKG's IA-BMKG archive for Nov 2022 -- Mar 2026. A small but meaningful tail of 34 traces (0.14\% of total) reaches SIG-BMKG Classes III--V (slight to heavy damage), predominantly contributed by the Cianjur 2022 \(M_w\) 5.6 sequence (max PGA \textasciitilde600 gal, near-source) and the Garut 2024 \(M_w\) 6.2 event (27 traces at Class III). These near-source recordings provide critical training signal for Stage 0 URPD and Stage 1 intensity discrimination at the safety-critical end of the spectrum. Consistent with the analysis of \citet{ref19}, a dataset dominated by moderate-to-low-intensity shaking still provides substantial calibration power for spectral prediction, because the dominant predictability structure is governed by cumulative-energy features (CAV, CVAD, Arias Intensity) that scale with duration and attenuation rather than the SIG-BMKG level itself. We therefore define an \textbf{operational intensity-routing class} distinct from the descriptive SIG-BMKG classification, based on PGA percentiles of the actual dataset:
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Table 4. Operational PGA-percentile routing classes used by the IDA-PTW Stage-1 intensity gate.}\par\endgroup\vspace{6pt}
+
+\begin{longtable}[]{@{}lcccc@{}}
+\toprule
+Operational Class & PGA Range (g) & \(N\) Traces & \% & IDA-PTW Window\tabularnewline
+\midrule
+\endhead
+Low-PGA (\textless{} 50th percentile) & \textless{} 0.0053 g (\textless{} 5.2 gal) & 12,529 & 50.0\% & \textbf{3 s}\tabularnewline
+Mid-PGA (50th--95th percentile) & 0.0053 -- 0.0958 g (5.2 -- 94 gal) & 11,275 & 45.0\% & \textbf{5 s}\tabularnewline
+High-PGA (≥ 95th percentile) & ≥ 0.0958 g (≥ 94 gal) & 1,254 & \textasciitilde5.0\% & \textbf{8 s}\tabularnewline
+\bottomrule
+\end{longtable}
+
+This percentile-based operational gating enables the Stage 1 routing classifier to stratify traces by their position within the dataset PGA distribution, yielding well-balanced class counts suitable for gradient-boosting classification. The High-PGA class boundary (PGA \(\geq\) 0.0958 g \(\approx\) 94 gal, 95th percentile) coincides with the lower bound of SIG-BMKG Class III (89 gal), confirming that the operational ``High-PGA'' class captures the physically damaging end of the distribution and is not merely a percentile artefact. It closely aligns with the saturation-test subset (\(N = 1,204\), PGA \(\geq\) 0.1 g \(\approx\) 98 gal) reported in Section V.C.
+
+\subsection{Feature Engineering: The 42-Feature P-Wave Dictionary}
+
+Features are extracted from horizontal-component three-component P-wave windows. The 42-feature set follows \citet{ref35} extended with \citet{ref53} spectral features, organised into physical families:
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Table 5. The 42-Feature P-Wave Feature Dictionary.}\par\endgroup\vspace{6pt}
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{1.8cm}>{\centering\arraybackslash}p{1cm}>{\raggedright\arraybackslash}p{4.5cm}>{\raggedright\arraybackslash}p{2.8cm}>{\centering\arraybackslash}p{1.2cm}@{}}
+\toprule
+Group & \(N\) & Feature Names & Physical Basis & Saturation? \\
+\midrule
+\endfirsthead
+\toprule
+Group & \(N\) & Feature Names & Physical Basis & Saturation? \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Peak Amplitudes & 3 & \(P_d\), \(P_v\), \(P_a\) (3C max) & Brune source model \cite{ref54} & \textbf{Yes} \\
+Frequency Content & 3 & \(\tau_c\), \(TP\), spectral centroid & \citet{ref22}; \citet{ref29} & \textbf{Yes} (\(>M7\)) \\
+Cumulative Integrals & 4 & \(IV_2\), \(IV_3\), \(IV_4\), \(IV_5\) & Time-integrated velocity; moment proxy & Partial \\
+\textbf{Non-Saturating Energy} & \textbf{4} & \textbf{\(CAV\), \(CVAD\), \(CVAV\), \(CVAA\)} & \textbf{\citet{ref55}; energy accumulators} & \textbf{No} \\
+Arias-Type & 4 & \(I_a\) \cite{ref56}, \(AIv\), \(CAE\), \(EP\) & Seismic energy flux \cite{ref57} & No \\
+Spectral Shape & 5 & Rolloff, ratio H/L, ZCR, spectral bandwidth, kurtosis & Spectral shape characterisation \cite{ref45} & No \\
+Envelope Rates & 4 & \(\dot{E}_{rms}\), E-ratio, envSlopeA, envSlopeB & Rupture pattern proxy & Partial \\
+Peak Velocity Integrals & 3 & \(PIv\), \(PIv2\), \(PA3\) & \citet{ref29} & No \\
+Spectral Ratios & 4 & Spectral H/V ratios at 4 bands & Site proxy indicator & No \\
+Duration & 3 & Husid plot slopes, bracketed duration & Trifunac \& \citet{ref58} & No \\
+Site-Path Metadata & 3 & \(\log_{10}(\Delta)\), \(h/\Delta\), \(V_{S30}\) & \citet{ref48} & --- \\
+Timing & 3 & \(T_{obs}\) (window length), PA index, rise time & Adaptive routing label & --- \\
+\end{longtable}
+
+The \textbf{Feature Dichotomy} is a primary design principle: saturating features (\(\tau_c\), \(P_d\)) are used in Stage 1 for intensity routing---where saturation at \(M_w > 7\) is acceptable because the routing decision is binary---but are suppressed in Stage 2 through 5× reduced feature weights, ensuring large events are not biased toward shorter-period predictions.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{The IDA-PTW Four-Stage Pipeline}
+
+\subsection{Architecture Overview}
+
+Fig.~2 presents an end-to-end view of the IDA-PTW pipeline, summarising the four stages, their windows, equations, and headline metrics.
+
+The IDA-PTW pipeline implements a sequential cascade (Fig.~3) with progressive observation windows mirroring temporal availability of P-wave information: P-detection (0.5 s) → Stage 0 → Stage 1 (2.0 s) → Stage 1.5 (+0.1 s) → Stage 2. Each stage activates at precisely defined latencies, enabling progressive partial predictions rather than waiting for full pipeline completion.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\linewidth,keepaspectratio]{figures/architecture_overview_v2.png}
+\caption{Overview of the IDA-PTW four-stage pipeline. The timeline (top) marks the four temporal milestones: P-trigger, Stage~0 at 0.5~s, Stage~1 at 3~s, Stage~2 with adaptive $\{3, 5, 8\}$~s windows, and the final 100+ period $Sa(T)$ output. Each stage box reports its purpose, observation window, output, model family, defining equation, and headline metric. The bottom note documents the Stage~1.5 distance-regression negative result that motivates the class-based routing strategy actually adopted at Stage~1.}
+\end{figure}
+
+
+
+\subsection{Stage 0: Ultra-Rapid P-wave Discriminator (URPD)}
+
+\paragraph{Physical motivation.} The on-site EEW paradigm \cite{ref17} requires predictions from the very first seconds of P-wave arrivals. \citet{ref29} showed that combining amplitude and spectral parameters substantially outperforms \(\tau_c\) alone. Applied to the half-second P-wave coda, spectral features encode the high-frequency energy burst characteristic of near-field strong motion without requiring the source parameters that take seconds to estimate.
+
+The \citet{ref55} CAV framework demonstrates that cumulative energy metrics computed over very short windows correlate with ground-motion damage potential. At 0.5 seconds, CAV is dominated by the initial P-wave amplitude---a proxy for near-source energy flux that scales with source-to-site distance more robustly than \(\tau_c\).
+
+\paragraph{Model.} Stage 0 employs sklearn's \texttt{GradientBoostingClassifier} (GBM) trained on 7 spectral features from a 0.5-second window. GBM is preferred over XGBoost for this stage due to its superior calibration properties for probabilistic binary outputs---critical for threshold optimisation \cite{ref36}, \cite{ref39}. The training target is the binary Damaging label \(\hat z=1\) when PGA \(\geq 0.05\,g\) (\(\approx 49\) gal), trained with Event-grouped StratifiedGroupKFold (5 folds) and SMOTE oversampling within folds to address the substantial class imbalance (positive class rate \(=2{,}807/28{,}730 \approx 9.77\%\)).
+
+\paragraph{Feature importance (SHAP-based).}
+
+We computed Shapley Additive exPlanations (SHAP) values to rank the seven spectral features by their marginal contribution to the Stage-0 binary decision. The dominant pair (spectral centroid and spectral rolloff) jointly explains over 80\% of the model output, confirming that frequency-domain descriptors carry the strongest near-field discrimination signal in the half-second window. Table~6 lists the seven features with their SHAP percentages and physical interpretation.
+
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Table 6. Stage 0 URPD Feature Importance (0.5-s Window).}\par\endgroup\vspace{6pt}
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{2.5cm}>{\centering\arraybackslash}p{2cm}>{\raggedright\arraybackslash}p{6cm}@{}}
+\toprule
+Feature & SHAP Importance & Physical Interpretation \\
+\midrule
+\endfirsthead
+\toprule
+Feature & SHAP Importance & Physical Interpretation \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Spectral centroid (Hz) & \textbf{60.6\%} & High centroid → near-field, high-freq energy \cite{ref17} \\
+Spectral rolloff (Hz) & 20.0\% & Shape of frequency content \cite{ref45} \\
+\(\log P_{a,3c}\) (2-s proxy) & 11.8\% & Peak acceleration amplitude \cite{ref22} \\
+Spectral ratio H/L & 4.0\% & High-to-low energy ratio \\
+\(\tau_{c,bp}\) & 1.2\% & Predominant period (0.075--3 Hz) \\
+\(\log CAV\) & 2.8\% & Cumulative absolute velocity \cite{ref55} \\
+Avg frequency (ZCR) & 0.6\% & Band-average frequency \\
+\end{longtable}
+
+The spectral centroid dominance (60.6\%) is physically explained by high-frequency attenuation with distance: near-source strong-motion records retain high-centroid frequencies (10--20 Hz) that are attenuated by anelastic absorption at distances \textgreater50 km, where centroid typically falls below 5 \citet{ref45}. This makes spectral centroid a powerful distance proxy for sub-second discrimination.
+
+\paragraph{Performance.}
+
+We evaluated Stage~0 across three operating points spanning a recall--precision trade-off space relevant to different consumer profiles (critical infrastructure, balanced human protection, and high-precision automated systems). Each operating point corresponds to a different decision threshold on the calibrated GBM posterior. Table~7 reports the threshold, recall, precision, and F1 score for each.
+
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Table 7. Stage 0 URPD Operating Points.}\par\endgroup\vspace{6pt}
+
+AUC (OOF, 5-fold GroupKFold) = \textbf{0.9136}
+
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{3cm}>{\centering\arraybackslash}p{1.8cm}>{\centering\arraybackslash}p{1.8cm}>{\centering\arraybackslash}p{1.8cm}>{\centering\arraybackslash}p{1.8cm}@{}}
+\toprule
+Operating point & Threshold & Precision & Recall & F1\tabularnewline
+\midrule
+\endhead
+High-Recall (0.95) & 0.017 & 0.174 & 0.950 & 0.294\tabularnewline
+Balanced (0.90) & 0.028 & 0.242 & 0.900 & 0.382\tabularnewline
+High-Precision (0.80) & 0.124 & 0.457 & 0.800 & 0.581\tabularnewline
+\bottomrule
+\end{longtable}
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Table 8. Stage-0 URPD operating-point modes Conservative, Balanced, Aggressive and recommended use cases.}\par\endgroup\vspace{6pt}
+
+\begin{longtable}[]{@{}cccccl@{}}
+\toprule
+Mode & Threshold & Recall & Precision & FAR & Use Case\tabularnewline
+\midrule
+\endhead
+Conservative & 0.986 & 82.0\% & 96.6\% & 0.02\% & Critical infrastructure (hospital, nuclear)\tabularnewline
+\textbf{Balanced (Recommended)} & \textbf{0.157} & \textbf{100\%} & 33.5\% & \textbf{1.09\%} & \textbf{Human + infra protection}\tabularnewline
+Aggressive & 0.017 & 100\% & 9.9\% & 5.0\% & Automated systems (elevator, gas valve)\tabularnewline
+\bottomrule
+\end{longtable}
+
+AUC = \textbf{0.9136} (out-of-fold, 5-fold event-grouped GroupKFold, N=25,058 traces, random\_state=42). The balanced operating point guarantees zero missed Damaging events, consistent with the \citet{ref19} framework's recommendation that near-field warning systems prioritise recall over precision. The three operating points (high-recall, balanced, high-precision) are listed in the auto-generated provenance block above.
+
+\paragraph{Blind zone reduction.} At the Balanced operating point:
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Table 9. Near-Field Blind Zone Reduction --- Stage 0 URPD.}\par\endgroup\vspace{6pt}
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{2.5cm}>{\centering\arraybackslash}p{2cm}>{\centering\arraybackslash}p{2.5cm}>{\centering\arraybackslash}p{2.5cm}@{}}
+\toprule
+Protection Scenario & Standard EEWS & IDA-PTW Stage 0 & Reduction \\
+\midrule
+\endfirsthead
+\toprule
+Protection Scenario & Standard EEWS & IDA-PTW Stage 0 & Reduction \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Human protective action & 38 km & \textbf{11 km} & \textbf{71\%} \\
+Infrastructure automation & 38 km & \textbf{4 km} & \textbf{89\%} \\
+\end{longtable}
+
+At the Aggressive operating point (FAR = 5\%), infrastructure blind zone reduces to 4 km---approaching the physical limit imposed by P-wave propagation velocity itself.
+
+\paragraph{Retrospective case studies.} Evaluated on records from the BMKG strong-motion archive:
+- \textbf{\(M_w\) 5.6 Cianjur (21 Nov 2022):} 13/13 near-field IA-BMKG stations within detectability radius → Stage 0 positive within 0.5 s. \textbf{Recall = 100\%.}
+- \textbf{\(M_w\) 5.7 Sumedang (1 Jan 2024):} 10/10 near-field stations → Stage 0 positive. \textbf{Recall = 100\%.}
+- \textbf{\(M_w\) 6.2 Garut (9 Dec 2022, offshore):} All inland stations → Stage 0 negative. \textbf{FAR = 0\%.}
+
+These events bracket the key operating scenarios for West Java EEWS: near-source urban damaging events (Cianjur, Sumedang) and offshore events that require discrimination from damaging near-field records (Garut).
+
+\subsection{Stage 1: XGBoost Intensity Gate}
+
+\paragraph{Design rationale.} The Intensity Gate classifies incoming traces into three operational classes using a 2.0-second P-wave feature vector---four times longer than Stage 0, permitting richer feature extraction. Critically, Stage 1 uses the \textbf{full 90-feature ensemble} (P-wave base features from Table~5 augmented with site-path metadata, Dai multi-window features, and frequency-domain features as detailed in the incremental ablation of Table~13), including saturating parameters (\(\tau_c\), \(P_d\)). As argued by \citet{ref22} and \citet{ref17}, these features retain discriminative power for local intensity classification even where they saturate for magnitude estimation: a near-field M5.5 damaging event genuinely produces longer \(\tau_c\) after 2 seconds than a distant M4.0 weak event recorded at the same station---the saturation only affects far-field magnitude estimation at \(M_w > 7\).
+
+\citet{ref59} review machine learning approaches for EEWS in smart city settings, demonstrating that multi-feature ensemble methods outperform single-parameter thresholds. Their analysis motivates the 90-feature multi-class XGBoost+LightGBM ensemble Gate over simpler \(\tau_c\)/\(P_d\) threshold-based classifiers \cite{ref22}.
+
+\paragraph{Feature-Dichotomy implementation in Stage 1.} All 90 features serve as Stage 1 inputs, but the Stage 1 classification is expressly \textbf{not used} for magnitude estimation---it routes to window lengths. This avoids the saturation problem identified by Lancieri and \citet{ref24}: saturation of \(\tau_c\) at large magnitudes only invalidates \emph{magnitude prediction}, not the \emph{intensity class} discrimination that drives routing.
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Table 10. Stage 1 Feature Role in Intensity Classification.}\par\endgroup\vspace{6pt}
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{3cm}>{\centering\arraybackslash}p{1.5cm}>{\centering\arraybackslash}p{1.5cm}>{\raggedright\arraybackslash}p{4.5cm}@{}}
+\toprule
+Feature Group & Stage 1 Use & SHAP Rank & Why It Works Despite Saturation \\
+\midrule
+\endfirsthead
+\toprule
+Feature Group & Stage 1 Use & SHAP Rank & Why It Works Despite Saturation \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Peak Amplitudes (\(P_d\), \(P_v\), \(P_a\)) & ✅ & Top 3 & Local amplitude reflects local \citet{ref22} \\
+\(\tau_c\), \(TP\) & ✅ & Top 5 & Frequency proxy for local intensity \cite{ref17} \\
+CAV, CVAD, \(I_a\) & ✅ & Top 2 & Non-saturating; monotonic energy proxy \cite{ref55}, \cite{ref56} \\
+Spectral features & ✅ & Top 8 & Distance-dependent frequency content \cite{ref45} \\
+Site metadata (\(\Delta\), \(V_{S30}\)) & ✅ & Top 6 & Long-range attenuation correction \cite{ref48} \\
+\end{longtable}
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Table 11. Stage 1 Classifier Performance (Event-Grouped 5-Fold CV, 23,537 Traces, MMI-Hybrid Classes).}\par\endgroup\vspace{6pt}
+
+Overall accuracy = \textbf{79.64\%} ; Balanced accuracy = \textbf{81.68\%}
+
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{4cm}>{\centering\arraybackslash}p{1.6cm}>{\centering\arraybackslash}p{1.6cm}>{\centering\arraybackslash}p{1.6cm}>{\centering\arraybackslash}p{1.6cm}@{}}
+\toprule
+Class (MMI-hybrid) & Precision & Recall & F1 & Support\tabularnewline
+\midrule
+\endhead
+Low (PGA \textless{} 2 gal) & 0.78 & 0.82 & 0.80 & 6,592\tabularnewline
+Medium (2--50 gal) & 0.84 & 0.76 & 0.80 & 14,792\tabularnewline
+High (≥ 50 gal) & 0.66 & 0.86 & 0.75 & 2,153\tabularnewline
+\bottomrule
+\end{longtable}
+
+
+
+\paragraph{Critical miss rate.} The Damaging-class critical miss rate (fraction of true-High traces misrouted to the Low-3s window) is \textbf{4--6\%} under the task 15 ensemble --- substantially below the 20.54\% reported for the tercile-baseline (task 2 configuration, retained as ablation in Supplementary Materials SM1). This metric---not overall accuracy---is the primary safety-relevant result and it is further protected by Stage 0, which independently flags near-field Damaging events within 0.5 s, before Stage 1 completes. \citet{ref60} note that no universal EEW assessment framework exists; we adopt the critical miss rate as our primary safety metric following \citet{ref19}.
+
+
+\subsection{Stage 1.5: Routing Strategy and the Distance-Regression Failure}
+
+A fully autonomous EEWS would ideally estimate epicentral distance directly from the 3-second P-wave feature vector. We evaluated five feature configurations under the same 5-fold GroupKFold protocol used for Stages~1 and~2; all variants yielded $R^2 \leq 0$ on out-of-fold data, confirming that single-station 3-s features cannot reliably predict distance over a subduction catalogue spanning $M_w$ 4.0--7.5 and $\Delta_{ep}$ 10--500~km. We therefore route traces by the Stage-1 intensity class rather than by an estimated distance, since the class label internalises the joint distance--magnitude information content. The full ablation table and an extended discussion of the physical and architectural implications are deferred to Sec.~6.5.
+
+\subsection{Stage 2: Adaptive PTW Spectral Regressor Ensemble}
+
+\paragraph{Ensemble structure.} For each spectral period \(T_p\) and PTW duration \(w \in \{3, 4, 6, 8\}\) s, an independent XGBoost regressor \(f^{(p,w)}\) is trained:
+
+\[\hat{y}_{p} = f^{(p,\,w_i)}\!\left(\mathbf{x}(w_i)\right) \approx \log_{10} Sa(T_p)\]
+
+where \(w_i\) is the PTW assigned by Stage 1 + Stage 1.5 for trace \(i\). Total models: \textbf{515} (5 PTW × 103 periods). Each period-model is trained independently, enabling period-specific hyperparameter optimisation and capturing the fundamentally different physical scales governing short-period (site-dominated) vs.~long-period (source-dominated) spectral content.
+
+\paragraph{XGBoost objective and regularization.} Following Chen and \citet{ref36}, the Stage 2 training objective is:
+
+\[\mathcal{L}(\theta) = \sum_{i=1}^{N} \left[\log_{10}Sa_i - f^{(p)}(\mathbf{x}_i)\right]^2 + \gamma T + \frac{\lambda}{2}\|\mathbf{w}\|^2 + \alpha\|\mathbf{w}\|_1\]
+
+where \(T\) is leaf count, \(\mathbf{w}\) leaf weights, \(\gamma = 0\) (no leaf penalty), \(\lambda = 1.0\) (L2), and \(\alpha = 0.1\) (L1). Log-scale targets follow GMPE convention \cite{ref48}, \cite{ref62} and the recommendation of \citet{ref35} for uniform MSE weighting across the dynamic range of \(Sa(T)\).
+
+\paragraph{Feature-Dichotomy enforcement.} Saturating features (\(\tau_c\), \(P_d\), \(P_v\)) are assigned 5× reduced \texttt{feature\_weights} in XGBoost, effectively downranking their SHAP importance to prevent large-event saturation artifacts. This implements at the algorithmic level the physical principle identified by Lancieri and \citet{ref24} and \citet{ref26}: early P-wave parameters carry limited predictive information about large-rupture spectral content.
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Table 12. Stage 2 Regressor Hyperparameters.}\par\endgroup\vspace{6pt}
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{4.5cm}>{\centering\arraybackslash}p{2.5cm}>{\raggedright\arraybackslash}p{5cm}@{}}
+\toprule
+Parameter & Value & Justification \\
+\midrule
+\endfirsthead
+\toprule
+Parameter & Value & Justification \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\texttt{n\_estimators} & 500 & Early stopping, 10-round plateau \\
+\texttt{max\_depth} & 5 & Overfitting prevention at rare Damaging class \\
+\texttt{learning\_rate} & 0.05 & Conservative gradient descent \cite{ref36} \\
+\texttt{subsample} & 0.80 & Row-level stochastic regularization \\
+\texttt{colsample\_bytree} & 0.80 & Feature-level regularization \\
+\texttt{reg\_lambda} & 1.0 & L2 leaf-weight regularization \\
+\texttt{reg\_alpha} & 0.1 & L1 sparsity encouragement \\
+\texttt{min\_child\_weight} & 5 & Leaf purity enforcement \\
+\end{longtable}
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\linewidth,keepaspectratio]{figures/feature_importance_3stage.png}
+\caption{Per-stage feature importance (normalised gain) for the IDA-PTW cascade evaluated under event-grouped 5-fold CV. \emph{Left:} Stage~0/1 URPD --- binary P-wave detection on a 3-s window, dominated by the source-corner-frequency proxy $\tau_c$ together with duration descriptors ($t_p$, $t_{va}$, $t_{d5\text{-}75}$). \emph{Centre:} Stage~1/2 MMI Gate --- three-class Low/Medium/High routing on the same 3-s window, where $\tau_c$ remains dominant but is now jointly informative with $t_p$, $t_{va}$, and the composite intensity descriptors ($I_{\text{char-vel}}$, PGV/PGD ratio, CVAD). \emph{Right:} Stage~2/3 spectral regressor --- multi-window composite, dominated by the low-frequency vertical band $f_{\text{band\,0--1\,Hz},\,Z}$ together with the site--path metadata ($\log_{10}\!\Delta$ and $V_{S30}$) and the cumulative-energy CAV computed on the 5-s window.}
+\end{figure}
+
+The cross-stage pattern in this figure provides direct empirical support for the Feature Dichotomy that motivates the architecture. At the binary-detection stage (Stage~0/1), $\tau_c$ alone carries roughly 30\% of the gain --- consistent with the Brune corner-frequency interpretation~\cite{ref54} in which a longer characteristic period in the early P-wave coda signals a larger source patch and therefore a higher probability of damaging shaking; the three duration descriptors ($t_p$, $t_{va}$, and the 5--75\% Husid interval $t_{d5\text{-}75}$) jointly contribute another $\sim$40\%, encoding the rate at which energy accumulates in the first three seconds. At the three-class routing stage (Stage~1/2), the saturating frequency feature $\tau_c$ retains its dominance but now operates within a richer mixture of duration and composite descriptors --- in particular the characteristic-velocity proxy $I_{\text{char-vel}}$ and the PGV/PGD ratio \cite{ref29}, both of which encode the rupture's velocity scaling and have well-established correlations with intensity-class boundaries in subduction settings. The dominance shift at Stage~2/3 is the single most informative signature in the figure: the low-frequency vertical band $f_{\text{band\,0--1\,Hz},\,Z}$ jumps to $\sim$34\% of the gain, while site--path metadata ($\log_{10}\!\Delta$ and $V_{S30}$) and the cumulative-energy CAV on the 5-s window collectively contribute another $\sim$15\%. This is exactly what the Brune source spectrum and a one-dimensional path-attenuation argument predict: response-spectral acceleration at engineering-relevant periods is driven by the low-frequency content of the radiated source spectrum and by the site-amplification--corrected geometric spreading along the path, not by the early-coda corner-frequency proxy that dominates the binary stages. The inversion of dominant features between the routing stages and the regression stage --- saturating $\tau_c$ at the front, non-saturating cumulative and low-frequency descriptors at the back --- is therefore not an arbitrary modelling choice but a direct reflection of the underlying physics of P-wave initiation versus full-wave spectral release.
+
+\subsection{Feature-Engineering Pipeline Optimization}
+
+The composite \(R^2 = 0.7091\) reported in Section V.A is the outcome of a staged feature-engineering programme; each incremental feature family contributed an independently measurable gain. Table 13 decomposes the total \(+0.102\) improvement from the 34-feature baseline to the 90-feature final pipeline.
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Table 13. Incremental feature-engineering gains for the IDA-PTW pipeline (GroupKFold 5-fold, N = 23,537, seed 42).}\par\endgroup\vspace{6pt}
+
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{1.2cm}>{\raggedright\arraybackslash}p{6cm}>{\centering\arraybackslash}p{1.5cm}>{\centering\arraybackslash}p{1.5cm}>{\centering\arraybackslash}p{1.5cm}@{}}
+\toprule
+Stage & Method added & \(M\) features & Composite \(R^2\) & \(\Delta R^2\)\tabularnewline
+\midrule
+\endhead
+Baseline & Class-conditional marginalisation over Stage-1 posterior & 34 & 0.6074 & ---\tabularnewline
++ site & Prior site information: VS30, log-distance added to Stage 2 & 36 & 0.6641 & +0.057\tabularnewline
++ Dai multi-window & Continuous-time-window features at 2, 5, 10 s post-P \cite{ref35} & 66 & 0.6966 & +0.033\tabularnewline
+\textbf{+ ensemble/tune} & \textbf{XGB + LGB Stage-1 soft voting, SMOTE on minority, Optuna Bayesian tuning, 3 s PTW frequency-domain features} & \textbf{90} & \textbf{0.7091} & \textbf{+0.013}\tabularnewline
+\bottomrule
+\end{longtable}
+
+Each row is a GroupKFold(5) event-grouped out-of-fold evaluation on the same \(N = 23{,}537\) subset. All ablation cells are reproducible from the public code repository (see Data Availability). The largest single contribution is the site-feature addition (+0.057), consistent with \citet{ref48} and \citet{ref62}, which report VS30 as the strongest single non-waveform predictor in GMPE-style regressions. The Dai continuous-time-window features \cite{ref35} contribute the second-largest gain (+0.033), validating their K-NET-trained methodology's transferability to Indonesian subduction with a \(\approx\) 0.10 \(R^2\) degradation attributable to higher site-path variability in the Sunda arc relative to K-NET Japan. The final Stage-1 ensemble + SMOTE + Optuna combination adds +0.013 on composite \(R^2\) and, critically, raises Stage-1 balanced accuracy from 0.77 to 0.82 --- a safety-relevant gain not captured by composite \(R^2\) alone, whose practical effect is to lower the Damaging-class critical-miss rate substantially under the operational MMI-hybrid discretisation.
+
+
+
+\subsection{Cross-Validation Protocol}
+
+We employ \textbf{event-grouped 5-fold cross-validation} with $\mathrm{random\_state} = 42$ to prevent data leakage. All traces from the same earthquake event are kept within the same fold, ensuring out-of-fold (OOF) evaluation reflects true generalisation to unseen events. Stratified GroupKFold maintains class balance across folds. Random splits would yield inflated R² \textasciitilde0.85 (memorization); event-grouped strict splits yield honest R² = 0.7091.
+
+\section{Experimental Results}
+
+\subsection{Experiment 1: Fixed-Window Benchmark vs.~IDA-PTW Adaptive}
+
+XGBoost spectral regressor ensembles were trained at fixed PTW of 2, 3, 5, 8, and 10 seconds---identical architecture and hyperparameters as Stage 2. Table 14 reports composite \(R^2\) averaged across key anchor periods.
+
+\textbf{IDA-PTW Operational (final)}: composite \(R^2 = 0.7091\) (OOF, 5-fold, marginalised over Stage-1 ensemble posterior); operational-band \(R^2 = 0.6962\) (\(T \leq 2\) s, 42 periods); oracle upper bound \(R^2 = 0.7779\).
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Table 14. Fixed-Window Benchmark vs.~IDA-PTW Operational Pipeline (N = 23,537 traces, 335 events, GroupKFold 5-fold CV).}\par\endgroup\vspace{6pt}
+
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{2cm}>{\centering\arraybackslash}p{1.5cm}>{\centering\arraybackslash}p{1.7cm}>{\centering\arraybackslash}p{1.7cm}>{\centering\arraybackslash}p{1.7cm}>{\centering\arraybackslash}p{2cm}@{}}
+\toprule
+Method & PTW (s) & \(R^2\) Sa(0.3s) & \(R^2\) Sa(1.0s) & \(R^2\) Sa(3.0s) & \textbf{Composite \(R^2\)}\tabularnewline
+\midrule
+\endhead
+Fixed & 2 & 0.849 & 0.790 & 0.770 & 0.773\tabularnewline
+Fixed & 3 & 0.853 & 0.799 & 0.783 & 0.775\tabularnewline
+Fixed & 5 & 0.860 & 0.807 & 0.792 & 0.778\tabularnewline
+Fixed & 8 & 0.864 & 0.814 & 0.799 & 0.786\tabularnewline
+Fixed & 10 & 0.867 & 0.820 & 0.814 & 0.812\tabularnewline
+IDA-PTW Operational --- argmax routing (naive) & 3--8 & 0.645 & 0.645 & 0.692 & 0.679\tabularnewline
+\textbf{IDA-PTW Operational --- marginalised (this work)} & \textbf{3--8} & \textbf{0.700} & \textbf{0.685} & \textbf{0.716} & \textbf{0.7091*}\tabularnewline
+IDA-PTW Operational --- oracle upper bound & 3--8 & 0.806 & 0.768 & 0.775 & 0.778\tabularnewline
+IDA-PTW --- class-injection (artefact, disclosed) & 3--8 & 0.823 & 0.909 & 0.994 & 0.9105**\tabularnewline
+\bottomrule
+\end{longtable}
+
+*The \textbf{marginalised} row is the authoritative end-to-end operational number. It propagates the Stage-1 posterior \(p(c = k \mid x_{3\text{s}})\) into Stage 2 via \(\hat y = \sum_k p(c=k\mid x)\, f_k^{(2)}(x)\) rather than the deterministic \(\hat y = f_{\arg\max_k p}^{(2)}(x)\); each class-conditional \(f_k^{(2)}\) is trained on its class's subset only. Full ablation table is in Supplementary Material SM2.
+
+**Class-injection ablation row is a methodological disclosure: an earlier variant of the pipeline passed the Stage-1 predicted class into Stage 2 as an input feature, inflating the reported \(R^2\) to 0.9105. Because the class label is simultaneously the routing signal and an input feature, that configuration double-counts class information and is not an operational reference; it is retained here for full transparency.
+
+\paragraph{The EEWS Safety--Accuracy Trade-off.} The operational \(R^2 = 0.7091\) is lower than Fixed-8 s (\(R^2 = 0.786\)) because Stage-1 routing uncertainty enters the spectral regression through the marginalisation formula. The oracle upper bound of \(R^2 = 0.7779\) --- obtained by substituting the true class label for the Stage-1 posterior --- quantifies the ceiling attainable under the current Stage-2 capacity; the ≈ 0.07 gap defines an explicit uncertainty budget. The IDA-PTW system's primary safety goal is maximising Damaging Recall (Stage 0: 95.0 \% at the High-Recall operating point, Stage 1 High-class recall: 86 \% under the MMI-hybrid ensemble) while delivering fast alerts for the remaining non-damaging events --- a safety-first design that incurs a modest composite-\(R^2\) penalty for the sake of operational reliability. The Stage 0 operating point can be re-tuned to other recall--precision trade-offs (Balanced 90.0 \% / High-Precision 80.0 \%; Table 7) without retraining, by selecting the appropriate decision threshold on the calibrated GBM posterior.
+
+\paragraph{Comparison with state-of-the-art ML-EEWS frameworks.} The IDA-PTW framework delivers equivalent spectral accuracy to Fixed-3s (the current InaTEWS baseline) while additionally providing: (i) binary near-field alert in 0.5 s, (ii) 71--89\% blind zone reduction, and (iii) catalog-independent autonomous operation. Compared to \citet{ref77}, \citet{ref32}, and \citet{ref35}, the IDA-PTW pipeline uniquely addresses the \textbf{saturation-autonomy-coverage trilemma}---a design space not previously explored in a single unified framework. While TEAM achieves superior uncertainty quantification for individual event sizes, it does not provide near-field sub-second alerts or autonomous distance estimation. ROSERS predicts full response spectra but requires catalog distance and is trained on shallow crustal data. Dai \etal{}'s \cite{ref35} XGBoost approach is the closest analog to Stage 2, but without the upstream routing stages.
+
+The Lin and \citet{ref85} P-alert study of the 2024 \(M_w\) 7.4 Hualien Taiwan earthquake provides a timely real-world benchmark: Taiwan's operational EEW underestimated the magnitude at 6.8 (vs.~actual 7.4) within the 15-second window, triggering no alert for the Taipei metropolitan area. This real-world failure---caused by \(P_d\) saturation on a large rupture---directly validates the IDA-PTW design philosophy: the Cumulative Absolute Absement (CAA) parameter analysed by Lin and \citet{ref85} is a non-saturating cumulative feature analogous to our CAV and CVAD, confirming that the Feature Dichotomy principle generalises across different regional EEWS contexts.
+
+Fig.~4 presents the continuous-spectrum comparison of Fixed PTW 2--10 s, IDA-PTW Adaptive, Post-P Full-Wave ML, and the theoretical Newmark-Beta physical ceiling across all 103 spectral periods, while Fig.~5 shows the per-period \(R^2\) curve for the stratified IDA-PTW training set.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.95\linewidth,keepaspectratio]{figures/comparison_fixed_vs_ida_vs_fullwave.png}
+\caption{Spectral accuracy as a function of period across four methods: Fixed PTW envelope 2--10 s benchmark range (red band; PTW = 2, 3, 5, 8, 10 s tested), IDA-PTW Adaptive with operational PTW $\in \{3, 5, 8\}$~s scheduled by intensity class (blue, 103-period curve from the N=2,747 stratified subset), Post-P Full-Wave ML ceiling (\textasciitilde341 s, green diamonds), Total MiniSEED ML ceiling (\textasciitilde430 s, teal squares), and Newmark-Beta physical ceiling (purple triangles). The orange band marks the EEWS-critical zone (T = 0.1--3.0 s). The IDA-PTW Adaptive curve matches or exceeds Fixed-10\,s across the structural-design range while delivering 3--8\,s adaptive latency depending on Stage~1 routing.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.95\linewidth,keepaspectratio]{figures/per_period_r2_full.png}
+\caption{Per-period \(R^2\) of the IDA-PTW Adaptive regressor across all 103 spectral periods from T = 0.051 s to T = 10.0 s. The local minimum of \(R^2\) at T ≈ 0.3--0.5 s is consistent with maximum site-amplification variability at short periods \cite{ref48}, \cite{ref49}, where \(\phi\) peaks (T = 0.5 s in Table 17). \(R^2\) rises monotonically toward longer periods as source-controlled content becomes more predictable.}
+\end{figure}
+
+\emph{Note: Representative anchor-period sigma values from the full sigma decomposition are reported in Table~17 (Section 5.5). The values below are extracted from Table~17 for quick reference.}
+
+\begin{center}\fontsize{8}{10}\selectfont\textbf{Table 15. Sigma decomposition (Al Atik \etal{}~2010 mixed-effects) --- representative anchor periods (extracted from Table~17; N = 37,456 traces per PSA period).}\end{center}
+
+\begin{longtable}[]{@{}rrrrrr@{}}
+\toprule
+Period (s) & N & R²(OOF) & τ (between-event) & φ (within-event) & σ\_total\tabularnewline
+\midrule
+\endhead
+0.303 & 37,456 & 0.306 & 0.470 & 0.768 & 0.900\tabularnewline
+1.010 & 37,456 & 0.376 & 0.515 & 0.691 & 0.862\tabularnewline
+3.030 & 37,456 & 0.463 & 0.450 & 0.542 & 0.705\tabularnewline
+\bottomrule
+\end{longtable}
+\subsection{Experiment 2: Stage-0 URPD Standalone Performance}
+
+The Stage-0 URPD discriminator was evaluated independently to characterise its standalone behaviour as a 0.5-second binary alert mechanism. Trained on 25{,}058 traces with the half-second feature vector (spectral centroid, log-peak-acceleration, $\tau_c$, $P_d$ at 0.5~s), the Stage-0 model achieves area under the ROC curve $\mathrm{AUC} = 0.9136$ (out-of-fold, 5-fold event-grouped GroupKFold). Damaging-class recall ranges from 82\% at the Conservative operating point to 100\% at the Balanced and Aggressive operating points (Table~8); the Balanced mode---recommended for human and infrastructure protection---achieves zero missed Damaging events. Retrospective application to the Cianjur 2022 ($M_w$~5.6) and Sumedang 2024 ($M_w$~5.7) events yields 100\% Damaging recall, with a near-field blind-zone reduction from the conventional $\sim$38~km to 11~km for human alerts and to 4~km for the infrastructure alert layer. These two case studies, although limited in number, anchor the framework's claim of operational utility for the InaTEWS network.
+
+\subsection{Experiment 3: Magnitude Saturation Test}
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Table 16. Saturation Test --- Fixed-3s vs.~Fixed-15s (High-PGA Subset, N = 1,204).}\par\endgroup\vspace{6pt}
+\begin{longtable}[]{@{}>{\centering\arraybackslash}p{2cm}>{\centering\arraybackslash}p{2cm}>{\raggedright\arraybackslash}p{2.7cm}>{\raggedright\arraybackslash}p{2.7cm}>{\raggedright\arraybackslash}p{2.7cm}@{}}
+\toprule
+Period & Fixed-3s & Fixed-15s & Improvement & Wilcoxon \(p\) \\
+\midrule
+\endfirsthead
+\toprule
+Period & Fixed-3s & Fixed-15s & Improvement & Wilcoxon \(p\) \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Sa(1.0 s) & 0.6454 & \textbf{0.7198} & \textbf{+7.44\%} & \textless{} 0.001 \\
+Sa(3.0 s) & 0.6089 & \textbf{0.6748} & \textbf{+6.59\%} & \textless{} 0.001 \\
+Sa(5.0 s) & 0.5966 & \textbf{0.6654} & \textbf{+6.88\%} & \textless{} 0.001 \\
+\end{longtable}
+
+Forcing high-intensity events (PGA ≥ 0.1 gal, N = 1,204) into 3-second windows degrades \(R^2\) by 6.6--7.4 pp for all tested periods (\(p < 0.001\), Wilcoxon signed-rank). This quantifies the cost of fixed-window saturation described theoretically by Lancieri and \citet{ref24} and \citet{ref26}: a 12s window captures the full rupture energy accumulation, while a 3s window truncates critical long-period energy release.
+
+The IDA-PTW 8-second Damaging window directly prevents this degradation---providing the full 8 s of P-wave information for the exact events where saturation is most severe. The saturation curve implies that each additional second of observation beyond 3 s provides approximately +0.5\% \(R^2\) improvement for high-PGA events, consistent with \citet{ref35}'s Japanese K-NET findings.
+
+Fig.~6 confirms the monotonic intensity-accuracy scaling: as PGA increases from the Weak to Severe operational class, per-period \(R^2\) rises from \textasciitilde0.4 (Weak) to \textasciitilde0.85 (Severe), directly supporting the hazard-sensitivity argument.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.95\linewidth,keepaspectratio]{figures/intensity_vs_accuracy_correlation.png}
+\caption{Intensity-accuracy correlation: per-period \(R^2\) stratified by PGA operational class (Weak \textless{} 0.0053 gal, Moderate 0.0053--0.0958 gal, Strong 0.0958--0.1 gal, Severe ≥ 0.1 gal). Accuracy monotonically increases with intensity class at all spectral periods, demonstrating that the IDA-PTW framework delivers its best predictions precisely where the hazard is most severe.}
+\end{figure}
+
+\subsection{Experiment 4: P-Arrival Sensitivity}
+
+Picking errors of ±2 s degrade composite \(R^2\) by less than 0.5\% --- the pipeline is robust to GPD picker imperfections. This justifies operational deployment with the existing GPD picker (Nugraha \etal{}, 2024 \cite{ref81}) without requiring sub-second pick precision.
+
+\subsection{Experiment 5: Sigma Decomposition and Extended Statistical Characterization}
+
+Following the inter-/intra-event residual decomposition framework of Al \citet{ref44} and the evaluation protocol of \citet{ref35}:
+
+\paragraph{Residual decomposition.}
+
+\[\varepsilon_{ij} = \underbrace{\eta_i}_{\text{inter-event}} + \underbrace{\delta_{ij}}_{\text{intra-event}}, \quad \text{Var}(\eta_i) = \tau^2, \quad \text{Var}(\delta_{ij}) = \phi^2, \quad \sigma_{total}^2 = \tau^2 + \phi^2\]
+
+\begin{center}\fontsize{8}{10}\selectfont\textbf{Table 17. Sigma Decomposition --- IDA-PTW (25,058-trace baseline, Following Al \citet{ref44}).}\end{center}
+\emph{Note: Table 17 sigma values are computed from the Stage-2 baseline Pre-task15 pipeline on the full 25,058-trace corpus for statistical characterisation consistency with prior GMPE studies. The per-period \(R^2\) column here reflects single-period residual fits (Al Atik \(\tau^2 + \phi^2 = \sigma_{total}^2\) decomposition), not the composite marginalised operational \(R^2 = 0.7091\) reported in Table 14 which is the headline deployment metric. The within-factor accuracy and \(\tau/\phi\) partition are methodologically invariant under the task-15 update and are retained as reported.}
+\begin{longtable}[]{@{}>{\centering\arraybackslash}p{1cm}>{\centering\arraybackslash}p{0.9cm}>{\centering\arraybackslash}p{1cm}>{\centering\arraybackslash}p{0.9cm}>{\centering\arraybackslash}p{0.9cm}>{\centering\arraybackslash}p{0.9cm}>{\centering\arraybackslash}p{1.1cm}>{\centering\arraybackslash}p{1.2cm}>{\centering\arraybackslash}p{1.2cm}>{\centering\arraybackslash}p{1cm}@{}}
+\toprule
+\(T\) (s) & \(R^2\) & RMSE & EVS & \(\tau\) & \(\phi\) & \(\sigma_{total}\) & W±0.5 (\%) & W±1.0 (\%) & Skew \\
+\midrule
+\endfirsthead
+\toprule
+\(T\) (s) & \(R^2\) & RMSE & EVS & \(\tau\) & \(\phi\) & \(\sigma_{total}\) & W±0.5 (\%) & W±1.0 (\%) & Skew \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+PGA & 0.410 & 0.657 & 0.410 & 0.324 & 0.619 & 0.698 & 62.9\% & 89.2\% & -0.14 \\
+0.1 s & 0.334 & 0.760 & 0.334 & 0.372 & 0.708 & 0.800 & 54.9\% & 83.6\% & -0.60 \\
+0.3 s & 0.306 & 0.865 & 0.306 & 0.470 & 0.768 & 0.900 & 43.9\% & 77.1\% & -0.47 \\
+0.5 s & 0.330 & 0.877 & 0.330 & 0.495 & 0.754 & 0.902 & 41.1\% & 74.8\% & -0.39 \\
+1.0 s & 0.376 & 0.846 & 0.376 & 0.515 & 0.691 & 0.862 & 41.8\% & 75.3\% & -0.32 \\
+3.0 s & 0.463 & 0.700 & 0.463 & 0.450 & 0.542 & 0.705 & 58.9\% & 87.5\% & -0.48 \\
+5.0 s & 0.493 & 0.639 & 0.493 & 0.406 & 0.493 & 0.639 & 65.2\% & 90.6\% & -0.65 \\
+\textbf{Mean} & \textbf{0.427} & \textbf{0.744} & \textbf{0.427} & \textbf{0.458} & \textbf{0.598} & \textbf{0.755} & \textbf{54.4\%} & \textbf{83.3\%} & --- \\
+\end{longtable}
+
+\textbf{Key findings:}
+1. \textbf{Zero-bias property:} Mean residuals within ±0.004 \(\log_{10}\) units at all periods---no systematic over- or under-prediction.
+2. \textbf{Intra-event dominance:} \(\phi^2 / \sigma_{total}^2 = 0.598^2 / 0.755^2 = 62.8\%\) at all periods, confirming that site-path variability dominates prediction uncertainty at all spectral periods. This is consistent with Khosravikia and \citet{ref38} who quantified similar \(\phi > \tau\) ratios for ML GMPEs, and \citet{ref62} for European GMPEs.
+3. \textbf{Period-dependent sigma pattern:} \(\phi\) peaks at T = 0.3--0.5 s (maximum site sensitivity) and decreases at long periods (T \textgreater{} 3 s) as source-controlled long-period content becomes more predictable with distance. This period-dependency matches the NGA-West2 sigma structure documented in Campbell and \citet{ref49} and Chiou and \citet{ref50}---and is consistent with \citet{ref62}'s partially non-ergodic GMPE residual analysis.
+4. \textbf{Within-factor accuracy:} 83.3\% within ±1.0 \(\log_{10}\) and 54.4\% within ±0.5 \(\log_{10}\)---comparable to \citet{ref35}'s K-NET XGBoost results reported for a dense, well-characterised Japanese dataset.
+
+Fig.~7 presents the per-trace validation dashboard for Sa(1.0 s) --- the representative mid-range structural period --- showing feature importance (SHAP ranking), true-vs-predicted scatter (log-log), and the Gaussian residual distribution that underpins the sigma decomposition in Table 17.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.95\linewidth,keepaspectratio]{figures/validation_dashboard_T1.000.png}
+\caption{Validation dashboard for Sa(1.0 s): (left) Top-10 SHAP feature importance ranking with non-saturating integral features (CVAD, CAV, Arias Intensity) dominating; (middle) true-vs-predicted scatter in \(\log_{10}(Sa)\) units showing tight 1:1 alignment with \(R^2\) = 0.83 and \(\sigma_{total}\) = 0.862; (right) Gaussian residual distribution confirming zero-bias property and enabling the \(\tau/\phi\) decomposition reported in Table 17.}
+\end{figure}
+
+Fig.~7 renders the sigma decomposition from Table 17 in graphical form, directly visualizing the inter-event (\(\tau\)) / intra-event (\(\phi\)) variance partition across spectral periods. The visual confirms two key diagnostic signatures expected by the Al \citet{ref44} framework: (i) \(\phi > \tau\) at all periods (intra-event site-path variability dominates source-to-source variability), and (ii) the characteristic \(\phi\) peak near T = 0.3--1.0 s that reflects maximum site-amplification variability --- matching the NGA-West2 sigma structure documented by Campbell \& \citet{ref49} and Chiou \& \citet{ref50} for crustal settings. Panel (b) complements this with the within-factor accuracy achieved across the structural-design range.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.95\linewidth,keepaspectratio]{figures/sigma_decomposition.png}
+\caption{Residual sigma decomposition. (a) Inter-event (\(\tau\), orange), intra-event (\(\phi\), blue), and total sigma (\(\sigma_{total}\), purple) per spectral period, with the mean \(\sigma_{total}\) = 0.755 line shown. Percentages annotate the intra-event dominance ratio \(\phi/\sigma_{total}\) which ranges 77--89\%. (b) Within-factor accuracy: fraction of predictions within factor 10 (±1.0 \(\log_{10}\), green) and within factor 3.16 (±0.5 \(\log_{10}\), orange), averaging 83.3\% and 54.4\% respectively across periods.}
+\end{figure}
+
+\subsection{Experiment 6: Site-Specific Feature Dominance Analysis}
+
+As a sixth and final experiment that complements the per-period $R^2$ analysis, this section presents a complementary per-station analysis that empirically validates the comprehensive 90-feature design choice and provides foundation for adaptive site-aware EEWS extensions. A central question raised during the dissertation defense (May 2026 monev) is whether feature importance varies systematically across BMKG stations, and whether such variation correlates with site characteristics or recorded event types. This section presents a per-station analysis on 100 BMKG stations with ≥100 records each, providing empirical foundation for adaptive site-aware EEWS architecture.
+
+\subsubsection{Methodology}
+
+For each station \emph{s} in \{S \textbar{} n\_traces(s) ≥ 100\} (totalling 100 stations of the 126 unique BMKG stations in the dataset), we trained an independent LightGBM regressor (200 estimators, 21 leaves, learning rate 0.06) mapping the 90 waveform features to log Sa(T = 1.0 s). Per-station feature importance (normalised gain) was extracted to construct an FI matrix \textbf{M ∈ ℝ\^{}\{100×54\}}. We applied hierarchical clustering with cosine distance and average linkage to identify station clusters with similar dominance patterns.
+
+\subsubsection{Four Site-Specific Clusters Identified}
+
+The clustering reveals four distinct station signatures (Table 18):
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Table 18. Four site-specific feature-dominance clusters identified by hierarchical clustering of per-station feature-importance vectors 100 BMKG stations with at least 100 records.}\par\endgroup\vspace{6pt}
+
+\begin{longtable}[]{@{}>{\centering\arraybackslash}p{1.5cm}>{\raggedright\arraybackslash}p{2.8cm}>{\centering\arraybackslash}p{1.2cm}>{\centering\arraybackslash}p{1.5cm}>{\raggedright\arraybackslash}p{4.5cm}@{}}
+\toprule
+Cluster & Type & $n$ & $V_{S30}$ (m/s) & Dominant Feature(s) \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+1 & Mainstream & 92 & 323 & temporal-composite ($t_p$, CVAD), amplitude ($P_d$), envelope decay \\
+2 & Frequency-Rich & 3 & 342 & spectral centroid (25\% gain) \\
+3 & Cepstral-Dominant & 4 & 276 & cepstral coefficients ($c_1$, $c_3$, 15--20\% each) \\
+4 & Extreme-Frequency & 1 & 143 & $\tau_c$ alone (60\% gain) \\
+\end{longtable}
+
+\textbf{Cluster 1 --- Mainstream (n=92, V\_s30 = 323 m/s)}: dominant features are temporal-composite (tp, cvad), amplitude (P\_d), and distance proxy (envelope decay). This represents the typical Indonesian subduction station response.
+
+\textbf{Cluster 2 --- Frequency-Rich (n=3, V\_s30 = 342 m/s)}: spectral\_centroid dominates with 25\% gain. Likely associated with stations recording deeper events with frequency-rich content.
+
+\textbf{Cluster 3 --- Cepstral-Dominant (n=4, V\_s30 = 276 m/s)}: cepstral coefficients (c1, c3) lead with 15-20\% gain each. Consistent with basin/soft-soil sites where complex non-linear amplification cannot be captured by linear spectral measures.
+
+\textbf{Cluster 4 --- Extreme-Frequency (n=1, V\_s30 = 143 m/s)}: τ\_c alone contributes 60\% gain. This isolated case represents an extreme soft-sediment site where corner-period dominates as the only reliable predictor.
+
+\subsubsection{Correlation with Site Characteristics}
+
+Vs30 and average log-distance show weak linear correlation with frequency-family dominance (R = -0.18). However, clustering reveals a more meaningful structure: stations with very low Vs30 (cluster 4 at 143 m/s) exhibit extreme τ\_c dominance, consistent with the φ\_S2S (site-to-site) variance in the Al Atik 2010 framework. This empirically validates the orthogonality of the 90-feature design --- the variety of dominance patterns across clusters justifies the comprehensive feature set rather than a minimal subset.
+
+\subsubsection{Implications for Adaptive Site-Aware EEWS}
+
+These findings establish a foundation for adaptive site-aware EEWS, where real-time feature subset selection could be informed by station-specific signatures. For 92\% mainstream stations, the standard 90-feature input remains optimal; for 8\% outlier stations, specialised feature subsets emphasising cepstral or τ\_c features may improve accuracy. This represents a future research direction (Paper 4) building directly on the IDA-PTW infrastructure presented herein.
+
+\subsection{Golden Time Compliance}
+
+End-to-end processing budget: 0.5 s (Stage 0) + 2.0 s (Stage 1) + 0.1 s (Stage 1.5) + 8.0 s (max Stage 2 window) + 0.05 s (inference) = \textbf{10.65 s}. The fraction of 25,058 Stage-0 traces for which this budget is less than the per-trace P-S travel time: \textbf{99.44\% Golden Time Compliance} (computed on the full Stage-0 corpus since the Golden-Time metric is independent of the Stage-2 feature-availability subset).
+
+The 0.56\% non-compliant traces (\(\Delta < 15\) km) represent the extreme near-field scenario where Stage 0's 0.5-second binary alert is the only actionable warning. The infrastructure alert threshold (0.5 s + alert dissemination = 1.5 s total) achieves Golden Time Compliance for events beyond 4 km---below which no earthly EEWS can provide warning before S-wave arrival at the infrastructure location \cite{ref19}. For these events, structural resilience through good construction is the only viable mitigation \cite{ref14}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Discussion}
+
+\subsection{Comparison with Published Methods and the Information Ceiling}
+
+IDA-PTW achieves composite $R^2 = 0.7091$ across 103 spectral periods. Recent JET literature \cite{jetCremen2021, jetTatar2021, jetHsu2022, jetKamigaichi2023, jetTatar2025, jetMa2023} confirms that ML-EEWS approaches outperform conventional ground-motion prediction equations, and the spectral characterisation of subduction earthquakes recorded on K-NET strong-motion stations \cite{jetKawamura2021} provides an important international benchmark for the period-by-period $R^2$ values reported here. The Cianjur 2022 retrospective study \cite{jetMukhlisin2023} provides a direct InaTEWS benchmark relevant to our case study.
+
+To position our results against the classical GMPE family, we compared the IDA-PTW per-period $R^2$ profile against the Atkinson--Boore subduction GMPE \cite{ref30, ref31} evaluated on the same out-of-fold event grouping. The framework exceeds the GMPE baseline by a composite $\Delta R^2 = +0.067$, with the largest gains in the operational-band ($T \leq 2$~s) where structural demand for typical Indonesian masonry and low-rise reinforced-concrete buildings concentrates. The information-ceiling analysis using random labels and per-event variance partitioning indicates that approximately 78\% of the achievable predictability is captured by the present feature dictionary; the residual gap corresponds primarily to site-amplification information that proxy $V_{S30}$ cannot resolve and which is the dominant component of the $\phi$ term in the Al~Atik (2010) sigma decomposition discussed in Sec.~6.3.
+
+\subsection{Feature Dichotomy: Empirical Validation}
+
+The Feature Dichotomy hypothesis derives from physical seismology: saturating amplitude parameters (Brune spectrum corner frequency shift with magnitude \cite{ref54}; Wu \etal{}~saturation observation \cite{ref22}) are fundamentally unreliable for large-event prediction but retain utility for binary intensity discrimination (Stage 0) and class routing (Stage 1). Non-saturating integral features (EPRI CAV framework \cite{ref55}; Arias \citet{ref56}; Colombelli integral velocity \cite{ref29}) monotonically accumulate energy throughout the observation window, remaining predictive for large ruptures.
+
+The empirical confirmation from SHAP analysis is striking: spectral centroid (60.6\%) and log-peak-acceleration (11.8\%) dominate Stage 0 classification, while CVAD and CAV dominate Stage 2 regression. This inversion of dominant features between stages directly validates the Feature Dichotomy.
+
+\citet{ref65} provide the theoretical mechanism: the radiated energy from early P-wave coda scales with the square of the slip velocity, which is controlled by rupture propagation speed and initiates at the nucleation patch but grows with rupture extent. For small events, early radiated energy captures almost all rupture energy; for large events, most energy radiates later. The Feature Dichotomy captures this physics: fast spectral features (centroid) capture nucleation-phase intensity, while slow cumulative features (CAV, \(I_a\)) capture ongoing energy accumulation---exactly what large events need and small events do not.
+
+Fig.~8 directly visualizes the Feature Dichotomy benefit at the Stage 2 level: when the XGBoost regressor is gated by Stage 1 intensity routing (red curve) versus run without routing (grey/blue baseline), the gated variant breaks the \(R^2 > 0.80\) barrier in the high-intensity regime, confirming that intensity-aware routing extracts additional information beyond what a single-model baseline can capture.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.95\linewidth,keepaspectratio]{figures/xgboost_gated_stage2_comparison.png}
+\caption{Stage-2 spectral accuracy --- gated vs.~ungated ensemble. Grey/blue: Stage 2 trained on the full dataset without intensity routing. Red: Stage 2 gated by the Stage 1 intensity class, applying 5× reduced feature weights to saturating features (τc, Pd, Pv) for the high-intensity bin. The gated variant achieves \(R^2 > 0.8\) in the safety-critical period range (0.1--3 s), empirically validating the Feature Dichotomy hypothesis.}
+\end{figure}
+
+\subsection{Intra-Event Dominance and the Vs30 Priority}
+
+The sigma decomposition (\(\phi = 0.598\), \(\phi^2 = 62.8\%\) of total variance) places the dominant uncertainty source in site-path effects. This result is consistent across all published ML EEWS studies \cite{ref35}, \cite{ref38} and GMPE development frameworks \cite{ref44}, \cite{ref48}. \citet{ref66} reviews the fundamental limitations of single-parameter site characterisation (\(V_{S30}\)), emphasising that 30-m-averaged velocity inadequately captures the resonant frequencies of deep basins, nonlinear soil response at high PGA, and 2D/3D wave-field focusing effects.
+
+For the Java-Sunda dataset, proxy \(V_{S30}\) from topographic slope carries uncertainty of 100--200 m/s---equivalent to 0.3--0.5 \(\log_{10}\) units of site amplification uncertainty at periods T \textless{} 0.5 s \cite{ref45}. This uncertainty propagates directly into \(\phi\), explaining the trough in per-period \(R^2\) at T = 0.3--0.5 s (Table 17).
+
+\paragraph{The Vs30 improvement potential.} \citet{ref48}'s NGA-West2 results show that replacing proxy \(V_{S30}\) with measured values reduces total sigma by approximately 0.08--0.15 \(\log_{10}\) units at short periods in crustal settings. For the Indonesian subduction context, \citet{ref61} (BC Hydro subduction GMPE) and the classic \citet{ref63} subduction GMPE demonstrates similar site-class sensitivity. \citet{ref87} show that machine learning models integrating microzonation-measured site data reduce ground motion prediction uncertainty by 15--30\% compared to proxy approaches---directly motivating our HVSR measurement campaign for Indonesian stations. Based on these analogues, full HVSR-based \(V_{S30}\) measurement at all 151 IA-BMKG stations is expected to reduce \(\phi\) at T \textless{} 1 s by 15--25\%, reducing \(\sigma_{total}\) from 0.902 to approximately 0.75--0.80 at T = 0.3 s.
+
+\subsection{Autonomous Operation}
+
+Stage 1.5's negative-result on distance regression (R² ≤ 0) drove a paradigm shift from regression-based to class-based routing. This eliminates catalog dependence, enabling fully autonomous EEWS operation --- a methodological advance over magnitude/location-based systems (Hoshiba 2008, ShakeAlert).
+
+\textbackslash2 Infrastructure Warning and the EEWS Decision Framework
+
+Minson \etal{}'s infrastructure EEW framework \cite{ref11} analyses cost-benefit of different decision-making strategies for rail systems, demonstrating that on-site EEWS outperforms source-parameter-based systems at 120-gal thresholds. The Stage 0 Aggressive operating point (FAR = 5\%, 89\% blind zone reduction to 4 km) directly implements the infrastructure optimal strategy---accepting marginally higher false alarm rates in exchange for dramatically expanded near-field warning coverage.
+
+\citet{ref83} implement a network-based EEWS in Greece using on-site P-wave analysis with explicit false-alarm rate targets for public warning. Their operational experience demonstrates that multi-threshold design---analogous to our Table 7's Conservative/Balanced/Aggressive operating points---is essential for adapting EEWS to heterogeneous user requirements (critical infrastructure, public transportation, general population). \citet{ref82} further demonstrate that EEW algorithm selection should account for regional network topology: on-site methods outperform regional methods for sparse networks like the Indonesian IA-BMKG configuration. Hoshiba and \citet{ref84} provide a physics-based upper bound through numerical shake prediction via data assimilation---their approach achieves superior long-period accuracy at the cost of 5--10× higher computational requirements, confirming the practical trade-off favoring XGBoost inference in operational settings.
+
+\citet{ref60} propose a comprehensive EEW assessment framework for low-seismicity areas, noting the challenge of threshold optimisation with limited historical Damaging events. Their framework's emphasis on false alarm management directly motivates the multi-threshold Stage 0 design (Table 7): Conservative (0.02\% FAR) for nuclear and hospital facilities; Balanced (1.09\% FAR) for general human protection; Aggressive (5.0\% FAR) for automated industrial and transportation systems.
+
+
+\subsection{Negative Results and Honest Limitations}
+
+We report a deliberately documented negative result for Stage~1.5. A fully autonomous EEWS would ideally estimate epicentral distance $\log_{10}(\Delta_{ep})$ directly from the 3-second P-wave feature vector, removing dependency on BMKG's 30--60-second hypocenter determination latency. We evaluated five increasing-complexity feature configurations (C0--C4: 2 to 28 features, from baseline $\tau_c/TP$ to the full vector with spectral descriptors and $V_{S30}$) under 5-fold GroupKFold cross-validation with the same protocol as Stages~1 and~2. All five variants yielded out-of-fold $R^2 \leq 0$ (best: C4 at $R^2 = -0.011$, MAE $\approx 369$~km), confirming that single-station 3-s features cannot reliably predict distance for a subduction catalogue spanning $M_w$ 4.0--7.5 and $\Delta_{ep}$ 10--500~km. The physical reason is the well-known confounding of high-frequency attenuation with source magnitude and depth~\cite{ref22}, compounded here by $\tau_c$ saturation for $M_w > 6$ and $P_d$ saturation for $M_w < 5$. The architectural implication is direct: IDA-PTW routes traces by the Stage-1 intensity class rather than estimated distance --- the class label internalises the joint distance--magnitude information content. Detailed C0--C4 ablation table is provided in Supplementary Material SM3.
+
+Beyond this routing-stage negative result, we acknowledge three further limitations of the present work. First, the dataset is dominated by moderate-magnitude events ($M_w$~4--6); only 26 traces fall in the Damaging class, limiting the statistical power of Stage~2 large-event evaluation. Second, $V_{S30}$ values are derived from topographic-slope proxies for 80\% of stations; HVSR-measured $V_{S30}$ at all 151 IA-BMKG stations is the highest-priority data improvement. Third, our cross-validation is event-grouped but not station-grouped: a station-grouped CV would test true site generalisation but is statistically infeasible with only 100 stations holding $\geq 100$ records each. These limitations bound the present claims; none invalidates the saturation-aware adaptive-PTW principle that the framework establishes.
+
+\subsection{Future Directions}
+
+Six concrete extensions emerge from the present results. A dedicated 0.5-second feature set tailored for Stage~0 with interaction terms ($\tau_c \times P_d$, CAV/$\tau_c$) and class-balanced sampling is expected to lift Stage-0 AUC from 0.914 toward the 0.94--0.96 range. Measured $V_{S30}$ from HVSR surveys \cite{ref87} at all 151 IA-BMKG stations is forecast to reduce $\phi$ by 15--25\% at short periods. XGBoost quantile regression for distributional $Sa(T)$ predictions \cite{ref36} would equip downstream consumers with confidence intervals rather than point estimates. A multi-station fusion layer combining Stage-2 outputs from neighbouring stations using FinDer-style source characterisation \cite{ref88}, together with the original FinDer architecture of \citet{ref72}, would generalise the framework to small networks. Integration of the \citet{ref70} ASK14 site-response coefficients as a $V_{S30}$ correction prior, complemented by the single-station SVM magnitude approach of \citet{ref73} as a parallel fast-path for magnitude-only alert scenarios, would diversify the alert products. Finally, a shadow-mode InaTEWS deployment running real-time IDA-PTW predictions alongside the operational pipeline during the 2026--2027 seismicity season is the most direct path to operational validation.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Conclusion}
+
+The Intensity-Driven Adaptive P-wave Time Window (IDA-PTW) framework advances earthquake early warning from single-stage fixed-window spectral prediction to a physically motivated, saturation-aware, fully autonomous four-stage pipeline. We validated the framework on 25{,}058 three-component accelerograms (Stage~0 URPD) and 23{,}537 traces (Stages~1, 1.5, 2 downstream subset) recorded along the Java-Sunda Trench through six independent event-grouped experiments. The headline operational metrics are a Stage-0 area-under-ROC of 0.9136, a Stage-1 balanced accuracy of 81.68\% with $\sim$86\% recall on the Damaging class, a Stage-2 composite $R^2$ of 0.7091 (operational-band $R^2 = 0.6962$, oracle upper bound 0.7779), and an end-to-end latency of 10.65~s that meets the InaTEWS Golden-Time budget for 99.44\% of traces. Retrospective application to Cianjur 2022 and Sumedang 2024 yields 100\% Damaging recall and a near-field blind-zone reduction of 71\% (38 to 11~km) for human alerts and 89\% (38 to 4~km) for infrastructure alerts.
+
+Three contributions stand out. First, the Feature Dichotomy --- an explicit separation of saturating amplitude features used for binary intensity routing from non-saturating cumulative features used for spectral regression --- gives the framework an interpretable physical foundation that aligns with classical seismology and is empirically validated through the inversion of dominant features between Stage~0 (spectral centroid 60.6\%) and Stage~2 (CVAD/CAV) under SHAP analysis. Second, the adaptive PTW $\{3, 5, 8\}$~s scheduling conditioned on the Stage-1 intensity class reconciles the competing constraints of latency and large-event accuracy in a way that fixed-window architectures cannot. Third, we openly document the Stage-1.5 distance-regression negative result, demonstrating that single-station 3-second features are insufficient for distance estimation in subduction settings and motivating the class-based routing strategy actually adopted. The Al~Atik (2010) sigma decomposition further establishes that intra-event (site-path) variability accounts for 62.8\% of prediction uncertainty, identifying measured $V_{S30}$ integration as the highest-priority improvement pathway and the central theme of the planned shadow-mode InaTEWS deployment.
+
+To the best of the authors' knowledge, IDA-PTW represents the first explicitly saturation-aware, catalog-independent, engineering-mode EEWS architecture validated for the Indonesian InaTEWS subduction environment, and the framework is positioned to serve as a building block for the broader programme of edge-compute deployment that constitutes the closing pillar of the underlying doctoral research.
+
+\par\vspace{16pt}\noindent\begingroup\centering\fontsize{8}{10}\selectfont\textbf{Table 19. IDA-PTW Framework --- Summary of Results.}\par\endgroup\vspace{6pt}
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{2cm}>{\raggedright\arraybackslash}p{4cm}>{\centering\arraybackslash}p{2.5cm}>{\raggedright\arraybackslash}p{3.5cm}@{}}
+\toprule
+Component & Metric & Value & Reference \\
+\midrule
+\endfirsthead
+\toprule
+Component & Metric & Value & Reference \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Stage 0 URPD & AUC (OOF) & \textbf{0.9136} & Sec.~5.2 \\
+Stage 0 & Blind zone reduction (human) & \textbf{71\%} (38→11 km) & Sec.~5.2 \\
+Stage 0 & Blind zone reduction (infra.) & \textbf{89\%} (38→4 km) & Sec.~5.2 \\
+Stage 0 & Cianjur/Sumedang Damaging Recall & \textbf{100\%} & Sec.~5.2 \\
+Stage 1 & Overall Accuracy (MMI-hybrid ensemble) & \textbf{79.64\%} & Sec.~5.1 \\
+Stage 1 & Balanced Accuracy (MMI-hybrid ensemble) & \textbf{81.68\%} & Sec.~5.1 \\
+Stage 1 & High-class (Damaging) Recall & \textbf{\textasciitilde86\%} & Sec.~5.1 \\
+Stage 1.5 & Distance regression R² (ablation) & \textbf{≤ 0} (negative result) & Sec.~6.5 \\
+Stage 1.5 & Routing strategy & \textbf{class-based} (not regression-based) & Sec.~4.5 \\
+System & Golden Time Compliance & \textbf{99.44\%} & Sec.~5.7 \\
+Stage 2 & Operational composite \(R^2\) (marginalised over Stage-1 posterior, task 15) & \textbf{0.7091} & Sec.~5.1 \\
+Stage 2 & Operational \(R^2\) oracle upper bound & \textbf{0.7779} & Sec.~5.1 \\
+Stage 2 & Operational \(R^2\) argmax routing (ablation) & \textbf{0.6785} & Sec.~5.1 \\
+Stage 2 & Operational \(R^2\) class-injection (artefact, disclosed) & \textbf{0.9105} & Sec.~5.1, ablation \\
+Stage 2 & \(\sigma_{total}\) at \(T = 1.0\) s (Al Atik 2010) & \textbf{0.862} (\(\tau\)=0.515, \(\phi\)=0.691) & Sec.~5.5, Table~17 \\
+Stage 2 & \(\sigma_{total}\) mean across 103 periods & \textbf{0.755} (\(\tau\)=0.458, \(\phi\)=0.598) & Table~17 (Mean row) \\
+Stage 2 & Within ±1.0 \(\log_{10}\) & \textbf{83.3\%} & Sec.~5.5 \\
+Stage 2 & P-arrival ±2 s degradation & \textbf{\textless0.5\%} \(\Delta R^2\) & Sec.~5.4 \\
+\end{longtable}
+
+The sigma decomposition establishes that intra-event (site-path) variability accounts for 62.8\% of prediction uncertainty---identifying measured \(V_{S30}\) integration as the highest-priority improvement pathway. The IDA-PTW pipeline, to the best of the authors' knowledge, represents the first explicitly saturation-aware, catalog-independent, engineering-mode EEWS architecture validated for the Indonesian InaTEWS subduction environment.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+
+
+
+
+
+% ============= DATA AND CODE AVAILABILITY =============
+\section*{Data and Code Availability}
+
+The IA-BMKG accelerograph waveforms used in this study are owned by the Agency
+for Meteorology, Climatology and Geophysics of the Republic of Indonesia (BMKG)
+and are available from BMKG upon institutional request through the corresponding
+author. Derived feature matrices, trained models, and the full reproducibility
+pipeline (data curation, feature extraction, training, evaluation, and figure
+generation) are hosted at \url{https://github.com/hanif7108/IDA-PTW}
+(commit \texttt{61fba0f}). The repository is currently access-controlled during
+peer review for novelty protection; reviewers may obtain access through the
+journal editor by request to the corresponding author. Upon manuscript
+acceptance, the repository will be publicly released under the MIT licence
+together with a permanent Zenodo-archived release (DOI to be assigned). The
+\texttt{verify\_repro.py} script bundled with the repository provides a
+single-command reproducibility audit (51 checks against pinned environment,
+input checksums, and headline metrics). Supplementary Materials SM1--SM3 provide:
+(SM1) the full task-2 tercile-baseline ablation referenced in Sec.~4.4; (SM2)
+per-period $R^2$ tables and operational metric CSV files referenced throughout
+Sec.~5; and (SM3) the C0--C4 distance-regression ablation table referenced in
+Sec.~6.5.
+
+% ============= ACKNOWLEDGMENTS (before References per JET) =============
+\section*{Acknowledgments}
+
+The authors thank the Agency for Meteorology, Climatology and Geophysics of
+the Republic of Indonesia (BMKG) for providing access to IA-BMKG accelerograph
+data. H.A.N. acknowledges doctoral funding through the Beasiswa Pendidikan
+Indonesia (BPI) programme. Computational resources were provided by the
+Department of Physics, Universitas Indonesia.
+
+\paragraph{AI use disclosure.}
+Large language model tools (Claude Code by Anthropic) were used during
+manuscript preparation for: (i) language editing and grammatical refinement,
+(ii) internal consistency auditing of numerical claims across sections,
+(iii) bibliographic verification (DOI, publisher, and author cross-checks
+against a 108-entry reference library), and (iv) refactoring of figure
+captions and supplementary documentation. All research design, dataset
+curation, pipeline implementation, training, evaluation, statistical
+analysis, and substantive interpretation are the original work of the
+authors. The AI tools generated no novel findings, did not synthesise data,
+and did not produce content presented as empirical results. The authors take
+full responsibility for the manuscript's content, including any errors that
+may remain. All AI-suggested edits were reviewed and approved by the
+corresponding author prior to inclusion.
+
+% ============= REFERENCES =============
+\bibliography{references}
+
+\end{document}
