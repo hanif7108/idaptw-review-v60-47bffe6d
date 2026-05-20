@@ -1,0 +1,14 @@
+# IDA-PTW Manuscript v60-rev9 — Pinned Snapshot Integrity
+# Generated: 2026-05-20T02:35:26Z
+# Each file is a content-identical copy of the corresponding
+# /manuscript/manuscript_JET_v60_{EN,ID}.{ext} at this snapshot time.
+
+6b56d7c09f101f5afcff0f34097e62d1  manuscript_JET_v60-rev9_EN.pdf
+ccaf531468c066aea2ca311f2905cfc2  manuscript_JET_v60-rev9_EN.tex
+072206f2f7f1d97d34b12c8039e2211b  manuscript_JET_v60-rev9_EN.docx
+9cd4538a2612388ac075b4a03ee82eec  manuscript_JET_v60-rev9_ID.pdf
+1889b9fab4eb5dc5b6550bc0b10407c1  manuscript_JET_v60-rev9_ID.tex
+4ce937e41bbbb5991a9116577c311f1f  manuscript_JET_v60-rev9_ID.docx
+
+# Verify with:  md5 -q FILENAME   (compare against above)
+# Manuscript src: source/jet_v39_src/overleaf_jet/main{,_ID}.tex
